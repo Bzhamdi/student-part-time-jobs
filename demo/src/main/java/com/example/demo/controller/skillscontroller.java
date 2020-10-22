@@ -1,0 +1,63 @@
+package com.example.demo.controller;
+
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.Employee;
+import com.example.demo.model.skills;
+import com.example.demo.service.skillsservice;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+@CrossOrigin(origins = "http://localhost:58893")
+@RestController
+@RequestMapping("/api")
+public class skillscontroller {
+    @Autowired
+    skillsservice skillsservice;
+    private static final String ENTITY_NAME = "skills";
+
+
+
+    @GetMapping("/skills")
+    public List<skills> findAll() {
+        return skillsservice.findAll();
+    }
+
+    @PostMapping("/skills")
+    public skills postskills(@RequestBody skills skills){
+
+        skills result = skillsservice.save(skills);
+        return result;
+    }
+
+    @DeleteMapping("/skills/{id}")
+    public Map<String, Boolean> deleteskills(@PathVariable(value = "id") Long skillId)
+            throws ResourceNotFoundException {
+        skillsservice.delete(skillId);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
+    }
+
+    @GetMapping("/skills/{id}")
+    public ResponseEntity<skills> getskillbyid(@PathVariable Integer id) throws ResourceNotFoundException {
+
+        skills dto = skillsservice.findOne(id);
+
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @PutMapping("/skills/{id}")
+    public ResponseEntity<skills> updateSkillById(@PathVariable Integer id,  @RequestBody skills skills) throws MethodArgumentNotValidException, ResourceNotFoundException {
+
+        skills.setId(id);
+        skills result =skillsservice.update(skills);
+        return ResponseEntity.ok().body(result);
+    }
+}
