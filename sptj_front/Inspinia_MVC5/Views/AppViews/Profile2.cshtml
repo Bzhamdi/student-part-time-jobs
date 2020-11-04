@@ -1,0 +1,1277 @@
+﻿
+@{ ViewBag.Title = "Profile2"; }
+<div class="col-md-12-navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="col-md-12" style="margin-bottom:15px">
+            <div class="navbar-header page-scroll pull-left">
+                <div class="site-logo col-6 pull-left " style="margin-top:5px">
+
+                    <img id="logo" alt="Qries" src="~/Images/landing/logo.ico"
+                         width="105" height="105">
+
+                </div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="vbar" style="margin-right:50px;" id="navcom">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top:20px">
+                        <li><a class="page-scroll" href="../Landing/index">Home</a></li>
+                        <li><a class="page-scroll" href="../Appviews/contacts">Students</a></li>
+                        <li><a class="page-scroll" href="../AppViews/profile2">Profile</a></li>
+
+
+                        <li style="margin-left:400px"><a href="~/Views/AppViews/Profile.cshtml"></a></li>
+                        <li style="margin-left:15px"><a href="../Pages/login">Logout</a> </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+</div>
+<div class="row wrapper wrapper-content animated fadeInRight">
+
+    <div class="row wrapper wrapper-content animated fadeInRight">
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content" id="accepted">
+                   
+
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Offered hours compared with all others companies</h5>
+                    <div class="text-center">
+                        <div id="sparkline6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content" id="houar">
+                    
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <i class="fa fa-briefcase modal-icon"></i>
+                        <h4 class="modal-title">Create New Post</h4>
+                    </div>
+                    <div class="modal-body" style="background-color:white;margin-bottom:350px ">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+
+                                <select type="text" name="b" class="form-control" id="b">
+                                    <option></option>
+                                    <option id="Sports" value="Sports">Sports</option>
+                                    <option id="Hotels And Restaurent" value="Hotels And Restaurent">Hotels And Restaurent</option>
+                                    <option id="Driving" value="Driving">Driving</option>
+                                    <option id="Building And Construction" value="Building And Construction">Building And Construction</option>
+                                    <option id="Computer Science" value="Computer Science">Computer Science</option>
+                                    <option id="Tatooing" value="Tatooing">Tatooing</option>
+                                    <option id="Computer Science" value="Computer Science">Computer Science</option>
+                                    <option id="House Service" value="House Service">House Service</option>
+                                    <option id="Office Service" value="Office Service">Office Service</option>
+                                    <option id="Arts" value="Arts">Arts</option>
+                                    <option id="Dark Jobs" value="Dark Jobs">Dark Jobs</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="bb" placeholder="Post Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="sal" placeholder="Salary by hours">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="bbb" placeholder="City">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="bbbb" placeholder="Address">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="date" id="startd">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="date" value="End date" id="endd">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="time" value="08:00:00" id="starth">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="time" value="18:00:00" id="endh">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="exampleTextarea">Description</label>
+                                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="aaaaa">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal inmodal" id="myModaledit" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <i class="fa fa-briefcase modal-icon"></i>
+                        <h4 class="modal-title">Create New Post</h4>
+                    </div>
+                    <div class="modal-body" style="background-color:white;margin-bottom:350px ">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="bbedit" placeholder="Post Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="saledit" placeholder="Salary">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="bbbedit" placeholder="City">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" id="bbbbedit" placeholder="Address">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="date" id="startdedit">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="date" value="End date" id="enddedit">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="time" value="13:45:00" id="starthedit">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="time" value="13:45:00" id="endhedit">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="exampleTextarea">Description</label>
+                                <textarea class="form-control" id="exampleTextareaedit" rows="3"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="aaaaaedit">Primary</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-b-lg m-t-lg">
+            <div class="col-md-6">
+
+                <div class="profile-image">
+                    <img src="" class="img-responsive circle-border m-b-md " alt="profile" id="photo" style="height:120px; width:120px">
+
+                    <input id="file" type="hidden">
+                    <label for="file" id="uploadBtn" style="color: rgb(96,96,96); margin-bottom: 55px; margin-right:500px; left:10%"> <i class="fa fa-camera fa-2x "></i></label>
+                </div>
+
+                <div class="profile-info">
+                        <div class="row">
+                            <div class="col-md-4"><h2 class="no-margins " id="socname"></h2></div>
+
+                            <div class="col-md-4">
+                                <button type="button" id="editprofile" class="btn btn-primary" data-toggle="modal" data-target="#myModal_Profile_Details" style="margin-left:300px;margin-top:2px">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+                                </button>
+                            </div>
+
+                        </div>
+                            <small id="desc">
+                            </small>
+                        
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <table class="table small m-b-xs">
+                    <tbody>
+                        <tr>
+                            <td id="city">
+                                <i class="fa fa-map-marker"></i>
+                            </td>
+                            <td>
+                                <strong id="wiww"></strong> Posts
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td id="adr">
+                                <i class="fa fa-map-marker"></i>
+                            </td>
+                            <td>
+                                <strong id="free"></strong> Free
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="id">
+                            </td>
+                            <td>
+                                <strong id="occ"></strong> Occupied
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <small>Posts in last year</small>
+                <h2 class="no-margins" id="postyear">206 480</h2>
+                <div id="sparkline1"></div>
+            </div>
+
+
+        </div>
+
+        <div class="modal inmodal" id="myModal_Profile_Details" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <i class="fa fa-laptop modal-icon"></i>
+                        <h4 class="modal-title">Profile Details</h4>
+                        <button type="button" class="close" data-dismiss="modal" style="margin-top: -60px;">&times;</button>
+                    </div>
+                    <div class="modal-body" style="background-color:white; margin-bottom:250px">
+
+                        <div class="form-group col-md-6">
+
+                            <input type="text" class="form-control" id="ComName" placeholder="Company Name">
+                        </div>
+
+
+                        <div class="form-group col-md-6">
+
+                            <input type="text" class="form-control" id="comcity" placeholder="City">
+                        </div>
+                        <div class="form-group col-md-6">
+
+                            <input type="text" class="form-control" id="comadres" placeholder="Address">
+                        </div>
+
+
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="exampleTextarea">About Company</label>
+                            <textarea class="form-control" id="comdesc" rows="3"></textarea>
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" style="margin-top:5px" id="comedit">Edit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="wrapper wrapper-content animated fadeInUp">
+
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>All postes assigned to this company</h5>
+                            <div class="ibox-tools" id="newpost">
+                                <a href="" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">Create new poste</a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row m-b-sm m-t-sm">
+                                <div class="col-md-1">
+
+                                    <select type="text" id="aaa" name="aaa" class="form-control">
+                                        <option></option>
+                                        <option value="1" id="1">all</option>
+
+                                        <option value="2" id="2">free</option>
+                                        <option value="3" id="3">occupped</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="col-md-11">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Search" class="input-sm form-control" id="search"> <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sm btn-primary"> Go!</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-list">
+
+                                <table class="table table-hover">
+                                    <tbody id="tb">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+
+}
+@section Scripts {
+    @Scripts.Render("~/plugins/sparkLine")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/sparkline")
+<script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            if (sessionStorage.getItem('type') === '0') {
+                $("#newpost").hide();
+                $("#navcom").empty();
+                var line = '<ul class="nav navbar-nav navbar-right" style="margin-top:20px"><li> <a class="page-scroll" href="../Landing/index">Home</a></li><li><a class="page-scroll" href="../Ecommerce/cart">Find Job</a></li>' +
+                    '<li><a class="page-scroll" href="../AppViews/Clients">My Interessted</a></li><li><a class="page-scroll" href="../AppViews/profile">Profile</a></li>' +
+
+
+                    '<li style="margin-left:400px"><a href="~/Views/AppViews/Profile.cshtml"></a></li><li style="margin-left:15px"><a>Logout</a> </li></ul>';
+                $("#navcom").append(line);
+            }
+
+
+
+            $('#phone').val('(+216) ');
+            $('#search').keyup(function () {
+                search_table($(this).val());
+            });
+            function search_table(value) {
+                $('#tb tr').each(function () {
+                    var found = 'false';
+                    $(this).each(function () {
+                        if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                            found = 'true';
+
+                    });
+
+                    if (found == 'true')
+                        $(this).show();
+
+
+                    else
+                        $(this).hide();
+
+                });
+            }
+            let searchParams = new URLSearchParams(window.location.search);
+            var idurl;
+            if (searchParams.get('id')) {
+                idurl = searchParams.get('id');
+
+            }
+            else
+                idurl = sessionStorage.getItem('email');
+
+            var i = 0;
+            var j = 0;
+            $.ajax({
+                method: "GET",
+                url: "http://192.168.1.18:8888/api/posts/" + idurl,
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        i = i + 1;
+                        if (item.poststate === 'FREE')
+                            j = j + 1;
+                       
+                            $("#free").html(j);
+                            $("#wiww").html(i);
+                            $("#occ").html(i - j);
+                        
+
+                    });
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            });
+            $("#aaa").select2({
+                placeholder: "Choose ",
+                allowClear: true
+            });
+            $.ajax({
+                url: "http://192.168.1.18:8888/api/postOfCompanyInYerar/" + idurl,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $("#postyear").html(data);
+
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            })
+            var email = sessionStorage.getItem('email');
+            $.ajax({
+                url: "http://192.168.1.18:8888/api/NuberofACCEPTEDbyCompanyBYALLOTHERCOMPANY/" + idurl,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $("#accepted").append('<h5>Accepted</h5> <h2>' + data + '%</h2> <div class="progress progress-mini"><div style="width: ' + data + '%;" class="progress-bar"></div></div>' +
+                        '<div class="m-t-sm small">Students accepted compared to all other companies</div>');
+
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            })
+            $.ajax({
+                url: "http://192.168.1.18:8888/api/AVGsalaireCompanyByAllCompanys/" + idurl,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $("#houar").append('<h5>Salary</h5> <h1 class="no-margins">$' + data/100 + '</h1><small>Avarage salary</small>');
+
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            })
+            $.ajax({
+                url: "http://192.168.1.18:8888/api/HoureWorKCompanyByOtherCompany/" + idurl,
+                method: 'GET',
+               dataType: "json",
+
+               success: function (data) {
+                  $("#sparkline6").sparkline([data, 100-data], {
+                     type: 'pie',
+                       height: '80',
+                        sliceColors: ['#1ab394', '#F5F5F5']
+                  });
+
+               },
+               error: function (error) {
+                   alert(error);
+              },
+            })
+            $.ajax({
+                url: "http://192.168.1.18:8888/api/postStatOfOneCompanyCountbyMonth/" + idurl,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+
+                    var September = data.September
+                    var October = data.October
+                    var November = data.November
+                    var May = data.May
+                    var March = data.March
+                    var June = data.June
+                    var July = data.July
+                    var January = data.January
+                    var February = data.February
+                    var December = data.December
+                    var August = data.August
+                    var April = data.April
+
+                    var date = [January, February, March, April, May, June, July, August, September, October, November, December];
+                    var today = new Date();
+                    var acc= today.getMonth() ;
+                    var a = today.getMonth() + 1 - 1; if (a <= 0) { a = 12 - (1 - today.getMonth()) } else {a=a-1 };
+                    var aa = today.getMonth() + 1 - 2; if (aa <= 0) { aa = 12(-2 - today.getMonth()) } else { aa = aa-1 };
+                    var aaa = today.getMonth() + 1 - 3; if (aaa <= 0) { aaa = 12 - (3 - today.getMonth()) } else { aaa = aaa-1 };
+                    var aaaa = today.getMonth() + 1 - 4; if (aaaa <= 0) { aaaa = 12 - (4 - today.getMonth()) } else { aaaa = aaaa-1};
+                    var aaaaa = today.getMonth() + 1 - 5; if (aaaaa <= 0) { aaaaa = 12 - (5 - today.getMonth()) } else { aaaaa = aaaaa-1};
+                    var aaaaaa = today.getMonth() + 1 - 6; if (aaaaaa <= 0) { aaaaaa = 12 - (6 - today.getMonth()) } else { aaaaaa = aaaaaa-1 };
+                    var aaaaaaa = today.getMonth() + 1 - 7; if (aaaaaaa <= 0) { aaaaaaa = 12 - (7 - today.getMonth()) } else { aaaaaaa = aaaaaaa-1 };
+                    var aaaaaaaa = today.getMonth() + 1 - 8; if (aaaaaaaa <= 0) { aaaaaaaa = 12 - (8 - today.getMonth()) } else { aaaaaaaa = aaaaaaaa-1};
+                    var aaaaaaaaa = today.getMonth() + 1 - 9; if (aaaaaaaaa <= 0) { aaaaaaaaa = 12 - (9 - today.getMonth()) } else { aaaaaaaaa = aaaaaaaaa-1 };
+                    var aaaaaaaaaa = today.getMonth() + 1 - 10; if (aaaaaaaaaa <= 0) { aaaaaaaaaa = 12 - (10 - today.getMonth()) } else { aaaaaaaaaa = aaaaaaaaaa-1 };
+                    var aaaaaaaaaaa = today.getMonth() + 1 - 11; if (aaaaaaaaaaa <= 0) { aaaaaaaaaaa = 12 - (11 - today.getMonth()) } else { aaaaaaaaaaa = aaaaaaaaaaa-1};
+             
+                    var obj = [date[aaaaaaaaaaa], date[aaaaaaaaaa], date[aaaaaaaaa], date[aaaaaaaa], date[aaaaaaa], date[aaaaaa], date[aaaaa], date[aaaa], date[aaa], date[aa], date[a], date[acc]]
+                    $("#sparkline1").sparkline(obj, {
+                        type: 'line',
+                        width: '100%',
+                        height: '50',
+                        lineColor: '#1ab394',
+                        fillColor: "transparent"
+                    });
+
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            })
+
+            $(document).on("change", "#aaa", function (ef) {
+
+                $("#tb").empty();
+                if ($("#aaa").val() === '1') {
+                    $.ajax({
+                        method: "GET",
+                        url: "http://192.168.1.18:8888/api/posts/" + idurl,
+                        dataType: "json",
+                        success: function (data) {
+
+                            $.each(data, function (i, item) {
+                                if (sessionStorage.getItem('type') === '1') {
+                                    i = i + 1;
+                                    var line = '<tr><td class="project-status"><span class="label label-primary">' + item.poststate +
+                                        '</span ></td><td class="project-title"><a href="../AppViews/contacts2?id="' + idurl + '"  > ' + item.name +
+                                        '</a ><br /><small>Created' + item.postedate +
+                                        '</small ></td><td class="project-completion"><small>' + item.datestart + ' - ' + item.dateend +
+                                        '</small > </td><td class="project-people"></td><td class="project-actions"><a  class="btn btn-white btn-sm" id="wiw' + item.id + '"><i class="fa fa-folder" ></i> Delete </a>' +
+                                        '<a  class="btn btn-white btn-sm" data-toggle="modal" data-target="#myModaledit" id="wiww' + item.id + '"><i class="fa fa-pencil"></i> Edit </a> </td></tr>'
+
+                                    $("#tb").append(line);
+
+                                    $("#wiww" + item.id).click(function () {
+                                        $("#bbbedit").val(item.city);
+                                        $('#bbbbedit').val(item.adress);
+                                        $('#enddedit').val(item.dateend);
+                                        $('#exampleTextareaedit').val(item.description);
+                                        $('#endhedit').val(item.endhour);
+                                        $('#bbedit').val(item.name);
+                                        $('#saledit').val(item.salaire);
+                                        $('#startdedit').val(item.datestart);
+                                        $('#starthedit').val(item.starthour);
+
+
+                                    });
+
+                                    $("#aaaaaedit").click(function () {
+
+                                        var poste = {};
+                                        poste.companyid = email;
+                                        poste.adress = $('#bbbbedit').val();
+                                        poste.city = $('#bbbedit').val();
+
+
+                                        poste.dateend = $('#enddedit').val();
+                                        poste.description = $('#exampleTextareaedit').val();
+                                        poste.endhour = $('#endhedit').val() + '.0';
+                                        poste.name = $('#bbedit').val();
+                                        poste.salaire = $('#saledit').val();
+
+                                        poste.type = $('#bedit').val();
+                                        poste.datestart = $('#startdedit').val();
+                                        poste.starthour = $('#starthedit').val() + '.0';
+                                        var compteObj = JSON.stringify(poste);
+                                        alert(item.id)
+                                        $.ajax({
+
+                                            method: 'PUT',
+                                            url: "http://192.168.1.18:8888/api/post/" + item.id,
+                                            data: compteObj,
+                                            contentType: 'application/json; charset=utf-8',
+                                            success: function () {
+                                                window.location.href = "Profile2";
+                                            },
+                                            error: function (error) {
+                                                alert('error');
+                                            },
+                                        })
+                                    });
+                                    $("#wiw" + item.id).click(function () {
+                                        swal({
+                                            title: "Are you sure?",
+                                            text: "Your will not be able to recover this imaginary file!",
+                                            type: "warning",
+                                            showCancelButton: true,
+                                            confirmButtonColor: "#DD6B55",
+                                            confirmButtonText: "Yes, delete it!",
+                                            cancelButtonText: "No, cancel plx!",
+                                            closeOnConfirm: false,
+                                            closeOnCancel: false
+                                        },
+                                            function (isConfirm) {
+                                                if (isConfirm) {
+                                                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                                    $.ajax({
+                                                        url: 'http://192.168.1.18:8888/api/deletepost/' + item.id,
+                                                        method: 'DELETE',
+                                                        dataType: "json",
+                                                        success: function () {
+                                                            window.location.href = "Profile2";
+
+                                                        },
+                                                        error: function (error) {
+                                                            alert(error);
+                                                        },
+                                                    })
+                                                } else {
+                                                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                                }
+                                            });
+
+                                    });
+                                } else {
+                                    var line1 = '<tr><td class="project-status"><span class="label label-primary">' + item.poststate +
+                                        '</span ></td><td class="project-title"><a>' + item.name +
+                                        '</a ><br /><small>Created' + item.postedate +
+                                        '</small ></td><td class="project-completion"><small>' + item.datestart + ' - ' + item.dateend +
+                                        '</small > </td><td class="project-people" ></td><td class="project-actions"><a href="../Ecommerce/ProductDetail?id=' + item.id + '" class="btn btn-white btn-sm" id="wiw' + item.id + '"><i class="fa fa-folder" ></i> View </a></tr>'
+
+                                    $("#tb").append(line1);
+                                }
+                            });
+
+
+                        },
+                        error: function (error) {
+                            alert(error);
+                        },
+                    });
+                } else if ($("#aaa").val() === '2') {
+                    $.ajax({
+                        method: "GET",
+                        url: "http://192.168.1.18:8888/api/FreePostsByCompanyId/" + idurl,
+                        dataType: "json",
+                        success: function (data) {
+
+                            $.each(data, function (i, item) {
+                                if (sessionStorage.getItem('type') === '1') {
+                                    i = i + 1;
+                                    var line = '<tr><td class="project-status"><span class="label label-primary">' + item.poststate +
+                                        '</span ></td><td class="project-title"><a href="../AppViews/contacts2?id="' + idurl + '">' + item.name +
+                                        '</a ><br /><small>Created' + item.postedate +
+                                        '</small ></td><td class="project-completion"><small>' + item.datestart + ' - ' + item.dateend +
+                                        '</small > </td><td class="project-people"></td><td class="project-actions"><a  class="btn btn-white btn-sm" id="wiw' + item.id + '"><i class="fa fa-folder" ></i> Delete </a>' +
+                                        '<a  class="btn btn-white btn-sm" data-toggle="modal" data-target="#myModaledit" id="wiww' + item.id + '"><i class="fa fa-pencil"></i> Edit </a> </td></tr>'
+
+                                    $("#tb").append(line);
+
+                                    $("#wiww" + item.id).click(function () {
+                                        $("#bbbedit").val(item.city);
+                                        $('#bbbbedit').val(item.adress);
+                                        $('#enddedit').val(item.dateend);
+                                        $('#exampleTextareaedit').val(item.description);
+                                        $('#endhedit').val(item.endhour);
+                                        $('#bbedit').val(item.name);
+                                        $('#saledit').val(item.salaire);
+                                        $('#startdedit').val(item.datestart);
+                                        $('#starthedit').val(item.starthour);
+
+
+                                    });
+
+                                    $("#aaaaaedit").click(function () {
+
+                                        var poste = {};
+                                        poste.companyid = email;
+                                        poste.adress = $('#bbbbedit').val();
+                                        poste.city = $('#bbbedit').val();
+
+
+                                        poste.dateend = $('#enddedit').val();
+                                        poste.description = $('#exampleTextareaedit').val();
+                                        poste.endhour = $('#endhedit').val() + '.0';
+                                        poste.name = $('#bbedit').val();
+                                        poste.salaire = $('#saledit').val();
+
+                                        poste.type = $('#bedit').val();
+                                        poste.datestart = $('#startdedit').val();
+                                        poste.starthour = $('#starthedit').val() + '.0';
+                                        var compteObj = JSON.stringify(poste);
+                                        $.ajax({
+
+                                            method: 'PUT',
+                                            url: "http://192.168.1.18:8888/api/post/" + item.id,
+                                            data: compteObj,
+                                            contentType: 'application/json; charset=utf-8',
+                                            success: function () {
+                                                window.location.href = "Profile2";
+                                            },
+                                            error: function (error) {
+                                                alert('error');
+                                            },
+                                        })
+                                    });
+                                    $("#wiw" + item.id).click(function () {
+                                        swal({
+                                            title: "Are you sure?",
+                                            text: "Your will not be able to recover this imaginary file!",
+                                            type: "warning",
+                                            showCancelButton: true,
+                                            confirmButtonColor: "#DD6B55",
+                                            confirmButtonText: "Yes, delete it!",
+                                            cancelButtonText: "No, cancel plx!",
+                                            closeOnConfirm: false,
+                                            closeOnCancel: false
+                                        },
+                                            function (isConfirm) {
+                                                if (isConfirm) {
+                                                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                                    $.ajax({
+                                                        url: 'http://192.168.1.18:8888/api/deletepost/' + item.id,
+                                                        method: 'DELETE',
+                                                        dataType: "json",
+                                                        success: function () {
+                                                            window.location.href = "Profile2";
+
+                                                        },
+                                                        error: function (error) {
+                                                            alert(error);
+                                                        },
+                                                    })
+                                                } else {
+                                                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                                }
+                                            });
+
+                                    });
+                                } else {
+                                    var line1 = '<tr><td class="project-status"><span class="label label-primary">' + item.poststate +
+                                        '</span ></td><td class="project-title"><a>' + item.name +
+                                        '</a ><br /><small>Created' + item.postedate +
+                                        '</small ></td><td class="project-completion"><small>' + item.datestart + ' - ' + item.dateend +
+                                        '</small > </td><td class="project-completion"></td><small><td class="project-actions"><a href="../Ecommerce/ProductDetail?id=' + item.id + '" class="btn btn-white btn-sm" id="wiw' + item.id + '"><i class="fa fa-folder" ></i> View </a></tr>'
+
+                                    $("#tb").append(line1);
+                                }
+                            });
+
+
+                        },
+                        error: function (error) {
+                            alert(error);
+                        },
+                    });
+                } else if ($("#aaa").val() === '3') {
+                    $.ajax({
+                        method: "GET",
+                        url: "http://192.168.1.18:8888/api/OCCUPEDPostsByCompanyId/" + idurl,
+                        dataType: "json",
+                        success: function (data) {
+
+                            $.each(data, function (i, item) {
+                                if (sessionStorage.getItem('type') === '1') {
+                                    i = i + 1;
+                                    var line = '<tr><td class="project-status"><span class="label label-primary">' + item.poststate +
+                                        '</span ></td><td class="project-title"><a href="../AppViews/contacts2?id="' + idurl + '">' + item.name +
+                                        '</a ><br /><small>Created' + item.postedate +
+                                        '</small ></td><td class="project-completion"><small>' + item.datestart + ' - ' + item.dateend +
+                                        '</small > </td><td class="project-people"></td><td class="project-actions"><a  class="btn btn-white btn-sm" id="wiw' + item.id + '"><i class="fa fa-folder" ></i> Delete </a>' +
+                                        '<a  class="btn btn-white btn-sm" data-toggle="modal" data-target="#myModaledit" id="wiww' + item.id + '"><i class="fa fa-pencil"></i> Edit </a> </td></tr>'
+
+                                    $("#tb").append(line);
+
+                                    $("#wiww" + item.id).click(function () {
+                                        $("#bbbedit").val(item.city);
+                                        $('#bbbbedit').val(item.adress);
+                                        $('#enddedit').val(item.dateend);
+                                        $('#exampleTextareaedit').val(item.description);
+                                        $('#endhedit').val(item.endhour);
+                                        $('#bbedit').val(item.name);
+                                        $('#saledit').val(item.salaire);
+                                        $('#startdedit').val(item.datestart);
+                                        $('#starthedit').val(item.starthour);
+
+
+                                    });
+
+                                    $("#aaaaaedit").click(function () {
+
+                                        var poste = {};
+                                        poste.companyid = email;
+                                        poste.adress = $('#bbbbedit').val();
+                                        poste.city = $('#bbbedit').val();
+
+
+                                        poste.dateend = $('#enddedit').val();
+                                        poste.description = $('#exampleTextareaedit').val();
+                                        poste.endhour = $('#endhedit').val() + '.0';
+                                        poste.name = $('#bbedit').val();
+                                        poste.salaire = $('#saledit').val();
+
+                                        poste.type = $('#bedit').val();
+                                        poste.datestart = $('#startdedit').val();
+                                        poste.starthour = $('#starthedit').val() + '.0';
+                                        var compteObj = JSON.stringify(poste);
+                                        $.ajax({
+
+                                            method: 'PUT',
+                                            url: "http://192.168.1.18:8888/api/post/" + item.id,
+                                            data: compteObj,
+                                            contentType: 'application/json; charset=utf-8',
+                                            success: function () {
+                                                window.location.href = "Profile2";
+                                            },
+                                            error: function (error) {
+                                                alert('error');
+                                            },
+                                        })
+                                    });
+                                    $("#wiw" + item.id).click(function () {
+                                        swal({
+                                            title: "Are you sure?",
+                                            text: "Your will not be able to recover this imaginary file!",
+                                            type: "warning",
+                                            showCancelButton: true,
+                                            confirmButtonColor: "#DD6B55",
+                                            confirmButtonText: "Yes, delete it!",
+                                            cancelButtonText: "No, cancel plx!",
+                                            closeOnConfirm: false,
+                                            closeOnCancel: false
+                                        },
+                                            function (isConfirm) {
+                                                if (isConfirm) {
+                                                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                                    $.ajax({
+                                                        url: 'http://192.168.1.18:8888/api/deletepost/' + item.id,
+                                                        method: 'DELETE',
+                                                        dataType: "json",
+                                                        success: function () {
+                                                            window.location.href = "Profile2";
+
+                                                        },
+                                                        error: function (error) {
+                                                            alert(error);
+                                                        },
+                                                    })
+                                                } else {
+                                                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                                }
+                                            });
+
+                                    });
+                                } else {
+                                    var line1 = '<tr><td class="project-status"><span class="label label-primary">' + item.poststate +
+                                        '</span ></td><td class="project-title"><a>' + item.name +
+                                        '</a ><br /><small>Created' + item.postedate +
+                                        '</small ></td><td class="project-completion"><small>' + item.datestart + ' - ' + item.dateend +
+                                        '</small > </td><td class="project-people"></td><td class="project-actions"><a href="../Ecommerce/ProductDetail?id=' + item.id + '" class="btn btn-white btn-sm" id="wiw' + item.id + '"><i class="fa fa-folder" ></i> View </a></tr>'
+
+                                    $("#tb").append(line1);
+                                }
+                            });
+
+
+                        },
+                        error: function (error) {
+                            alert(error);
+                        },
+                    });
+                }
+            });
+
+            $.ajax({
+                url: 'http://192.168.1.18:8888/api/Company/' + idurl,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $("#socname").append(data.name);
+                    $("#desc").append(data.description);
+                    $("#city").append(data.city);
+                    $("#adr").append(data.adress);
+                    $("#id").append(data.id);
+                    $("#editprofile").click(function () {
+                        $("#comcity").val(data.city);
+                        $('#comadres').val(data.adress);
+                        if (data.phone)
+                            $('#phone').val(data.phone);
+                        $('#ComName').val(data.name);
+                        $('#Comdesc').val(data.description);
+
+
+                    });
+                    $("#comedit").click(function () {
+
+                        var com = {};
+                        com.companyid = email;
+                        com.adress = $('#comadres').val();
+                        com.city = $('#comcity').val();
+
+
+                        com.name = $('#ComName').val();
+                        com.phone = $('#phone').val();
+                        com.description = $('#comdesc').val();
+
+                        var compteObj = JSON.stringify(com);
+                        $.ajax({
+
+                            method: 'PUT',
+                            url: "http://192.168.1.18:8888/api/Company/" + data.id,
+                            data: compteObj,
+                            contentType: 'application/json; charset=utf-8',
+                            success: function () {
+                                window.location.href = "Profile2";
+                            },
+                            error: function (error) {
+                                alert('error');
+                            },
+                        })
+                    });
+               
+
+
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            })
+            //n3abi fel table kbir
+            $.ajax({
+                method: "GET",
+                url: "http://192.168.1.18:8888/api/posts/" + idurl,
+                dataType: "json",
+                success: function (data) {
+
+                    $.each(data, function (i, item) {
+                        if (sessionStorage.getItem('type') === '1') {
+                            i = i + 1;
+                            var line = '<tr><td class="project-status"><span class="label label-primary">' + item.poststate +
+                                '</span ></td><td class="project-title"><a href="../AppViews/contacts2?id=' + item.id + '">' + item.name +
+                                '</a ><br /><small>Created' + item.postedate +
+                                '</small ></td><td class="project-completion"><small>' + item.datestart + ' - ' + item.dateend +
+                                '</small > </td><td class="project-people" ></td><td class="project-actions"><a  class="btn btn-white btn-sm" id="wiw' + item.id + '"><i class="fa fa-folder" ></i> Delete </a>' +
+                                '<a  class="btn btn-white btn-sm" data-toggle="modal" data-target="#myModaledit" id="wiww' + item.id + '"><i class="fa fa-pencil"></i> Edit </a> </td></tr>'
+
+                            $("#tb").append(line);
+
+                            $("#wiww" + item.id).click(function () {
+                               
+                                    $("#bbbedit").val(item.city);
+                                $('#bbbbedit').val(item.adress);
+                                $('#enddedit').val(item.dateend);
+                                $('#exampleTextareaedit').val(item.description);
+                                $('#endhedit').val(item.endhour);
+                                $('#bbedit').val(item.name);
+                                $('#saledit').val(item.salaire);
+                                $('#startdedit').val(item.datestart);
+                                $('#starthedit').val(item.starthour);
+                                $("#aaaaaedit").click(function () {
+                                    if (item.poststate === 'OCCUPIED')
+                                        swal({
+                                            title: " Alert",
+                                            text: "your post is occupied."
+                                        });
+                                    else {
+                                    var poste = {};
+                                    poste.companyid = email;
+                                    poste.adress = $('#bbbbedit').val();
+                                    poste.city = $('#bbbedit').val();
+
+
+                                    poste.dateend = $('#enddedit').val();
+                                    poste.description = $('#exampleTextareaedit').val();
+                                    poste.endhour = $('#endhedit').val() + '.0';
+                                    poste.name = $('#bbedit').val();
+                                    poste.salaire = $('#saledit').val();
+
+                                    poste.type = $('#bedit').val();
+                                    poste.datestart = $('#startdedit').val();
+                                    poste.starthour = $('#starthedit').val() + '.0';
+
+                                    var compteObj = JSON.stringify(poste);
+                                    $.ajax({
+
+                                        method: 'PUT',
+                                        url: "http://192.168.1.18:8888/api/poster/" + item.id,
+                                        data: compteObj,
+                                        contentType: 'application/json; charset=utf-8',
+                                        success: function () {
+
+                                            window.location.href = "../AppViews/profile2"
+                                        },
+                                        error: function (error) {
+
+                                        },
+                                    })
+                                    }
+                                });
+                            
+                            });
+
+                  
+                            $("#wiw" + item.id).click(function () {
+                                swal({
+                                    title: "Are you sure?",
+                                    text: "Your will not be able to recover this imaginary file!",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Yes, delete it!",
+                                    cancelButtonText: "No, cancel plx!",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: false
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                            $.ajax({
+                                                url: 'http://192.168.1.18:8888/api/deletepost/' + item.id,
+                                                method: 'DELETE',
+                                                dataType: "json",
+                                                success: function () {
+                                                    window.location.href = "Profile2";
+
+                                                },
+                                                error: function (error) {
+                                                    alert(error);
+                                                },
+                                            })
+                                        } else {
+                                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                        }
+                                    });
+
+                            });
+                        } else {
+                            var line1 = '<tr><td class="project-status"><span class="label label-primary">' + item.poststate +
+                                '</span ></td><td class="project-title"><a>' + item.name +
+                                '</a ><br /><small>Created' + item.postedate +
+                                '</small ></td><td class="project-people" ></td><td class="project-completion"><small>' + item.datestart + ' - ' + item.dateend +
+                                '</small > </td><td class="project-people" ></td><td class="project-actions"><a href="../Ecommerce/ProductDetail?id=' + item.id + '" class="btn btn-white btn-sm" id="wiw' + item.id + '"><i class="fa fa-folder" ></i> View </a></tr>'
+
+                            $("#tb").append(line1);
+                        }
+                    });
+
+
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            });
+
+            //add poste
+            $("#aaaaa").click(function () {
+                if (!$('#b').val())
+                    swal({
+                        title: " Alert",
+                        text: "Define job type."
+                    });
+                else
+                    if (!$('#sal').val())
+                        swal({
+                            title: " Alert",
+                            text: "salary is empty."
+                        });
+                    else
+                        if (!$('#bbb').val())
+                            swal({
+                                title: " Alert",
+                                text: "city is empty."
+                            });
+                        else
+                            if (!$('#bbbb').val())
+                                swal({
+                                    title: " Alert",
+                                    text: "adress is empty."
+                                });
+                            else
+                                if (!$('#startd').val())
+                                    swal({
+                                        title: " Alert",
+                                        text: "start date is empty."
+                                    });
+                                else
+                                    if (!$('#endd').val())
+                                        swal({
+                                            title: " Alert",
+                                            text: "end date is empty."
+                                        });
+                                    else
+                                        if (!$('#starth').val())
+                                            swal({
+                                                title: " Alert",
+                                                text: "star hours is empty."
+                                            });
+                                        else
+                                            if (!$('#endh').val())
+                                                swal({
+                                                    title: " Alert",
+                                                    text: "end hours is empty."
+                                                });
+                                            else
+                                                if ($('#endh').val() <= $('#starth').val())
+                                                    swal({
+                                                        title: " Alert",
+                                                        text: "wrong time."
+                                                    });
+                                                else
+                                                    if ($('#endd').val() <= $('#startd').val())
+                                                        swal({
+                                                            title: " Alert",
+                                                            text: "wrong date."
+                                                        });
+                                                else
+                                                    if ($('#endh').val() <= $('#starth').val())
+                                                        swal({
+                                                            title: " Alert",
+                                                            text: "wrong time."
+                                                        });
+                                            else {
+                                                var poste = {};
+
+                                                poste.companyid = email;
+                                                poste.adress = $('#bbbb').val();
+                                                poste.city = $('#bbb').val();
+
+
+                                                poste.dateend = $('#endd').val();
+                                                poste.description = $('#exampleTextarea').val();
+                                                poste.endhour = $('#endh').val() + '.0';
+                                                poste.name = $('#bb').val();
+                                                poste.salaire = $('#sal').val();
+
+                                                poste.type = $('#b').val();
+                                                poste.datestart = $('#startd').val();
+                                                poste.starthour = $('#starth').val() + '.0';
+                                                var compteObj = JSON.stringify(poste);
+                                                $.ajax({
+                                                    url: "http://192.168.1.18:8888/api/postt",
+                                                    method: 'POST',
+                                                    data: compteObj,
+                                                    contentType: 'application/json; charset=utf-8',
+                                                    success: function () {
+                                                        window.location.href = "Profile2";
+                                                    },
+                                                    error: function (error) {
+                                                        alert('error');
+                                                    },
+                                                })
+                                            }
+                                            });
+//change image for company
+            if (sessionStorage.getItem('type') === '1') {
+
+                var Image = document.getElementById('file')
+                Image.type = "file";
+            }
+            //get icon
+            $.ajax({
+                url: 'http://192.168.1.18:8888/api/iconblob/' + idurl,
+                cache: false,
+                xhrFields: { responseType: 'blob' },
+                type: 'GET',
+                success: function (data) {
+                    var urls = window.URL.createObjectURL(data);
+                    var Image = document.getElementById('photo')
+                    Image.src = urls;
+                },
+                error: function (error) {
+                    alert('nn')
+                },
+            })
+            const imgDiv = document.querySelector('.profile-image');
+            const img = document.querySelector('#photo');
+            const file = document.querySelector('#file');
+            const uploadBtn = document.querySelector('#uploadBtn');
+
+            //if user hover on img div
+
+            imgDiv.addEventListener('mouseenter', function () {
+                uploadBtn.style.display = "block";
+            });
+
+            //if we hover out from img div
+
+            imgDiv.addEventListener('mouseleave', function () {
+                uploadBtn.style.display = "none";
+            });
+
+            //lets work for image showing functionality when we choose an image to upload
+
+            //when we choose a foto to upload
+            file.addEventListener('change', function () {
+                //this refers to file
+                const choosedFile = this.files[0];
+
+                if (choosedFile) {
+
+                    const reader = new FileReader(); //FileReader is a predefined function of JS
+
+                    reader.addEventListener('load', function () {
+                        img.setAttribute('src', reader.result);
+                    });
+                    reader.readAsDataURL(choosedFile);
+                    var fd;
+                    fd = new FormData();
+                    fd.append('icon', $('#file')[0].files[0]);
+                    $.ajax({
+
+                        method: 'PUT',
+                        url: "http://192.168.1.18:8888/api/iconblob/" + idurl,
+                        data: fd,
+                        processData: false,
+                        contentType: false,
+                        success: function () {
+
+
+
+                        },
+                        error: function (error) {
+                            alert('error');
+                        },
+                    })
+
+                }
+            })
+        });
+</script>
+}

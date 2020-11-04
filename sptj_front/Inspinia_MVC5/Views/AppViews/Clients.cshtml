@@ -1,0 +1,283 @@
+﻿
+@{ ViewBag.Title = "Clients"; }
+
+<div class="col-md-12-navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="col-md-12" style="margin-bottom:15px">
+            <div class="navbar-header page-scroll pull-left">
+                <div class="site-logo col-6 pull-left " style="margin-top:5px">
+
+                    <img id="logo" alt="Qries" src="~/Images/landing/logo.ico"
+                         width="105" height="105">
+
+                </div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="vbar" style="margin-right:50px;">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top:20px">
+                        <li><a class="page-scroll" href="../Landing/index">Home</a></li>
+                        <li><a class="page-scroll" href="../Ecommerce/Cart">Find Job</a></li>
+                        <li><a class="page-scroll" href="../AppViews/Clients">My Interessted</a></li>
+
+                        <li><a class="page-scroll" href="../AppViews/profile">Profile</a></li>
+
+
+                        <li style="margin-left:400px"><a href="~/Views/AppViews/Profile.cshtml"> </a></li>
+                        <li style="margin-left:15px"><a href="../Pages/login">Logout</a> </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h2>Posts</h2>
+                    <p>
+                        All clients need to be verified before you can send email and set a project.
+                    </p>
+                    <div class="input-group">
+                        <input id="search" type="text" placeholder="Search Post " class="input form-control">
+                        <span class="input-group-btn">
+
+                            <button type="button" class="btn btn btn-primary"> <i class="fa fa-search"></i> Search</button>
+                        </span>
+                    </div>
+                    <div class="clients-list">
+                        <ul class="nav nav-tabs">
+                            <span class="pull-right small text-muted" id="wiw"></span>
+                            <li class="active"><a data-toggle="tab" href="#tab-1"><i class="fa fa-briefcase"></i>Posts</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="full-height-scroll">
+                                    <div class="table-responsive">
+
+                                        <table id="Tableau" class="table table-striped table-hover">
+
+                                            <tbody id="cc">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="ibox ">
+
+                <div class="ibox-content">
+                    <div class="tab-content" id="socdetail">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/plugins/slickStyles")
+    @Styles.Render("~/plugins/slickThemeStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/tagInputsStyles")
+    @Styles.Render("~/plugins/duallistStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+}
+@section Scripts {
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/flot")
+    @Scripts.Render("~/plugins/vectorMap")
+    <script type="text/javascript">
+
+
+
+
+
+        $(document).ready(function () {
+            //function search
+            $('#search').keyup(function () {
+                search_table($(this).val());
+            });
+            function search_table(value) {
+                $('#cc tr').each(function () {
+                    var found = 'false';
+                    $(this).each(function () {
+                        if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                            found = 'true';
+
+                    });
+
+                    if (found == 'true')
+                        $(this).show();
+
+
+                    else
+                        $(this).hide();
+
+                });
+            }
+            email = sessionStorage.getItem('email');
+            //get icon company
+            function geticonsoc(itemcompany,j) {
+                $.ajax({
+                    url: 'http://192.168.1.18:8888/api/iconblob/' + itemcompany,
+                    cache: false,
+                    xhrFields: { responseType: 'blob' },
+                    type: 'GET',
+                    success: function (data) {
+                        var urls = window.URL.createObjectURL(data);
+                        var Image = document.getElementById('photoo' + j);
+                        Image.src = urls;
+                    },
+                    error: function (error) {
+                    },
+                })
+            }
+            var i = 0;
+            //get all react
+            $.ajax({
+                method: "GET",
+                url: "http://192.168.1.18:8888/api/postByIdStudent/" + email,
+
+                dataType: "json",
+                success: function (data) {
+
+                    $.each(data, function (i, item) {
+                        i = i + 1;
+
+                        var line = '<tr id><td><a data-toggle="tab" href="#' + item.id + '" class="client-link">' + item.companyname +
+                            '</a></td><td>' + item.type +
+                            '</td><td class="contact-type"></td><td>' + item.name +
+                            '</td ><td class="client-status"></td><td class="client-status" id="zebi' + item.id + '"><span class="label label-warning">Waiting</span>   </td></tr>'
+                        $("#cc").append(line);
+                        var lineSoc = '<div id="' + item.id +
+                            '" class="tab-pane active"><div class="row m-b-lg"><div class="col-lg-4 text-center"><a href="../AppViews/profile2?id=' + item.companyid+'"<h2> ' + item.companyname +
+                            '</h2></a><div class="m-b-sm"><img id="photoo' + item.id + '" alt="image" class="img-circle" style="width: 90px; margin-top: 10px; height:90px;" src="~/Images/a2.jpg"style="width: 62px"></div> </div> <div class="col-lg-8"><strong>' + item.name +
+                            '</strong><p>' + item.description +
+                            '</p><p><i class="fa fa-envelope"> </i> ' + item.companyid +'</p><a href="mailto:students.part.time.job0@gmail.com"<button type="button" class="btn btn-primary btn-sm btn-block"> <i class="fa fa-envelope"></i> Send Email' +
+                            ' </button></a></div> </div><div class="client-detail"><div class="full-height-scroll">' +
+                            '<strong>Horaire</strong><ul class="list-group clear-list"> <li class="list-group-item fist-item"><span class="pull-right">' + item.datestart +
+                            ' </span>Start Period Work</li><li class="list-group-item"><span class="pull-right">' + item.dateend +
+                            '</span>End Period Work </li> <li class="list-group-item"><span class="pull-right"> ' + item.starthour +
+                            '</span > Start hour</li><li class="list-group-item"><span class="pull-right">' + item.endhour +
+                            '</span >End Hour </li></ul><hr /><strong>Work Place</strong><div id="vertical-timeline" class="vertical-container dark-timeline">' +
+                            ' <div class="vertical-timeline-block"><div class="vertical-timeline-icon gray-bg"> <i class="fa fa-coffee"></i></div>' +
+                            '<div class="vertical-timeline-content"><p>' + item.city +
+                            ' </p><span class="vertical-date small text-muted"></span> </div></div><div class="vertical-timeline-block"><div class="vertical-timeline-icon gray-bg"><i class="fa fa-briefcase"></i>' +
+                            '</div> <div class="vertical-timeline-content"><p>' + item.adress + '<span class="vertical-date small text-muted"> </span>' +
+                            '</div> </div></div><div id="zeb' + item.id + '"></div>  </div></div> </div>'
+
+                        $("#socdetail").append(lineSoc);
+                        geticonsoc(item.companyid,item.id)
+                        $.ajax({
+                            url: "http://192.168.1.18:8888/api/reactByPostIdAndStudentId/" + item.id + "/" + email,
+                            method: 'GET',
+                            dataType: "json",
+
+                            success: function (data) {
+
+
+                                if (data.reactstate === "INTERESTED") {
+                                    $("#zebi" + item.id).html('<span class="label label-warning pull-right">Waiting</span>');
+                                    $("#zeb" + item.id).html('<div class="col-lg-6 h-100 p-lg pull-right"><button class="btn btn-danger btn-sm  pull-right demo4' + data.id + '"><i class="fa fa-star"></i>Not interessted </button></div >');
+                                }
+                                else if (data.reactstate === "ACCEPTED")
+
+                                    $("#zebi" + item.id).html('<span class="label label-primary pull-right">Accepted</span>');
+                                else if (data.reactstate === "REFUSED")
+
+                                    $("#zebi" + item.id).html('<span class="label label-danger pull-right">Refused</span>');
+                                $('.demo4' + data.id).click(function () {
+                                    swal({
+                                        title: "Are you sure?",
+                                        text: "Your will not be able to recover this imaginary file!",
+                                        type: "warning",
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#DD6B55",
+                                        confirmButtonText: "Yes, delete it!",
+                                        cancelButtonText: "No, cancel plx!",
+                                        closeOnConfirm: false,
+                                        closeOnCancel: false
+                                    },
+                                        function (isConfirm) {
+                                            if (isConfirm) {
+                                                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                                $.ajax({
+                                                    url: "http://192.168.1.18:8888/api/react/" + data.id,
+                                                    method: 'DELETE',
+                                                    dataType: "json",
+                                                    success: function () {
+                                                        window.location.href = "/AppViews/Clients";
+
+                                                    },
+                                                    error: function (error) {
+                                                        alert(error);
+                                                    },
+                                                })
+                                            } else {
+                                                swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                            }
+                                        });
+                                });
+
+                            },
+                            error: function (error) {
+                                alert(error);
+                            },
+                        })
+
+
+
+
+
+                        $("#wiw").html(i + " Elements");
+                    });
+                },
+                error: function (error) {
+                    alert("e");
+                },
+            });
+
+
+        });
+    </script>
+}

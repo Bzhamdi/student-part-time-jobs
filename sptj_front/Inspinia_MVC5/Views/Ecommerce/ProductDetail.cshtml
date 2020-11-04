@@ -1,0 +1,466 @@
+﻿
+@{
+    ViewBag.Title = "ProductDetail";
+}<div class="col-md-12-navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="col-md-12" style="margin-bottom:15px">
+            <div class="navbar-header page-scroll pull-left">
+                <div class="site-logo col-6 pull-left " style="margin-top:5px">
+
+                    <img id="logo" alt="Qries" src="~/Images/landing/logo.ico"
+                         width="105" height="105">
+
+                </div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="vbar" style="margin-right:50px;">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top:20px">
+                        <li><a class="page-scroll" href="../Landing/index">Home</a></li>
+                        <li><a class="page-scroll" href="../Ecommerce/cart">Find Job</a></li>
+                        <li><a class="page-scroll" href="../AppViews/Clients">My Interessted</a></li>
+
+                        <li><a class="page-scroll" href="../AppViews/profile">Profile</a></li>
+
+
+                        <li style="margin-left:400px"><a href="~/Views/AppViews/Profile.cshtml"></a></li>
+                        <li style="margin-left:15px"><a href="../Pages/login">Logout</a> </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+
+
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Posts</h5>
+                    <h1 class="no-margins" id="sumposts"></h1>
+                    <small id="socnam">Total posts of </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Posts</h5>
+                    <h1 class="no-margins" id="totalstd"></h1>
+                    <small id="socnamee">total students accpted by  </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Salary</h5>
+                    <h1 class="no-margins" id="zab"></h1>
+                    <small id="socnameee">average salary of  </small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="ibox product-detail">
+                <div class="ibox-content">
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+
+                            <div class="product-images">
+
+                                <div>
+                                    <div class="image-imitation">
+                                        <img alt="image" class="img-responsive" src="" id="photo">
+
+                                        [IMAGE 1]
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-7">
+                            <div class="col-lg-4 pull-right">
+                                <div class="ibox">
+                                    <h1 class="no-margins " id="totint"></h1>
+
+                                    <small>students interessted in this poste</small>
+                                </div>
+                            </div>
+                            
+                            <h2 class="font-bold m-b-xs" id="socname">
+                                <a class="text-navy" href="" id="w3s"></a>
+                            </h2>
+
+                            <small id="type"></small>
+                            <div class="infont col-md-15 col-sm-" id="loc"><i class="fa fa-location-arrow"></i> </div>
+
+                            <div class="m-t-md">
+                                <h2 class="product-main-price" id="sal">  </h2>
+                            </div>
+                            <hr>
+
+                            <h4>Post description</h4>
+
+                            <div class="small text-muted" id="desc">
+
+
+
+
+                            </div>
+                            <dl class="small m-t-md">
+                                <h5>working period :</h5>
+
+                                <dd id="datestart"></dd>
+                                <dt>Work Time :</dt>
+                                <dd id="dateend"></dd>
+                                <dd></dd>
+                            
+
+                            </dl>
+                            <hr>
+
+
+                            <div class="col-lg-6 h-100 p-lg pull-right wiw">
+
+
+                                <button class="btn btn-primary btn-sm  pull-right demo4"><i class="fa fa-star"></i> interessted</button>
+
+
+                                <button class="btn btn-danger btn-sm   pull-right demo5"><i class="fa fa-star"></i>Not interessted </button>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ibox-footer">
+                    <span class="pull-right" id="datepost">
+                    </span>
+                    The generated Lorem Ipsum is therefore always free
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+@section Styles {
+    @Styles.Render("~/plugins/slickStyles")
+    @Styles.Render("~/plugins/slickThemeStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/tagInputsStyles")
+    @Styles.Render("~/plugins/duallistStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/slick")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/tagInputs")
+    @Scripts.Render("~/plugins/duallist")
+    @Scripts.Render("~/plugins/sweetAlert")
+
+    <script type="text/javascript">
+       
+        $(document).ready(function () {
+            let searchParams = new URLSearchParams(window.location.search);
+            var id = searchParams.get('id');
+            var email = sessionStorage.getItem('email');
+            $.ajax({
+                url: 'http://192.168.1.18:8888/api/reactByPostIdAndStudentId/' + id + '/' + email,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $('.demo4').hide();
+                
+                },
+                error: function (error) {
+                    $('.demo5').hide();
+
+                },
+            })
+            $('.product-images').slick({
+                dots: true
+            });
+            $.ajax({
+                url: "http://192.168.1.18:8888/api/SUMpostofCompany/" + id,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $("#sumposts").append(data);
+
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            });
+            $.ajax({
+                url: "http://192.168.1.18:8888/api/NuberofACCEPTEDbyCompany/" + id,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $("#totalstd").append(data);
+
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            });
+            $.ajax({
+                url: "http://192.168.1.18:8888/api/AVGsalaireCompany/" + id,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $("#zab").append(data);
+
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            });
+            $.ajax({
+                url: "http://192.168.1.18:8888/api/totalreactsbyPostId/" + id,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $("#totint").append(data);
+
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            });
+            var post = {};
+            post.postid = id;
+            post.studintcin = email;
+            $.ajax({
+                url: 'http://192.168.1.18:8888/api/post/' + id,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $("#w3s").append(data.companyname);
+                    $("#w3s").attr('href', '../AppViews/profile2?id=' + data.companyid);
+
+                    $("#socnam").append(data.companyname);
+                    $("#socnamee").append(data.companyname);
+                    $("#socnameee").append(data.companyname);
+
+                    $("#type").append(data.type);
+                    $("#sal").append('$' + data.salaire + '<small class="text - muted">Exclude Tax</small>');
+                    $("#desc").append(data.name + '<br /><br />' + data.description);
+                    $("#datepost").append('Posted on - <i class="fa fa-clock-o"></i>' + data.postedate);
+                    $("#datestart").append(data.datestart + ' To ' + data.dateend);
+                    $("#dateend").append(data.starthour + ' To ' + data.endhour);
+                    $("#loc").append(data.adress);
+                    if (data.poststate === 'OCCUPPED') {
+                        $('.demo4').hide();
+                        $('.demo5').hide();}
+                    $('.demo4').click(function () {
+                        $.ajax({
+                            url: 'http://192.168.1.18:8888/api/acceptReactOrNot/' +id+'/'+ sessionStorage.getItem('email'),
+                            method: 'GET',
+                            dataType: "json",
+
+                            success: function (data) {
+                                if (data == false) {
+                                    swal({
+                                        title: " Alert",
+                                        text: "you are busy in this time."
+                                    });
+                                }
+                                else {
+                                    swal({
+                                        title: "Are you sure?",
+                                        text: "You interesstd for this job!",
+                                        type: "warning",
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#DD6B55",
+                                        confirmButtonText: "Yes, confirm it!",
+                                        cancelButtonText: "No, cancel plx!",
+                                        closeOnConfirm: false,
+                                        closeOnCancel: false
+                                    },
+                                        function (isConfirm) {
+                                            if (isConfirm) {
+                                                swal("interessted!", "Good Luck .", "success");
+                                                var compteObj = JSON.stringify(post);
+                                                $.ajax({
+                                                    url: 'http://192.168.1.18:8888/api/react',
+                                                    method: 'POST',
+                                                    data: compteObj,
+                                                    contentType: 'application/json; charset=utf-8',
+                                                    success: function () {
+                                                        $.ajax({
+                                                            url: "http://192.168.1.18:8888/api/totalreactsbyPostId/" + id,
+                                                            method: 'GET',
+                                                            dataType: "json",
+
+                                                            success: function (data) {
+                                                                $("#totint").html(data);
+
+                                                            },
+                                                            error: function (error) {
+                                                                alert(error);
+                                                            },
+                                                        });
+                                                    },
+                                                    error: function (error) {
+                                                        alert('error');
+                                                    },
+                                                })
+                                                $('.demo4').hide();
+                                                $('.demo5').show();
+                                            } else {
+                                                swal("Cancelled", "Good Luck for find new job", "error");
+                                            }
+                                        });
+                                }
+                            },
+                            error: function (error) {
+                                alert('error');
+                            },
+                        })
+                      
+                    });
+                    
+                    
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            })
+            $('.demo5').click(function () {
+                swal({
+                    title: "Are you sure?",
+                    text: "You interesstd for this job!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, confirm it!",
+                    cancelButtonText: "No, cancel plx!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal("interessted!", "Good Luck .", "success");
+                            $('.demo5').hide();
+
+                            $('.demo4').show();
+                            $.ajax({
+                                url: "http://192.168.1.18:8888/api/react/" + id + "/" + email,
+                                method: 'DELETE',
+                                dataType: "json",
+                                success: function () {
+                                    $.ajax({
+                                        url: "http://192.168.1.18:8888/api/totalreactsbyPostId/" + id,
+                                        method: 'GET',
+                                        dataType: "json",
+
+                                        success: function (data) {
+                                            $("#totint").html(data);
+
+                                        },
+                                        error: function (error) {
+                                            alert(error);
+                                        },
+                                    })
+                                },
+                                error: function (error) {
+                                    alert(error);
+                                },
+                            })
+
+
+                        } else {
+                            swal("Cancelled", "Good Luck for find new job", "error");
+                        }
+                    });
+            })
+            $.ajax({
+                url: 'http://192.168.1.18:8888/api/post/' + id,
+                method: 'GET',
+                dataType: "json",
+
+                success: function (data) {
+                    $.ajax({
+                        url: 'http://192.168.1.18:8888/api/iconblob/' + data.companyid,
+                        cache: false,
+                        xhrFields: { responseType: 'blob' },
+                        type: 'GET',
+                        success: function (data) {
+                            var urls = window.URL.createObjectURL(data);
+                            var Image = document.getElementById('photo')
+                            Image.src = urls;
+                        },
+                        error: function (error) {
+                            alert('nn')
+                        },
+                    }) 
+                
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            })
+        });
+    </script>
+}
+

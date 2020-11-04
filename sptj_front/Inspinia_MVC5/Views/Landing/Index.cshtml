@@ -1,0 +1,553 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Landing page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>SPTJ | @ViewBag.Title</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+    <!-- Add jQuery Style direct - used for jQGrid plugin -->
+    <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+
+    <!-- Primary Inspinia style -->
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font-awesome/css")
+    <link href='C:\Users\mahdi\Downloads\ju\Inspinia_MVC5\Views\Landing\style.css' rel='stylesheet'>
+    <link rel="icon" href="C:\Users\mahdi\Downloads\ju\Inspinia_MVC5\Images\landing\icon.png" type="icon">
+
+
+</head>
+
+<body id="page-top" class="landing-page">
+    <div class="col-md-12-navbar-wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="col-md-12">
+                <div class="navbar-header page-scroll pull-left">
+                    <div class="site-logo col-6 pull-left ">
+
+                        <img id="logo" alt="Qries" src="~/Images/landing/logo.ico"
+                             width=105" height="105">
+
+                    </div>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <div class="vbar" style="margin-right:50px;">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a class="page-scroll" href="#page-top">Home</a></li>
+                            <li><a class="page-scroll" href="#features">Features</a></li>
+                            <li><a class="page-scroll" href="#team">Team</a></li>
+                            <li><a class="page-scroll" href="#testimonials">About Us</a></li>
+
+                            <li><a class="page-scroll" href="#contact">Contact</a></li>
+
+                            <li style="margin-left:400px" ><a  href="../Pages/Register" id="sign">Sign up</a></li>
+                            <li style="margin-left:15px"><a href="../Pages/login">Login</a> </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+    </div>
+    <div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
+
+
+        <div class="carousel-inner" role="listbox">
+
+            <div class="item active">
+
+                <!-- Set background for slide in css -->
+                <div class="header-back one">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-12">
+                                <div class="mb-5 text-center">
+                                    <h1 class="text-white font-weight-bold" style="margin-top:230px">The Easiest Way To Get Your Part Time Job</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <a class="left carousel-control" href="#inSlider" role="button" data-slide="prev">
+
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#inSlider" role="button" data-slide="next">
+
+                    </a>
+                </div>
+
+
+                <section id="features" class="">
+                    <div class="wrapper wrapper-content animated fadeInRight">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5 style="margin-left: 260px; margin-top:25px">Best Of Three Company</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <div class="">
+                                            
+                                            <canvas id="polarChart" style="height: 200px; width: 50%;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5  style="margin-left: 170px; margin-top:25px">Persentage of free posts compared by occupied posts</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <div class="">
+                                            <div style="height: 320px; width: 50%; margin-left:150px" id="pie"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                   
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="container features">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="navy-line"></div>
+                            <h1>Over 100+ unique posts<br /> <span class="navy"> with Student Part Time Job </span> </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div>
+                                        <span class="pull-right text-right" id="sumallREACT">
+                                           
+                                        </span>
+
+                                        <small>Posts</small>
+                                    </div>
+
+                                    <div>
+                                        <canvas id="lineChart" height="70"></canvas>
+                                    </div>
+
+                                    <div class="m-t-md">
+                                        <small class="pull-right">
+                                            <i class="fa fa-clock-o"> </i>
+                                            Update on 16.07.2015
+                                        </small>
+                                        <small>
+                                            <strong>Analysis of sales:</strong> The value has been changed over time, and last month reached a level over $50,000.
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="navy-line"></div>
+                            <h1>Discover great feautres</h1>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section id="team" class="gray-section team">
+                    <div class="container">
+                        <div class="row m-b-lg">
+                            <div class="col-lg-12 text-center">
+                                <div class="navy-line"></div>
+                                <h1>Our Team</h1>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 wow fadeInLeft">
+                                <div class="team-member">
+                                    <img src="~/Images/landing/avatar3.jpg" class="img-responsive img-circle img-lg " alt="">
+                                    <h4><span class="navy">Mahdi</span> Ben Zouitina</h4>
+                                    <p> </p>
+                                    <ul class="list-inline social-icon">
+                                        <li>
+                                            <a href="https://twitter.com/Mahdi22122617"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://github.com/mahdibz97"><i class="fa fa-github"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.linkedin.com/in/mahdi-ben-zouitina-698542192/"><i class="fa fa-linkedin"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="team-member wow zoomIn">
+                                    <img src="~/Images/landing/avatar1.jpg" class="img-responsive img-circle img-lg " alt="">
+                                    <h4><span class="navy">Hamdi</span> Ghorbel</h4>
+                                    <p></p>
+                                    <ul class="list-inline social-icon">
+                                        <li>
+                                            <a href="https://twitter.com/ghorbelhamdi2"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://github.com/hamdi458"><i class="fa fa-github"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.linkedin.com/in/hamdi-ghorbel-3a4801176/"><i class="fa fa-linkedin"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 wow fadeInRight">
+                                <div class="team-member">
+                                    <img src="~/Images/landing/avatar2.jpg" class="img-responsive img-circle img-lg" alt="">
+                                    <h4><span class="navy">Hamdi</span> Bouzouitina</h4>
+                                    <p></p>
+                                    <ul class="list-inline social-icon">
+                                        <li>
+                                            <a href="https://twitter.com/Bzhamdi1"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://github.com/Bzhamdi"><i class="fa fa-github"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.linkedin.com/in/hamdi-bouzouitina-0011101a2/"><i class="fa fa-linkedin"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                      
+                    </div>
+                </section>
+
+
+
+
+
+                <section id="testimonials" class="navy-section testimonials" style="margin-top: 0">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 text-center wow zoomIn">
+
+                                <h1>
+                                    About Us
+                                </h1>
+                                <div class="testimonials-text">
+                                    <h2 class="display-2">Student Part Time Job is an online job board dedicated for students who are looking for a part time job providing them the easiest way since there is a huge difficulty to find anything online. We are trying always to help Tunisian students.</h2>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+
+
+
+
+                <section id="contact" class="gray-section contact">
+                    <div class="container">
+                        <div class="row m-b-lg">
+                            <div class="col-lg-12 text-center">
+                                <div class="navy-line"></div>
+                                <h1>Contact Us</h1>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <a href="mailto:students.part.time.job0@gmail.com" class="btn btn-primary">Send us mail</a>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
+                                <p><strong>&copy; 2020 Student Part Time Job, This Website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Holberton School Students</strong><br /> </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                @section Styles {
+                    @Styles.Render("~/plugins/c3Styles")
+                }
+
+                <!-- Section for main scripts render -->
+                @Scripts.Render("~/bundles/jquery")
+                @Scripts.Render("~/bundles/bootstrap")
+                @Scripts.Render("~/plugins/slimScroll")
+                @Scripts.Render("~/plugins/wow")
+                @Scripts.Render("~/bundles/inspinia")
+                @Scripts.Render("~/plugins/chartJs")
+                @Scripts.Render("~/plugins/peity")
+                @Scripts.Render("~/plugins/morris")
+                @Scripts.Render("~/plugins/d3")
+                @Scripts.Render("~/plugins/c3")
+                <script>
+
+                    $(document).ready(function () {
+                        $.ajax({
+                            url: "http://192.168.1.18:8888/api/sumallREACT/",
+                            method: 'GET',
+                            dataType: "json",
+
+                            success: function (data) {
+                                $("#sumallREACT").append(' <small>Posts occupped compared by all posts in the last year in:  <strong>SPTJ</strong></small><br/>All React: '+data);
+                            },
+                            error: function (error) {
+                                alert(error);
+                            },
+                        });
+                        $.ajax({
+                            url: "http://192.168.1.18:8888/api/FREEandOCUUPED",
+                            method: 'GET',
+                            dataType: "json",
+
+                            success: function (data) {
+                        c3.generate({
+                            bindto: '#pie',
+                            data: {
+                                columns: [
+                                    ['Free', data.FREE],
+                                    ['Occupied', data.OCCUPIED]
+                                ],
+                                colors: {
+                                    Free: '#1ab394',
+                                    Occupied: '#BABABA'
+                                },
+                                type: 'pie'
+                            }
+                        });
+                            },
+                            error: function (error) {
+                                alert(error);
+                            },
+                        });
+                        $.ajax({
+                            url: "http://192.168.1.18:8888/api/top3company",
+                            method: 'GET',
+                            dataType: "json",
+
+                            success: function (data) {
+                                var i = 0;
+                                var tot = [];
+                                var namee = [];
+                                $.each(data, function (i, item) {
+                                    
+                                    tot[i] = item.total
+                                    namee[i] = item.companyname
+                                    i = i + 1;
+                                });
+                                    var polarData = {
+                                        datasets: [{
+                                            data: tot,
+                                            backgroundColor: [
+                                                "#1ab394", "#BABABA", "#EE82EE"
+                                            ],
+                                            label: [
+                                                "My Radar chart"
+                                            ]
+                                        }],
+                                        labels: namee
+                                    };
+                                    var polarOptions = {
+                                        segmentStrokeWidth: 5,
+                                        responsive: true
+
+                                    };
+                                    var ctx3 = document.getElementById("polarChart").getContext("2d");
+                                    new Chart(ctx3, { type: 'polarArea', data: polarData, options: polarOptions });
+                                
+                            },
+                            error: function (error) {
+                                alert(error);
+                            },
+                        });
+
+                       
+
+                        $(document).ready(function () {
+                            $.ajax({
+                                url: "http://192.168.1.18:8888/api/postStatCountbyMonth",
+                                method: 'GET',
+                                dataType: "json",
+
+                                success: function (data) {
+                                    $.ajax({
+                                        url: "http://192.168.1.18:8888/api/reactStatCountbyMonth",
+                                        method: 'GET',
+                                        dataType: "json",
+
+                                        success: function (data1) {
+                                            var September = data.September
+                                            var October = data.October
+                                            var November = data.November
+                                            var May = data.May
+                                            var March = data.March
+                                            var June = data.June
+                                            var July = data.July
+                                            var January = data.January
+                                            var February = data.February
+                                            var December = data.December
+                                            var August = data.August
+                                            var April = data.April
+                                            var September1 = data1.September
+                                            var October1 = data1.October
+                                            var November1 = data1.November
+                                            var May1 = data1.May
+                                            var March1 = data1.March
+                                            var June1 = data1.June
+                                            var July1 = data1.July
+                                            var January1 = data1.January
+                                            var February1 = data1.February
+                                            var December1 = data1.December
+                                            var August1 = data1.August
+                                            var April1 = data1.April
+                                            var date1 = [January, February, March, April, May, June, July, August, September, October, November, December];
+
+                                            var date = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", " November", "December"];
+                                            var today = new Date();
+
+                                            var acc = today.getMonth();
+                                            var a = today.getMonth() + 1 - 1; if (a <= 0) { a = 12 - (1 - today.getMonth()) } else { a = a - 1 };
+                                            var aa = today.getMonth() + 1 - 2; if (aa <= 0) { aa = 12(-2 - today.getMonth()) } else { aa = aa - 1 };
+                                            var aaa = today.getMonth() + 1 - 3; if (aaa <= 0) { aaa = 12 - (3 - today.getMonth()) } else { aaa = aaa - 1 };
+                                            var aaaa = today.getMonth() + 1 - 4; if (aaaa <= 0) { aaaa = 12 - (4 - today.getMonth()) } else { aaaa = aaaa - 1 };
+                                            var aaaaa = today.getMonth() + 1 - 5; if (aaaaa <= 0) { aaaaa = 12 - (5 - today.getMonth()) } else { aaaaa = aaaaa - 1 };
+                                            var aaaaaa = today.getMonth() + 1 - 6; if (aaaaaa <= 0) { aaaaaa = 12 - (6 - today.getMonth()) } else { aaaaaa = aaaaaa - 1 };
+                                            var aaaaaaa = today.getMonth() + 1 - 7; if (aaaaaaa <= 0) { aaaaaaa = 12 - (7 - today.getMonth()) } else { aaaaaaa = aaaaaaa - 1 };
+                                            var aaaaaaaa = today.getMonth() + 1 - 8; if (aaaaaaaa <= 0) { aaaaaaaa = 12 - (8 - today.getMonth()) } else { aaaaaaaa = aaaaaaaa - 1 };
+                                            var aaaaaaaaa = today.getMonth() + 1 - 9; if (aaaaaaaaa <= 0) { aaaaaaaaa = 12 - (9 - today.getMonth()) } else { aaaaaaaaa = aaaaaaaaa - 1 };
+                                            var aaaaaaaaaa = today.getMonth() + 1 - 10; if (aaaaaaaaaa <= 0) { aaaaaaaaaa = 12 - (10 - today.getMonth()) } else { aaaaaaaaaa = aaaaaaaaaa - 1 };
+                                            var aaaaaaaaaaa = today.getMonth() + 1 - 11; if (aaaaaaaaaaa <= 0) { aaaaaaaaaaa = 12 - (11 - today.getMonth()) } else { aaaaaaaaaaa = aaaaaaaaaaa - 1 };
+                                            obj1 = [date1[aaaaaaaaaaa], date1[aaaaaaaaaa], date1[aaaaaaaaa], date1[aaaaaaaa], date1[aaaaaaa], date1[aaaaaa], date1[aaaaa], date1[aaaa], date1[aaa], date1[aa], date1[a], date1[acc]]
+                                            var obj = [date[aaaaaaaaaaa], date[aaaaaaaaaa], date[aaaaaaaaa], date[aaaaaaaa], date[aaaaaaa], date[aaaaaa], date[aaaaa], date[aaaa], date[aaa], date[aa], date[a], date[acc]]
+                                            var date2 = [January1, February1, March1, April1, May1, June1, July1, August1, September1, October1, November1, December1];
+
+                                            obj2 = [date2[aaaaaaaaaaa], date2[aaaaaaaaaa], date2[aaaaaaaaa], date2[aaaaaaaa], date2[aaaaaaa], date2[aaaaaa], date2[aaaaa], date2[aaaa], date2[aaa], date2[aa], date2[a], date2[acc]]
+
+                                            var lineData = {
+                                                labels: obj,
+                                                datasets: [
+                                                    {
+                                                        label: "Accepted Posts",
+                                                        backgroundColor: "rgba(26,179,148,0.5)",
+                                                        borderColor: "rgba(26,179,148,0.7)",
+                                                        pointBackgroundColor: "rgba(26,179,148,1)",
+                                                        pointBorderColor: "#fff",
+                                                        data: obj2
+
+                                                    },
+                                                    {
+                                                        label: "Total Posts",
+                                                        backgroundColor: "rgba(220,220,220,0.5)",
+                                                        borderColor: "rgba(220,220,220,1)",
+                                                        pointBackgroundColor: "rgba(220,220,220,1)",
+                                                        pointBorderColor: "#fff",
+                                                        data: obj1
+                                                    }
+                                                ]
+                                            };
+
+                                            var lineOptions = {
+                                                responsive: true
+                                            };
+
+
+                                            var ctx = document.getElementById("lineChart").getContext("2d");
+                                            new Chart(ctx, { type: 'line', data: lineData, options: lineOptions });
+                                        },
+                                        error: function (error) {
+                                            alert(error);
+                                        },
+                                    });
+
+
+                                },
+                                error: function (error) {
+                                    alert(error);
+                                },
+                            })
+                        });
+
+
+
+
+
+                        if (sessionStorage.getItem('type') === '1') {
+                            $("#sign").html('Students');
+                            $("#sign").attr("href", "../AppViews/contacts")
+                        }
+                        if (sessionStorage.getItem('type') === '0') {
+                            $("#sign").html('Find Job');
+                            $("#sign").attr("href", "../Ecommerce/cart")
+                        }
+                        $('body').scrollspy({
+                            target: '.navbar-fixed-top',
+                            offset: 80
+                        });
+
+                        // Page scrolling feature
+                        $('a.page-scroll').bind('click', function (event) {
+                            var link = $(this);
+                            $('html, body').stop().animate({
+                                scrollTop: $(link.attr('href')).offset().top - 50
+                            }, 500);
+                            event.preventDefault();
+                            $('#navbar').collapse('hide');
+                        });
+                    });
+
+                    var cbpAnimatedHeader = (function () {
+                        var docElem = document.documentElement,
+                            header = document.querySelector('.navbar-default'),
+                            didScroll = false,
+                            changeHeaderOn = 200;
+                        function init() {
+                            window.addEventListener('scroll', function (event) {
+                                if (!didScroll) {
+                                    didScroll = true;
+                                    setTimeout(scrollPage, 250);
+                                }
+                            }, false);
+                        }
+                        function scrollPage() {
+                            var sy = scrollY();
+                            if (sy >= changeHeaderOn) {
+                                $(header).addClass('navbar-scroll')
+                            }
+                            else {
+                                $(header).removeClass('navbar-scroll')
+                            }
+                            didScroll = false;
+                        }
+                        function scrollY() {
+                            return window.pageYOffset || docElem.scrollTop;
+                        }
+                        init();
+
+                    })();
+
+                </script>
+
+</body>
+</html>

@@ -1,0 +1,917 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="trModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Art_Depot_Rayon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Art_Depot" Type="int" />
+          <Property Name="Id_Rayons" Type="int" />
+          <Property Name="Stock_Rayon" Type="decimal" Precision="18" Scale="3" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="CentreID" />
+          </Key>
+          <Property Name="CentreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CLIENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="nvarchar(max)" />
+          <Property Name="NOM" Type="nvarchar(max)" />
+          <Property Name="ADRESSE" Type="nvarchar(max)" />
+          <Property Name="TELEPHONE" Type="nvarchar(max)" />
+          <Property Name="FAX" Type="nvarchar(max)" />
+          <Property Name="EMAIL" Type="nvarchar(max)" />
+          <Property Name="SITE_WEB" Type="nvarchar(max)" />
+          <Property Name="ID_FISCAL" Type="nvarchar(max)" />
+          <Property Name="AI" Type="nvarchar(max)" />
+          <Property Name="NIS" Type="nvarchar(max)" />
+          <Property Name="RC" Type="nvarchar(max)" />
+          <Property Name="RIB" Type="nvarchar(max)" />
+          <Property Name="CONTACT" Type="nvarchar(max)" />
+          <Property Name="Exttva" Type="bit" Nullable="false" />
+          <Property Name="Societe" Type="int" />
+        </EntityType>
+        <EntityType Name="Dépot">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dépot" Type="nvarchar(max)" />
+          <Property Name="Lieu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Devise">
+          <Key>
+            <PropertyRef Name="Nom_Devise" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom_Devise" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exercice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Annee" Type="int" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FACTURES_CLIENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="DATE" Type="datetime" Nullable="false" />
+          <Property Name="MODE_PAIEMENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="CLIENT" Type="int" Nullable="false" />
+          <Property Name="THT" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="TTVA" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="NHT" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="TTC" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="TNET" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="VALIDER" Type="bit" Nullable="false" />
+          <Property Name="COMMANDE_CLIENT" Type="int" />
+          <Property Name="DEVIS_CLIENT" Type="int" />
+          <Property Name="BON_LIVRAISON_CLIENT" Type="int" />
+          <Property Name="PAYEE" Type="bit" />
+          <Property Name="REMISE" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="TIMBRE" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="Societes" Type="int" />
+          <Property Name="Tiers" Type="int" />
+          <Property Name="Declaration" Type="bit" />
+          <Property Name="Date_Declaration" Type="datetime" />
+          <Property Name="immobilisation" Type="bit" />
+          <Property Name="Bien_service" Type="bit" />
+        </EntityType>
+        <EntityType Name="FACTURES_FOURNISSEURS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="DATE" Type="datetime" Nullable="false" />
+          <Property Name="MODE_PAIEMENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="FOURNISSEUR" Type="int" Nullable="false" />
+          <Property Name="Societes" Type="int" />
+          <Property Name="THT" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="TTVA" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="NHT" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="TTC" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="TNET" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="VALIDER" Type="bit" Nullable="false" />
+          <Property Name="PAYEE" Type="bit" Nullable="false" />
+          <Property Name="COMMANDE_FOURNISSEUR" Type="int" />
+          <Property Name="BON_RECEPTION_FOURNISSEUR" Type="int" />
+          <Property Name="REMISE" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="TIMBRE" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="Tiers" Type="int" />
+          <Property Name="FODEC" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="Redevance" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="Num_Fact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Declaration" Type="bit" />
+          <Property Name="Date_Declaration" Type="datetime" />
+          <Property Name="immobilisation" Type="bit" />
+          <Property Name="Bien_service" Type="bit" />
+          <Property Name="RAS_Marche" Type="bit" />
+          <Property Name="MOIS_RAS_Marche" Type="varchar(max)" />
+          <Property Name="ID_RETENUE" Type="int" />
+        </EntityType>
+        <EntityType Name="FOURNISSEURS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOM" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADRESSE" Type="nvarchar" MaxLength="50" />
+          <Property Name="TELEPHONE" Type="nvarchar" MaxLength="50" />
+          <Property Name="FAX" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="SITE_WEB" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_FISCAL" Type="nvarchar" MaxLength="50" />
+          <Property Name="AI" Type="nvarchar" MaxLength="50" />
+          <Property Name="NIS" Type="nvarchar" MaxLength="50" />
+          <Property Name="RC" Type="nvarchar" MaxLength="50" />
+          <Property Name="RIB" Type="nvarchar" MaxLength="50" />
+          <Property Name="CONTACT" Type="nvarchar" MaxLength="50" />
+          <Property Name="Etat" Type="bit" />
+          <Property Name="Id_Ste" Type="int" />
+        </EntityType>
+        <EntityType Name="Marque">
+          <Key>
+            <PropertyRef Name="Nom marque" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom marque" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mouvement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Départ" Type="varchar(max)" />
+          <Property Name="Arrivée" Type="varchar(max)" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Quantité total" Type="int" />
+        </EntityType>
+        <EntityType Name="Prix_Achat">
+          <Key>
+            <PropertyRef Name="Product ID" />
+          </Key>
+          <Property Name="Product ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar(max)" />
+          <Property Name="Marque" Type="nvarchar" MaxLength="50" />
+          <Property Name="Categorie" Type="int" />
+          <Property Name="Sous-Categorie" Type="int" />
+          <Property Name="Unite" Type="nvarchar" MaxLength="50" />
+          <Property Name="PU HT Sans Remise" Type="float" />
+          <Property Name="Remise" Type="int" />
+          <Property Name="PU HT Avec Remise" Type="float" />
+          <Property Name="Devise" Type="nvarchar" MaxLength="50" />
+          <Property Name="Valeur_TVA" Type="nvarchar" MaxLength="50" />
+          <Property Name="PU TTC" Type="float" />
+          <Property Name="Fournisseur" Type="int" />
+          <Property Name="Date offre de prix" Type="date" />
+          <Property Name="Duree de validite" Type="int" />
+          <Property Name="N Offre de Prix" Type="nvarchar" MaxLength="50" />
+          <Property Name="QUANTITE" Type="float" />
+          <Property Name="QUANTITE_REPTURE_STOCK" Type="int" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="50" />
+          <Property Name="BLfRS" Type="int" />
+          <Property Name="Stock" Type="float" />
+          <Property Name="Stock-Alerte" Type="float" />
+        </EntityType>
+        <EntityType Name="Rayons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rayon" Type="varchar(max)" />
+          <Property Name="depot" Type="int" />
+        </EntityType>
+        <EntityType Name="Sous_Categorie">
+          <Key>
+            <PropertyRef Name="CatID" />
+          </Key>
+          <Property Name="CatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar(max)" />
+          <Property Name="CentreID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TVA">
+          <Key>
+            <PropertyRef Name="Valeur_TVA" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Valeur_TVA" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Annee" Type="int" />
+        </EntityType>
+        <EntityType Name="Unite">
+          <Key>
+            <PropertyRef Name="Valeur Unite" />
+          </Key>
+          <Property Name="ID" Type="int" />
+          <Property Name="Valeur Unite" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Art_Depot_Rayon_Rayons">
+          <End Role="Rayons" Type="Self.Rayons" Multiplicity="0..1" />
+          <End Role="Art_Depot_Rayon" Type="Self.Art_Depot_Rayon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rayons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Art_Depot_Rayon">
+              <PropertyRef Name="Id_Rayons" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Categorie_Centres_couts">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1" />
+          <End Role="Sous_Categorie" Type="Self.Sous_Categorie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="CentreID" />
+            </Principal>
+            <Dependent Role="Sous_Categorie">
+              <PropertyRef Name="CentreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prix_Achat_Fournisseur">
+          <End Role="FOURNISSEURS" Type="Self.FOURNISSEURS" Multiplicity="0..1" />
+          <End Role="Prix_Achat" Type="Self.Prix_Achat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEURS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prix_Achat">
+              <PropertyRef Name="Fournisseur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rayons_Dépot">
+          <End Role="Dépot" Type="Self.Dépot" Multiplicity="0..1" />
+          <End Role="Rayons" Type="Self.Rayons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dépot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rayons">
+              <PropertyRef Name="depot" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="trModelStoreContainer">
+          <EntitySet Name="Art_Depot_Rayon" EntityType="Self.Art_Depot_Rayon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTS" EntityType="Self.CLIENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dépot" EntityType="Self.Dépot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Devise" EntityType="Self.Devise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exercice" EntityType="Self.Exercice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTURES_CLIENTS" EntityType="Self.FACTURES_CLIENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTURES_FOURNISSEURS" EntityType="Self.FACTURES_FOURNISSEURS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FOURNISSEURS" EntityType="Self.FOURNISSEURS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marque" EntityType="Self.Marque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mouvement" EntityType="Self.mouvement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prix_Achat" EntityType="Self.Prix_Achat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rayons" EntityType="Self.Rayons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sous_Categorie" EntityType="Self.Sous_Categorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TVA" EntityType="Self.TVA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unite" EntityType="Self.Unite" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Art_Depot_Rayon_Rayons" Association="Self.FK_Art_Depot_Rayon_Rayons">
+            <End Role="Rayons" EntitySet="Rayons" />
+            <End Role="Art_Depot_Rayon" EntitySet="Art_Depot_Rayon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Categorie_Centres_couts" Association="Self.FK_Categorie_Centres_couts">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Sous_Categorie" EntitySet="Sous_Categorie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prix_Achat_Fournisseur" Association="Self.FK_Prix_Achat_Fournisseur">
+            <End Role="FOURNISSEURS" EntitySet="FOURNISSEURS" />
+            <End Role="Prix_Achat" EntitySet="Prix_Achat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rayons_Dépot" Association="Self.FK_Rayons_Dépot">
+            <End Role="Dépot" EntitySet="Dépot" />
+            <End Role="Rayons" EntitySet="Rayons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="trModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Art_Depot_Rayon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Art_Depot" Type="Int32" />
+          <Property Name="Id_Rayons" Type="Int32" />
+          <Property Name="Stock_Rayon" Type="Decimal" Precision="18" Scale="3" />
+          <NavigationProperty Name="Rayons" Relationship="Self.FK_Art_Depot_Rayon_Rayons" FromRole="Art_Depot_Rayon" ToRole="Rayons" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="CentreID" />
+          </Key>
+          <Property Name="CentreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Sous_Categorie" Relationship="Self.FK_Categorie_Centres_couts" FromRole="Categorie" ToRole="Sous_Categorie" />
+        </EntityType>
+        <EntityType Name="CLIENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NOM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRESSE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TELEPHONE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FAX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SITE_WEB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_FISCAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NIS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RIB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CONTACT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Exttva" Type="Boolean" Nullable="false" />
+          <Property Name="Societe" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Dépot">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dépot1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Rayons" Relationship="Self.FK_Rayons_Dépot" FromRole="Dépot" ToRole="Rayons" />
+        </EntityType>
+        <EntityType Name="Devise">
+          <Key>
+            <PropertyRef Name="Nom_Devise" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Devise" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exercice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Annee" Type="Int32" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="FACTURES_CLIENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MODE_PAIEMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CLIENT" Type="Int32" Nullable="false" />
+          <Property Name="THT" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="TTVA" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="NHT" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="TTC" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="TNET" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="VALIDER" Type="Boolean" Nullable="false" />
+          <Property Name="COMMANDE_CLIENT" Type="Int32" />
+          <Property Name="DEVIS_CLIENT" Type="Int32" />
+          <Property Name="BON_LIVRAISON_CLIENT" Type="Int32" />
+          <Property Name="PAYEE" Type="Boolean" />
+          <Property Name="REMISE" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="TIMBRE" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Societes" Type="Int32" />
+          <Property Name="Tiers" Type="Int32" />
+          <Property Name="Declaration" Type="Boolean" />
+          <Property Name="Date_Declaration" Type="DateTime" Precision="3" />
+          <Property Name="immobilisation" Type="Boolean" />
+          <Property Name="Bien_service" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FACTURES_FOURNISSEURS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MODE_PAIEMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FOURNISSEUR" Type="Int32" Nullable="false" />
+          <Property Name="Societes" Type="Int32" />
+          <Property Name="THT" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="TTVA" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="NHT" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="TTC" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="TNET" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="VALIDER" Type="Boolean" Nullable="false" />
+          <Property Name="PAYEE" Type="Boolean" Nullable="false" />
+          <Property Name="COMMANDE_FOURNISSEUR" Type="Int32" />
+          <Property Name="BON_RECEPTION_FOURNISSEUR" Type="Int32" />
+          <Property Name="REMISE" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="TIMBRE" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Tiers" Type="Int32" />
+          <Property Name="FODEC" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Redevance" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Num_Fact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Declaration" Type="Boolean" />
+          <Property Name="Date_Declaration" Type="DateTime" Precision="3" />
+          <Property Name="immobilisation" Type="Boolean" />
+          <Property Name="Bien_service" Type="Boolean" />
+          <Property Name="RAS_Marche" Type="Boolean" />
+          <Property Name="MOIS_RAS_Marche" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ID_RETENUE" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FOURNISSEURS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADRESSE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TELEPHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FAX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SITE_WEB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_FISCAL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NIS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RIB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CONTACT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Etat" Type="Boolean" />
+          <Property Name="Id_Ste" Type="Int32" />
+          <NavigationProperty Name="Prix_Achat" Relationship="Self.FK_Prix_Achat_Fournisseur" FromRole="FOURNISSEURS" ToRole="Prix_Achat" />
+        </EntityType>
+        <EntityType Name="Marque">
+          <Key>
+            <PropertyRef Name="Nom_marque" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_marque" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mouvement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Départ" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Arrivée" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Quantité_total" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Prix_Achat">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Marque" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Categorie" Type="Int32" />
+          <Property Name="Sous_Categorie" Type="Int32" />
+          <Property Name="Unite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PU_HT_Sans_Remise" Type="Double" />
+          <Property Name="Remise" Type="Int32" />
+          <Property Name="PU_HT_Avec_Remise" Type="Double" />
+          <Property Name="Devise" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Valeur_TVA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PU_TTC" Type="Double" />
+          <Property Name="Fournisseur" Type="Int32" />
+          <Property Name="Date_offre_de_prix" Type="DateTime" Precision="0" />
+          <Property Name="Duree_de_validite" Type="Int32" />
+          <Property Name="N_Offre_de_Prix" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QUANTITE" Type="Double" />
+          <Property Name="QUANTITE_REPTURE_STOCK" Type="Int32" />
+          <Property Name="Libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BLfRS" Type="Int32" />
+          <Property Name="Stock" Type="Double" />
+          <Property Name="Stock_Alerte" Type="Double" />
+          <NavigationProperty Name="FOURNISSEURS" Relationship="Self.FK_Prix_Achat_Fournisseur" FromRole="Prix_Achat" ToRole="FOURNISSEURS" />
+        </EntityType>
+        <EntityType Name="Rayons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rayon" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="depot" Type="Int32" />
+          <NavigationProperty Name="Art_Depot_Rayon" Relationship="Self.FK_Art_Depot_Rayon_Rayons" FromRole="Rayons" ToRole="Art_Depot_Rayon" />
+          <NavigationProperty Name="Dépot" Relationship="Self.FK_Rayons_Dépot" FromRole="Rayons" ToRole="Dépot" />
+        </EntityType>
+        <EntityType Name="Sous_Categorie">
+          <Key>
+            <PropertyRef Name="CatID" />
+          </Key>
+          <Property Name="CatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CentreID" Type="Int32" />
+          <NavigationProperty Name="Categorie" Relationship="Self.FK_Categorie_Centres_couts" FromRole="Sous_Categorie" ToRole="Categorie" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TVA">
+          <Key>
+            <PropertyRef Name="Valeur_TVA" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Valeur_TVA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Annee" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Unite">
+          <Key>
+            <PropertyRef Name="Valeur_Unite" />
+          </Key>
+          <Property Name="ID" Type="Int32" />
+          <Property Name="Valeur_Unite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Art_Depot_Rayon_Rayons">
+          <End Role="Rayons" Type="Self.Rayons" Multiplicity="0..1" />
+          <End Role="Art_Depot_Rayon" Type="Self.Art_Depot_Rayon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rayons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Art_Depot_Rayon">
+              <PropertyRef Name="Id_Rayons" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Categorie_Centres_couts">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1" />
+          <End Role="Sous_Categorie" Type="Self.Sous_Categorie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="CentreID" />
+            </Principal>
+            <Dependent Role="Sous_Categorie">
+              <PropertyRef Name="CentreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rayons_Dépot">
+          <End Role="Dépot" Type="Self.Dépot" Multiplicity="0..1" />
+          <End Role="Rayons" Type="Self.Rayons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dépot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rayons">
+              <PropertyRef Name="depot" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prix_Achat_Fournisseur">
+          <End Role="FOURNISSEURS" Type="Self.FOURNISSEURS" Multiplicity="0..1" />
+          <End Role="Prix_Achat" Type="Self.Prix_Achat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEURS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prix_Achat">
+              <PropertyRef Name="Fournisseur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="trEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Art_Depot_Rayon" EntityType="Self.Art_Depot_Rayon" />
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" />
+          <EntitySet Name="CLIENTS" EntityType="Self.CLIENTS" />
+          <EntitySet Name="Dépot" EntityType="Self.Dépot" />
+          <EntitySet Name="Devise" EntityType="Self.Devise" />
+          <EntitySet Name="Exercice" EntityType="Self.Exercice" />
+          <EntitySet Name="FACTURES_CLIENTS" EntityType="Self.FACTURES_CLIENTS" />
+          <EntitySet Name="FACTURES_FOURNISSEURS" EntityType="Self.FACTURES_FOURNISSEURS" />
+          <EntitySet Name="FOURNISSEURS" EntityType="Self.FOURNISSEURS" />
+          <EntitySet Name="Marque" EntityType="Self.Marque" />
+          <EntitySet Name="mouvement" EntityType="Self.mouvement" />
+          <EntitySet Name="Prix_Achat" EntityType="Self.Prix_Achat" />
+          <EntitySet Name="Rayons" EntityType="Self.Rayons" />
+          <EntitySet Name="Sous_Categorie" EntityType="Self.Sous_Categorie" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TVA" EntityType="Self.TVA" />
+          <EntitySet Name="Unite" EntityType="Self.Unite" />
+          <AssociationSet Name="FK_Art_Depot_Rayon_Rayons" Association="Self.FK_Art_Depot_Rayon_Rayons">
+            <End Role="Rayons" EntitySet="Rayons" />
+            <End Role="Art_Depot_Rayon" EntitySet="Art_Depot_Rayon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Categorie_Centres_couts" Association="Self.FK_Categorie_Centres_couts">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Sous_Categorie" EntitySet="Sous_Categorie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rayons_Dépot" Association="Self.FK_Rayons_Dépot">
+            <End Role="Dépot" EntitySet="Dépot" />
+            <End Role="Rayons" EntitySet="Rayons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prix_Achat_Fournisseur" Association="Self.FK_Prix_Achat_Fournisseur">
+            <End Role="FOURNISSEURS" EntitySet="FOURNISSEURS" />
+            <End Role="Prix_Achat" EntitySet="Prix_Achat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="trModelStoreContainer" CdmEntityContainer="trEntities1">
+          <EntitySetMapping Name="Art_Depot_Rayon">
+            <EntityTypeMapping TypeName="trModel.Art_Depot_Rayon">
+              <MappingFragment StoreEntitySet="Art_Depot_Rayon">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Art_Depot" ColumnName="Id_Art_Depot" />
+                <ScalarProperty Name="Id_Rayons" ColumnName="Id_Rayons" />
+                <ScalarProperty Name="Stock_Rayon" ColumnName="Stock_Rayon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorie">
+            <EntityTypeMapping TypeName="trModel.Categorie">
+              <MappingFragment StoreEntitySet="Categorie">
+                <ScalarProperty Name="CentreID" ColumnName="CentreID" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTS">
+            <EntityTypeMapping TypeName="trModel.CLIENTS">
+              <MappingFragment StoreEntitySet="CLIENTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="NOM" ColumnName="NOM" />
+                <ScalarProperty Name="ADRESSE" ColumnName="ADRESSE" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SITE_WEB" ColumnName="SITE_WEB" />
+                <ScalarProperty Name="ID_FISCAL" ColumnName="ID_FISCAL" />
+                <ScalarProperty Name="AI" ColumnName="AI" />
+                <ScalarProperty Name="NIS" ColumnName="NIS" />
+                <ScalarProperty Name="RC" ColumnName="RC" />
+                <ScalarProperty Name="RIB" ColumnName="RIB" />
+                <ScalarProperty Name="CONTACT" ColumnName="CONTACT" />
+                <ScalarProperty Name="Exttva" ColumnName="Exttva" />
+                <ScalarProperty Name="Societe" ColumnName="Societe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dépot">
+            <EntityTypeMapping TypeName="trModel.Dépot">
+              <MappingFragment StoreEntitySet="Dépot">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Dépot1" ColumnName="Dépot" />
+                <ScalarProperty Name="Lieu" ColumnName="Lieu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devise">
+            <EntityTypeMapping TypeName="trModel.Devise">
+              <MappingFragment StoreEntitySet="Devise">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nom_Devise" ColumnName="Nom_Devise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exercice">
+            <EntityTypeMapping TypeName="trModel.Exercice">
+              <MappingFragment StoreEntitySet="Exercice">
+                <ScalarProperty Name="Annee" ColumnName="Annee" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURES_CLIENTS">
+            <EntityTypeMapping TypeName="trModel.FACTURES_CLIENTS">
+              <MappingFragment StoreEntitySet="FACTURES_CLIENTS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="MODE_PAIEMENT" ColumnName="MODE_PAIEMENT" />
+                <ScalarProperty Name="CLIENT" ColumnName="CLIENT" />
+                <ScalarProperty Name="THT" ColumnName="THT" />
+                <ScalarProperty Name="TTVA" ColumnName="TTVA" />
+                <ScalarProperty Name="NHT" ColumnName="NHT" />
+                <ScalarProperty Name="TTC" ColumnName="TTC" />
+                <ScalarProperty Name="TNET" ColumnName="TNET" />
+                <ScalarProperty Name="VALIDER" ColumnName="VALIDER" />
+                <ScalarProperty Name="COMMANDE_CLIENT" ColumnName="COMMANDE_CLIENT" />
+                <ScalarProperty Name="DEVIS_CLIENT" ColumnName="DEVIS_CLIENT" />
+                <ScalarProperty Name="BON_LIVRAISON_CLIENT" ColumnName="BON_LIVRAISON_CLIENT" />
+                <ScalarProperty Name="PAYEE" ColumnName="PAYEE" />
+                <ScalarProperty Name="REMISE" ColumnName="REMISE" />
+                <ScalarProperty Name="TIMBRE" ColumnName="TIMBRE" />
+                <ScalarProperty Name="Societes" ColumnName="Societes" />
+                <ScalarProperty Name="Tiers" ColumnName="Tiers" />
+                <ScalarProperty Name="Declaration" ColumnName="Declaration" />
+                <ScalarProperty Name="Date_Declaration" ColumnName="Date_Declaration" />
+                <ScalarProperty Name="immobilisation" ColumnName="immobilisation" />
+                <ScalarProperty Name="Bien_service" ColumnName="Bien_service" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURES_FOURNISSEURS">
+            <EntityTypeMapping TypeName="trModel.FACTURES_FOURNISSEURS">
+              <MappingFragment StoreEntitySet="FACTURES_FOURNISSEURS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="MODE_PAIEMENT" ColumnName="MODE_PAIEMENT" />
+                <ScalarProperty Name="FOURNISSEUR" ColumnName="FOURNISSEUR" />
+                <ScalarProperty Name="Societes" ColumnName="Societes" />
+                <ScalarProperty Name="THT" ColumnName="THT" />
+                <ScalarProperty Name="TTVA" ColumnName="TTVA" />
+                <ScalarProperty Name="NHT" ColumnName="NHT" />
+                <ScalarProperty Name="TTC" ColumnName="TTC" />
+                <ScalarProperty Name="TNET" ColumnName="TNET" />
+                <ScalarProperty Name="VALIDER" ColumnName="VALIDER" />
+                <ScalarProperty Name="PAYEE" ColumnName="PAYEE" />
+                <ScalarProperty Name="COMMANDE_FOURNISSEUR" ColumnName="COMMANDE_FOURNISSEUR" />
+                <ScalarProperty Name="BON_RECEPTION_FOURNISSEUR" ColumnName="BON_RECEPTION_FOURNISSEUR" />
+                <ScalarProperty Name="REMISE" ColumnName="REMISE" />
+                <ScalarProperty Name="TIMBRE" ColumnName="TIMBRE" />
+                <ScalarProperty Name="Tiers" ColumnName="Tiers" />
+                <ScalarProperty Name="FODEC" ColumnName="FODEC" />
+                <ScalarProperty Name="Redevance" ColumnName="Redevance" />
+                <ScalarProperty Name="Num_Fact" ColumnName="Num_Fact" />
+                <ScalarProperty Name="Declaration" ColumnName="Declaration" />
+                <ScalarProperty Name="Date_Declaration" ColumnName="Date_Declaration" />
+                <ScalarProperty Name="immobilisation" ColumnName="immobilisation" />
+                <ScalarProperty Name="Bien_service" ColumnName="Bien_service" />
+                <ScalarProperty Name="RAS_Marche" ColumnName="RAS_Marche" />
+                <ScalarProperty Name="MOIS_RAS_Marche" ColumnName="MOIS_RAS_Marche" />
+                <ScalarProperty Name="ID_RETENUE" ColumnName="ID_RETENUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FOURNISSEURS">
+            <EntityTypeMapping TypeName="trModel.FOURNISSEURS">
+              <MappingFragment StoreEntitySet="FOURNISSEURS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="NOM" ColumnName="NOM" />
+                <ScalarProperty Name="ADRESSE" ColumnName="ADRESSE" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SITE_WEB" ColumnName="SITE_WEB" />
+                <ScalarProperty Name="ID_FISCAL" ColumnName="ID_FISCAL" />
+                <ScalarProperty Name="AI" ColumnName="AI" />
+                <ScalarProperty Name="NIS" ColumnName="NIS" />
+                <ScalarProperty Name="RC" ColumnName="RC" />
+                <ScalarProperty Name="RIB" ColumnName="RIB" />
+                <ScalarProperty Name="CONTACT" ColumnName="CONTACT" />
+                <ScalarProperty Name="Etat" ColumnName="Etat" />
+                <ScalarProperty Name="Id_Ste" ColumnName="Id_Ste" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marque">
+            <EntityTypeMapping TypeName="trModel.Marque">
+              <MappingFragment StoreEntitySet="Marque">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nom_marque" ColumnName="Nom marque" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mouvement">
+            <EntityTypeMapping TypeName="trModel.mouvement">
+              <MappingFragment StoreEntitySet="mouvement">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Départ" ColumnName="Départ" />
+                <ScalarProperty Name="Arrivée" ColumnName="Arrivée" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Quantité_total" ColumnName="Quantité total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prix_Achat">
+            <EntityTypeMapping TypeName="trModel.Prix_Achat">
+              <MappingFragment StoreEntitySet="Prix_Achat">
+                <ScalarProperty Name="Product_ID" ColumnName="Product ID" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Marque" ColumnName="Marque" />
+                <ScalarProperty Name="Categorie" ColumnName="Categorie" />
+                <ScalarProperty Name="Sous_Categorie" ColumnName="Sous-Categorie" />
+                <ScalarProperty Name="Unite" ColumnName="Unite" />
+                <ScalarProperty Name="PU_HT_Sans_Remise" ColumnName="PU HT Sans Remise" />
+                <ScalarProperty Name="Remise" ColumnName="Remise" />
+                <ScalarProperty Name="PU_HT_Avec_Remise" ColumnName="PU HT Avec Remise" />
+                <ScalarProperty Name="Devise" ColumnName="Devise" />
+                <ScalarProperty Name="Valeur_TVA" ColumnName="Valeur_TVA" />
+                <ScalarProperty Name="PU_TTC" ColumnName="PU TTC" />
+                <ScalarProperty Name="Fournisseur" ColumnName="Fournisseur" />
+                <ScalarProperty Name="Date_offre_de_prix" ColumnName="Date offre de prix" />
+                <ScalarProperty Name="Duree_de_validite" ColumnName="Duree de validite" />
+                <ScalarProperty Name="N_Offre_de_Prix" ColumnName="N Offre de Prix" />
+                <ScalarProperty Name="QUANTITE" ColumnName="QUANTITE" />
+                <ScalarProperty Name="QUANTITE_REPTURE_STOCK" ColumnName="QUANTITE_REPTURE_STOCK" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="BLfRS" ColumnName="BLfRS" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Stock_Alerte" ColumnName="Stock-Alerte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rayons">
+            <EntityTypeMapping TypeName="trModel.Rayons">
+              <MappingFragment StoreEntitySet="Rayons">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Rayon" ColumnName="Rayon" />
+                <ScalarProperty Name="depot" ColumnName="depot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sous_Categorie">
+            <EntityTypeMapping TypeName="trModel.Sous_Categorie">
+              <MappingFragment StoreEntitySet="Sous_Categorie">
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="CentreID" ColumnName="CentreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="trModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVA">
+            <EntityTypeMapping TypeName="trModel.TVA">
+              <MappingFragment StoreEntitySet="TVA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Valeur_TVA" ColumnName="Valeur_TVA" />
+                <ScalarProperty Name="Annee" ColumnName="Annee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unite">
+            <EntityTypeMapping TypeName="trModel.Unite">
+              <MappingFragment StoreEntitySet="Unite">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Valeur_Unite" ColumnName="Valeur Unite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

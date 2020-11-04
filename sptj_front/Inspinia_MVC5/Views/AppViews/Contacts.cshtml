@@ -1,0 +1,221 @@
+﻿
+@{ ViewBag.Title = "Contacts"; }
+<div class="col-md-12-navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="col-md-12" style="margin-bottom:15px">
+            <div class="navbar-header page-scroll pull-left">
+                <div class="site-logo col-6 pull-left " style="margin-top:5px">
+
+                    <img id="logo" alt="Qries" src="~/Images/landing/logo.ico"
+                         width="105" height="105">
+
+                </div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="vbar" style="margin-right:50px;">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top:20px">
+                        <li><a class="page-scroll" href="../Landing/index">Home</a></li>
+                        <li><a class="page-scroll" href="../Appviews/contacts">Students</a></li>
+                        <li><a class="page-scroll" href="../AppViews/profile2">Profile</a></li>
+
+
+                        <li style="margin-left:400px"><a href="~/Views/AppViews/Profile.cshtml"></a></li>
+                        <li style="margin-left:15px"><a href="../Pages/login">Logout</a> </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+</div>
+<div class="row wrapper border-bottom white-bg page-heading" style="margin-top: 14px;">
+    <div class="row">
+        <div class="col-lg-3">
+            <h2>Students</h2>
+        </div>
+       
+    </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row" id="tb">
+
+
+
+        </div>
+    </div>
+
+    @section Styles {
+        @Styles.Render("~/plugins/dataPickerStyles")
+        @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+        @Styles.Render("~/plugins/imagecropperStyles")
+        @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+        @Styles.Render("~/plugins/select2Styles")
+        @Styles.Render("~/plugins/touchSpinStyles")
+
+    }
+
+    @section Scripts {
+
+
+        @Scripts.Render("~/plugins/select2")
+        @Scripts.Render("~/plugins/dataPicker")
+        @Scripts.Render("~/plugins/dataTables")
+        @Scripts.Render("~/plugins/sweetAlert")
+        @Scripts.Render("~/plugins/iCheck")
+        @Scripts.Render("~/plugins/ionRange")
+        @Scripts.Render("~/plugins/nouiSlider")
+        @Scripts.Render("~/plugins/jasnyBootstrap")
+        @Scripts.Render("~/plugins/switchery")
+        @Scripts.Render("~/plugins/chosen")
+        @Scripts.Render("~/plugins/knob")
+        @Scripts.Render("~/plugins/imagecropper")
+        @Scripts.Render("~/plugins/colorpicker")
+        @Scripts.Render("~/plugins/clockpicker")
+        @Scripts.Render("~/plugins/dateRange")
+        @Scripts.Render("~/plugins/touchSpin")
+
+
+
+        <script type="text/javascript">
+            var j = 1;
+            var x = 0;
+            $(document).ready(function () {
+               
+
+
+                if (j == 1) { myFunction(); j = 0; }
+
+                if (j == 0) { myFunction1(); }
+
+
+
+
+
+
+            });
+            function myFunction() { // Declare a function
+                $.ajax({
+                    method: "GET",
+                    url: "http://192.168.1.18:8888/api/student",
+                    dataType: "json",
+                    success: function (data) {
+                        $.each(data, function (i, item) {
+                            x = x + 1;
+
+                            var line = '<div id="x" class="col-lg-4" >' +
+                                '<div class="contact-box">' +
+                                '<a href="">' +
+                                '<div class="col-sm-4">' +
+                                '<div class="text-center">' +
+                                '<a href="../AppViews/profile?id=' + item.cin + '"><img style="height: 100px; width: 100px" id="photo' + item.cin + '" alt="image"  class="img-circle m-t-xs img-responsive" src="uj"></a>';
+
+
+                            $.ajax({
+                                url: "http://192.168.1.18:8888/api/StudentNote/" + item.cin,
+                                method: 'GET',
+                                dataType: "json",
+
+                                success: function (data) {
+                                    if (data !== 'NaN')
+                                        line = line + '<div class="m-t-xs font-bold" style="margin-top:30px"><small>Score : ' + data + '%</small><div class="progress progress-mini"><div style="width: ' + data + '%;" class="progress-bar"></div></div></div></div> </div>' +
+                                            ' <div class="col-sm-8">' +
+                                            ' <h3><strong>' + item.firstname + ' ' + item.lastname + '</strong></h3 > ' +
+                                            ' <p><i class="fa fa-map-marker"></i> ' + item.city + '</p>' +
+                                            '<address>' +
+                                            '<strong>' + item.nationality + '.</strong><br>' +
+                                            item.datebirth + '<br>' +
+                                            item.cin + '<br>' +
+                                            '<abbr title="Phone">P:</abbr> (126) ' + data.phone +
+                                            '</address>' +
+                                            '</div>' +
+                                            '<div class="clearfix"></div>' +
+                                            '</a>' +
+                                            '</div>' +
+                                            '</div>';
+                                    else {
+                                        line = line + '<div class="m-t-xs font-bold">   </div></div> </div>' +
+                                            ' <div class="col-sm-8">' +
+                                            ' <h3><strong>' + item.firstname + ' ' + item.lastname + '</strong></h3 > ' +
+                                            ' <p><i class="fa fa-map-marker"></i> ' + item.city + '</p>' +
+                                            '<address>' +
+                                            '<strong>' + item.nationality + '.</strong><br>' +
+                                            item.datebirth + '<br>' +
+                                            item.cin + '<br>' +
+                                            '<abbr title="Phone">P:</abbr> (126) ' + data.phone +
+                                            '</address>' +
+                                            '</div>' +
+                                            '<div class="clearfix"></div>' +
+                                            '</a>' +
+                                            '</div>' +
+                                            '</div>';
+                                    }
+                                    $("#tb").append(line);
+
+                                },
+                                error: function (error) {
+                                    alert(error);
+                                },
+                            })
+
+
+
+
+
+                        });
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                });
+
+            };
+
+            function myFunction1() {
+                $.ajax({
+                    method: "GET",
+                    url: "http://192.168.1.18:8888/api/student",
+                    dataType: "json",
+                    success: function (data) {
+                        var i = 0;
+                        $.each(data, function (i, item) {
+
+
+                            $.ajax({
+                                url: 'http://192.168.1.18:8888/api/photoblob/' + item.cin,
+                                cache: false,
+                                xhrFields: { responseType: 'blob' },
+                                type: 'GET',
+                                success: function (data) {
+                                    var urls = window.URL.createObjectURL(data);
+                                    var Image = document.getElementById('photo' + item.cin);
+                                    Image.src = urls;
+
+
+                                },
+                                error: function (error) {
+                                },
+                            })
+                        });
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                });
+                j = j + 1
+            }
+
+
+
+
+            $('.scroll_content').slimscroll({
+                height: '200px'
+            })
+
+
+
+
+
+
+        </script>
+    }

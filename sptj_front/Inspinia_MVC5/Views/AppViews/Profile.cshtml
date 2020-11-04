@@ -1,0 +1,1216 @@
+﻿
+@{ ViewBag.Title = "Profile"; }
+<div id="page__effect" style="display:none;">
+    <!-- this content is hide, need jQuery to fade in -->
+</div>
+<div class="col-md-12-navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="col-md-12" style="margin-bottom:15px">
+            <div class="navbar-header page-scroll pull-left">
+                <div class="site-logo col-6 pull-left " style="margin-top:5px">
+
+                    <img id="logo" alt="Qries" src="~/Images/landing/logo.ico"
+                         width="105" height="105">
+
+                </div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="vbar" style="margin-right:50px;" id="navst">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top:20px">
+                        <li><a class="page-scroll" href="../Landing/index">Home</a></li>
+                        <li><a class="page-scroll" href="../Ecommerce/cart">Find Job</a></li>
+                        <li><a class="page-scroll" href="../AppViews/Clients">My Interessted</a></li>
+
+                        <li><a class="page-scroll" href="../AppViews/profile">Profile</a></li>
+
+
+                        <li style="margin-left:400px"><a href="~/Views/AppViews/Profile.cshtml"></a></li>
+                        <li style="margin-left:15px"><a href="../PAges/login">Logout</a> </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row animated fadeInRight">
+        <div class="col-md-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title col-md-12">
+                    <p class="h3 col-lg-10">Profile Details</p>
+
+
+                    <button id="profile_edit" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_Profile_Details" style="margin-top:15px">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+                    </button>
+
+                    <div class="modal inmodal" id="myModal_Profile_Details" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content animated bounceInRight">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Profile Details</h4>
+                                    <button type="button" class="close" data-dismiss="modal" style="margin-top: -60px;">&times;</button>
+                                </div>
+                                <div class="modal-body" style="background-color:white; margin-bottom:250px">
+
+                                    <div class="form-group col-md-6">
+
+                                        <input type="text" class="form-control" id="firstname" placeholder="First Name">
+                                    </div>
+                                    <div class="form-group col-md-6">
+
+                                        <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+
+                                        <input type="text" class="form-control" id="city" placeholder="City">
+                                    </div>
+
+
+
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" type="text" id="nationality" placeholder="Nationality">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" type="date" id="datebirth">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="exampleTextarea">About Me</label>
+                                        <textarea class="form-control" id="desc" rows="3"></textarea>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="edit_detail" type="button" class="btn btn-primary" style="margin-top:5px">Edit</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="white-bg col-md-12">
+                        <div class="white-bg">
+                            <div class="col-md-4">
+                                <div class="ibox-content no-padding border-left-right">
+                                    <div class="profile-pic-div">
+                                        <img alt="image" class="img-responsive" src="~/Images/profile_big.jpg" id="photo">
+                                        <input id="file" type="hidden">
+                                        <label for="file" id="uploadBtn" style="color: rgb(96,96,96);"> <i class="fa fa-camera fa-2x "></i></label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-8" id="pd">
+                                <div class="ibox-content profile-content" style="margin-top:10px">
+                                    <h4><strong id="name"></strong></h4>
+                                    <p id="datebirth_detail"> </p>
+
+                                    <p id="city_detail"><i class="fa fa-map-marker"></i> </p>
+                                    <p id="phonedetail"><i class="fa fa-phone"></i></p>
+                                    <p id="email"><i class="fa fa-envelope"></i> </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="margin-top:20px;">
+                            <h5>
+                                About me
+                            </h5>
+                            <p id="descripion">
+                            </p>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+
+                    </script>
+
+                    <div class="row wrapper border-bottom  page-heading">
+                        <div class="white-bg">
+                            <p class="h3 col-lg-10">Skills</p>
+                            <button id="add_skill" type="button" data-toggle="modal" data-target="#myModal_Skills" style="margin-top:20px; margin-left:15px"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            <div class="modal inmodal" id="myModal_Skills" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content animated bounceInRight">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Skills</h4>
+                                            <button type="button" class="close" data-dismiss="modal" style="margin-top: -60px;">&times;</button>
+                                        </div>
+                                        <div class="modal-body" style="background-color:white; margin-bottom:250px">
+
+                                            <div class="form-group col-md-6" style="margin-top:20px">
+
+                                                <input type="text" class="form-control" id="name_skill" placeholder="Name">
+                                            </div>
+                                            <div class="form-group col-md-3 pull-right">
+
+                                                <input id="note" type="text" value="75" class="dial m-r-sm pull-right" data-fgcolor="#1AB394" data-width="65" data-height="85" />
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" style="margin-top:5px" id="saveskill">save</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row wrapper border-bottom  page-heading" style="margin-right: 1px; margin-left: 1px; background-color:white" id="list_skills">
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="user-button">
+                        <div class="row">
+                            <div id="comment_list" class="col-md-12" style="margin-left:10px; background-color: white;width: 96%;">
+
+
+                                <div class="row" style="margin-left:10px;">
+                                    <input name="comment" id="comment" placeholder="Add your comment ......" type="text" class="col-md-9" style="margin-bottom:50px; margin-top:50px;">
+                                    <div class="col-md-3" style="margin-top:30px;">
+                                        <input id="notecomm" type="text" class="dial m-r pull-right" style="margin-right:10px" data-fgcolor="#ED5565" data-width="50" data-height="50" data-angleoffset=-125 data-anglearc=250 />
+
+                                    </div>
+                                    <button type="button" id="comm" class="btn btn-primary" style="margin-top:5px">Save</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="col-md-2">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right">Total</span>
+                        <h5>Views</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" id="totvi"></h1>
+                        <small>Total views</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-info pull-right">Total</span>
+                        <h5>Money with US </h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" id="monus"></h1>
+                        <small>New orders</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right">Total</span>
+                        <h5>Reacts</h5>
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1 class="no-margins" id="reacttot"></h1>
+                                <div class="m-t-sm small">Success reacts</div>
+                            </div>
+                            <div class="col-md-6">
+                                <h2 id="perc"></h2>
+                                <div class="progress progress-mini" id="ouhh">
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        <div style="background-color: white;" class="col-md-8">
+            <div class="row animated fadeInRight">
+                <div class=" wrapper wrapper-content">
+
+                    <h1 class="col-md-10"><i class="fa fa-briefcase" style="margin-right:20px"></i>Experience</h1>
+                    <button id="add_exp" type="button" data-toggle="modal" data-target="#myModal_Experience" style="margin-top:28px; margin-left: 12px;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <div class="modal inmodal" id="myModal_Experience" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content animated bounceInRight">
+                                <div class="modal-header">
+                                    <i class="fa fa-briefcase fa-4x" aria-hidden="true"></i>
+                                    <h4 class="modal-title">Experience</h4>
+
+                                    <button type="button" class="close" data-dismiss="modal" style="margin-top: -100px;">&times;</button>
+                                </div>
+                                <div class="modal-body" style="background-color:white; margin-bottom:250px">
+
+                                    <div class="form-group col-md-6">
+
+                                        <input type="text" class="form-control" id="postexp" placeholder="Post Title">
+                                    </div>
+                                    <div class="form-group col-md-6">
+
+                                        <input type="text" class="form-control" id="nameexp" placeholder="Company Name">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <h6>Start Date:</h6>
+                                        <input class="form-control" type="date" id="datestartexp">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <h6>End Date:</h6>
+                                        <input class="form-control" type="date" id="dateendexp">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="exampleTextarea">Description</label>
+                                        <textarea class="form-control" id="descriptionexp" rows="3"></textarea>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" style="margin-top:5px" id="saveexp">Save</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style=" margin-top: -12px; " class="ibox-content inspinia-timeline" id="experience">
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div style="padding-top: 15px; padding-bottom: 15px;" class="row animated fadeInRight">
+
+
+                <div class="ibox-content inspinia-timeline">
+                    <div class=" wrapper wrapper-content">
+
+                        <h1 style="margin-left:-15px" class="col-md-10">
+                            <i class="fa fa-graduation-cap" style="margin-right:10px"></i>
+                            Education
+                        </h1>
+                        <button id="add_educ" type="button" data-toggle="modal" data-target="#myModal_Education" style="margin-top:28px; margin-left: 42px;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <div class="modal inmodal" id="myModal_Education" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content animated bounceInRight">
+                                    <div class="modal-header">
+                                        <i class="fa fa-graduation-cap fa-4x" aria-hidden="true"></i>
+                                        <h4 class="modal-title">Education</h4>
+
+                                        <button type="button" class="close" data-dismiss="modal" style="margin-top: -100px;">&times;</button>
+                                    </div>
+                                    <div class="modal-body" style="background-color:white; margin-bottom:250px">
+
+                                        <div class="form-group col-md-6">
+
+                                            <input type="text" class="form-control" id="nameeduc" placeholder="Field of study">
+                                        </div>
+                                        <div class="form-group col-md-6">
+
+                                            <input type="text" class="form-control" id="posteeduc" placeholder="School">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <h6>Start Date:</h6>
+                                            <input class="form-control" type="date" id="datestarteduc">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <h6>End Date:</h6>
+                                            <input class="form-control" type="date" id="dateendeduc">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="exampleTextarea">Description</label>
+                                            <textarea class="form-control" id="desceduc" rows="3"></textarea>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="saveeduc" class="btn btn-primary" style="margin-top:5px">Save</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style=" margin-top: -12px; " class="ibox-content inspinia-timeline" id="formation_div">
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles {
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/tagInputsStyles")
+    @Styles.Render("~/plugins/duallistStyles")
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/plugins/peity")
+    @Scripts.Render("~/plugins/sparkLine")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/tagInputs")
+    @Scripts.Render("~/plugins/duallist")
+    <script type="text/javascript">
+        $(".dial").knob();
+        //commentaire et note
+        
+        $(document).ready(function () {
+
+
+            if (sessionStorage.getItem('type') === '1') {
+                $("#navst").empty();
+                var line = '<ul class="nav navbar-nav navbar-right" style="margin-top:20px"><li> <a class="page-scroll" href="../Landing/index">Home</a></li><li><a class="page-scroll" href="../Appviews/contacts">Students</a></li>' +
+                    '<li><a class="page-scroll" href="../AppViews/profile2">Profile</a></li><li style="margin-left:400px"><a href="~/Views/AppViews/Profile.cshtml"></a></li>' +
+                    '<li style="margin-left:15px"><a href="../Pages/login">Logout</a> </li></ul >'
+                $("#navst").append(line);
+            }
+            let searchParams = new URLSearchParams(window.location.search);
+            var idurl;
+            if (searchParams.get('id')) {
+                idurl = searchParams.get('id');
+
+            }
+            else
+                idurl = sessionStorage.getItem('email');
+            $("#comm").click(function () {
+                var object = {};
+                object.comment = $("#comment").val();
+                object.companyid = sessionStorage.getItem('email');
+                object.note = $("#notecomm").val();
+                object.stuudentid = idurl;
+                var compteObj = JSON.stringify(object);
+                $.ajax({
+                    url: 'http://192.168.1.18:8888/api/CommentsAndNotes',
+                    method: 'POST',
+                    data: compteObj,
+                    contentType: 'application/json; charset=utf-8',
+                    success: function () {
+                        $("#comment_list").empty();
+                        myFunction();
+
+                    },
+                    error: function (error) {
+                        alert('error');
+                    },
+                })
+
+            });
+            //perc succes
+            $.ajax({
+
+                method: 'GET',
+                url: "http://192.168.1.18:8888/api/percentageofsuccess/" + idurl,
+                dataType: "json",
+
+                success: function (data) {
+                    $("#perc").html(data + '%');
+                    $("#ouhh").append(' <div style="width:'+ data+'%;" class="progress-bar"></div>');
+
+                },
+                error: function (error) {
+                    alert('error');
+                },
+            });
+            //reacts tot
+            $.ajax({
+
+                method: 'GET',
+                url: "http://192.168.1.18:8888/api/numberOfReactsBystudent/" + idurl,
+                dataType: "json",
+
+                success: function (data) {
+                    $("#reacttot").html( data);
+                },
+                error: function (error) {
+                    alert('error');
+                },
+            });
+            //money with us
+                $.ajax({
+
+                    method: 'GET',
+                    url: "http://192.168.1.18:8888/api/studentMonyWithUs/" + idurl,
+                    dataType: "json",
+
+                    success: function (data) {
+                        $("#monus").html('$'+data);
+                    },
+                    error: function (error) {
+                        alert('error');
+                    },
+                });
+            
+            //new visit
+            if (sessionStorage.getItem('type') === '1') {
+                $.ajax({
+
+                    method: 'GET',
+                    url: "http://192.168.1.18:8888/api/studentupdateViews/" + idurl,
+                    dataType: "json",
+
+                    success: function (data) {
+
+                    },
+                    error: function (error) {
+                        alert('error');
+                    },
+                });
+            }
+            //totalviews
+            $.ajax({
+
+                method: 'GET',
+                url: "http://192.168.1.18:8888/api/student/" + idurl,
+                dataType: "json",
+
+                success: function (data) {
+                    $("#totvi").html(data.views);
+                },
+                error: function (error) {
+                    alert('error');
+                },
+            });
+
+
+            myFunction();
+
+            function myFunction() { // Declare a function
+
+
+                $.ajax({
+
+                    method: 'GET',
+                    url: "http://192.168.1.18:8888/api/listCommentsAndNotesbyStudentId/" + idurl,
+                    dataType: "json",
+
+                    success: function (data) {
+                        $.each(data, function (i, item) {
+                            var line = '<div style="margin-top:20px"> <a href="" class="pull-left"> <img alt="image" id="imgcom' + item.id + '" class="img-responsive img-circle img-md " src="~/Images/a2.jpg">' +
+                                '</a><div class="media-body "><strong>' + item.companyname +
+                                '</strong > commented with note <strong>' + item.note + '</strong > <br>' +
+                                '<small class="text-muted">' + item.commdate + '</small>' +
+                                '<div class="well">' + item.comment + ' </div></div ></div >';
+
+                            $("#comment_list").append(line);
+
+                            $.ajax({
+
+                                url: "http://192.168.1.18:8888/api/icon/" + item.companyid,
+                                cache: false,
+                                xhrFields: { responseType: 'blob' },
+                                type: 'GET',
+                                success: function (data) {
+                                    var urls = window.URL.createObjectURL(data);
+                                    var Image = document.getElementById('imgcom' + item.id)
+                                    Image.src = urls;
+
+
+
+
+                                },
+                                error: function (error) {
+                                    alert('error');
+                                },
+                            })
+
+                        });
+                    },
+                    error: function (error) {
+                        alert('error');
+                    },
+                })
+            }
+
+
+
+        });
+        // formation
+        $(document).ready(function () {
+            let searchParams = new URLSearchParams(window.location.search);
+            var idurl;
+            if (searchParams.get('id')) {
+                idurl = searchParams.get('id');
+
+            }
+            else
+                idurl = sessionStorage.getItem('email');
+            if (sessionStorage.getItem('type') === '1') {
+                $("#profile_edit").hide();
+                $("#add_skill").hide();
+
+
+            }
+
+            myFunction();
+
+            $("#saveeduc").click(function () {
+                var obj = {};
+                if (!$('#nameeduc').val())
+                    swal({
+                        title: " Alert",
+                        text: "Field of study is empty."
+                    });
+                else if (!$('#posteeduc').val())
+                    swal({
+                        title: " Alert",
+                        text: "Post education is empty."
+                    });
+                else if ($('#dateendeduc').val() <= $('#datestarteduc').val())
+                    swal({
+                        title: " Alert",
+                        text: "wrong date."
+                    });
+                else {
+                    obj.dateend = $("#dateendeduc").val();
+                    obj.datestart = $("#datestarteduc").val();
+
+                    obj.name = $('#nameeduc').val();
+                    obj.description = $('#desceduc').val();
+                    obj.studintcin = idurl;
+                    obj.poste = $('#posteeduc').val();
+                    var compteObj = JSON.stringify(obj);
+                    $.ajax({
+                        url: 'http://192.168.1.18:8888/api/Formation',
+                        method: 'POST',
+                        data: compteObj,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function () {
+                            $("#formation_div").empty();
+
+                            myFunction();
+                        },
+                        error: function (error) {
+                            alert('error');
+                        },
+                    })
+                }
+                
+            });
+
+            function myFunction() { // Declare a function
+
+
+                $.ajax({
+
+                    method: 'GET',
+                    url: "http://192.168.1.18:8888/api/formationByStudentId/" + idurl,
+                    dataType: "json",
+
+                    success: function (data) {
+                        $.each(data, function (i, item) {
+                            if (sessionStorage.getItem('type') === '0')
+                                var line = '<div class="timeline-item"><div class="row"><div class="col-xs-3 date" style="padding-top:8px"><h4>Start Date:</h4> <h5>' + item.datestart +
+                                    '</h5 > <br> <h4>End Date:</h4> <h5>' + item.dateend +
+                                    '</h5 ></div><div class="col-xs-7 content no-top-border"> <p class="m-b-xs"><strong>' + item.name +
+                                    '</strong></p> <h6>' + item.poste + '</h6> <p>' + item.description +
+
+                                    ' </p> </div><button style="margin-left:8px" class="btn btn-danger btn-circle" type="button" id="deletducation' + item.id + '"><i class="fa fa-times"></i></button></div></div>'
+                            else
+                                var line = '<div class="timeline-item"><div class="row"><div class="col-xs-3 date" style="padding-top:8px"><h4>Start Date:</h4> <h5>' + item.datestart +
+                                    '</h5 > <br> <h4>End Date:</h4> <h5>' + item.dateend +
+                                    '</h5 ></div><div class="col-xs-7 content no-top-border"> <p class="m-b-xs"><strong>' + item.name +
+                                    '</strong></p> <h6>' + item.poste + '</h6> <p>' + item.description +
+
+                                    ' </p> </div</div></div>'
+                            $("#formation_div").append(line);
+                            $("#deletducation" + item.id).click(function () {
+                                swal({
+                                    title: "Are you sure?",
+                                    text: "Your will not be able to recover this imaginary file!",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Yes, delete it!",
+                                    cancelButtonText: "No, cancel plx!",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: false
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                            $.ajax({
+                                                url: 'http://192.168.1.18:8888/api/Formation/' + item.id,
+                                                method: 'DELETE',
+                                                dataType: "json",
+                                                success: function () {
+                                                    $("#formation_div").empty();
+                                                    myFunction();
+
+                                                },
+                                                error: function (error) {
+                                                    alert(error);
+                                                },
+                                            })
+                                        } else {
+                                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                        }
+                                    });
+
+                            });
+                        });
+                    },
+                    error: function (error) {
+                        alert('error');
+                    },
+                })
+            }
+        });
+
+        //experience
+        $(document).ready(function () {
+            let searchParams = new URLSearchParams(window.location.search);
+            var idurl;
+            if (searchParams.get('id')) {
+                idurl = searchParams.get('id');
+
+            }
+            else
+                idurl = sessionStorage.getItem('email');
+            if (sessionStorage.getItem('type') === '1') {
+                $("#profile_edit").hide();
+                $("#add_skill").hide();
+
+
+            }
+
+            myFunction();
+
+            $("#saveexp").click(function () {
+
+                var obj = {};
+                if (!$('#postexp').val())
+                    swal({
+                        title: " Alert",
+                        text: "Post experience is empty."
+                    });
+                else if (!$('#nameexp').val())
+                        swal({
+                        title: " Alert",
+                            text: "name company is empty."
+                        });
+                else if ($('#dateendexp').val() <= $('#datestartexp').val())
+                    swal({
+                        title: " Alert",
+                        text: "wrong date."
+                    });
+                else {
+                    obj.dateend = $("#dateendexp").val();
+                    obj.datestart = $("#datestartexp").val();
+
+                    obj.name = $('#nameexp').val();
+                    obj.description = $('#descriptionexp').val();
+                    obj.studintcin = idurl;
+                    obj.post = $('#postexp').val();
+                    var compteObj = JSON.stringify(obj);
+                    $.ajax({
+                        url: 'http://192.168.1.18:8888/api/experience',
+                        method: 'POST',
+                        data: compteObj,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function () {
+                            $("#experience").empty();
+
+                            myFunction();
+                        },
+                        error: function (error) {
+                            alert('error');
+                        },
+                    })}
+
+              
+            });
+
+            function myFunction() { // Declare a function
+
+
+                $.ajax({
+
+                    method: 'GET',
+                    url: "http://192.168.1.18:8888/api/experienceByStudentId/" + idurl,
+                    dataType: "json",
+
+                    success: function (data) {
+                        $.each(data, function (i, item) {
+                            if (sessionStorage.getItem('type') === '0')
+                                var line = '<div class="timeline-item"><div class="row"><div class="col-xs-3 date" style="padding-top:8px"><h4>Start Date:</h4> <h5>' + item.datestart +
+                                    '</h5 > <br> <h4>End Date:</h4> <h5>' + item.dateend +
+                                    '</h5 ></div><div class="col-xs-7 content no-top-border"> <p class="m-b-xs"><strong>' + item.post +
+                                    '</strong></p> <h6>' + item.name + '</h6> <p>' + item.description +
+
+                                    ' </p> </div><button style="margin-left:10px" class="btn btn-danger btn-circle" type="button" id="delexp' + item.id + '"><i class="fa fa-times"></i></button></div></div>'
+                            else
+                                var line = '<div class="timeline-item"><div class="row"><div class="col-xs-3 date" style="padding-top:8px"><h4>Start Date:</h4> <h5>' + item.datestart +
+                                    '</h5 > <br> <h4>End Date:</h4> <h5>' + item.dateend +
+                                    '</h5 ></div><div class="col-xs-7 content no-top-border"> <p class="m-b-xs"><strong>' + item.post +
+                                    '</strong></p> <h6>' + item.name + '</h6> <p>' + item.description +
+
+                                    ' </p> </div</div></div>'
+                            $("#experience").append(line);
+                            $("#delexp" + item.id).click(function () {
+                                swal({
+                                    title: "Are you sure?",
+                                    text: "Your will not be able to recover this imaginary file!",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Yes, delete it!",
+                                    cancelButtonText: "No, cancel plx!",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: false
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                            $.ajax({
+                                                url: 'http://192.168.1.18:8888/api/experience/' + item.id,
+                                                method: 'DELETE',
+                                                dataType: "json",
+                                                success: function () {
+                                                    $("#experience").empty();
+                                                    myFunction();
+
+                                                },
+                                                error: function (error) {
+                                                    alert(error);
+                                                },
+                                            })
+                                        } else {
+                                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                        }
+                                    });
+
+                            });
+                        });
+                    },
+                    error: function (error) {
+                        alert('error');
+                    },
+                })
+            }
+        });
+        //skills
+        $(document).ready(function () {
+            let searchParams = new URLSearchParams(window.location.search);
+            var idurl;
+            if (searchParams.get('id')) {
+                idurl = searchParams.get('id');
+
+            }
+            else
+                idurl = sessionStorage.getItem('email');
+            if (sessionStorage.getItem('type') === '1') {
+                $("#profile_edit").hide();
+                $("#add_skill").hide();
+
+
+            }
+
+            myFunction();
+
+            $("#saveskill").click(function () {
+
+                var skill = {};
+                if (!$('#name_skill').val())
+                    swal({
+                        title: " Alert",
+                        text: "Skill name is empty."
+                    });
+                else {
+                    skill.name = $('#name_skill').val();
+                    skill.note = $('#note').val();
+                    skill.studintcin = idurl;
+                    var compteObj = JSON.stringify(skill);
+                    $.ajax({
+                        url: 'http://192.168.1.18:8888/api/skills',
+                        method: 'POST',
+                        data: compteObj,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function () {
+                            $("#list_skills").empty();
+
+                            myFunction();
+                        },
+                        error: function (error) {
+                            alert('error');
+                        },
+                    })
+                }
+                
+            });
+
+            function myFunction() { // Declare a function
+
+
+                $.ajax({
+
+                    method: 'GET',
+                    url: "http://192.168.1.18:8888/api/skillsByStudentId/" + idurl,
+                    dataType: "json",
+
+                    success: function (data) {
+                        $.each(data, function (i, item) {
+                            if (sessionStorage.getItem('type') === '0')
+                                var line = '<div class="col-lg-10" style="margin-top:10px"><div><span>' + item.name +
+                                    '</span > <small class="pull-right">' + item.note + ' % ' +
+                                    '</small ></div><div class="progress progress-small"><div style="width:' + item.note + '%;" class="progress-bar"></div>' +
+                                    '</div> </div > </div ><div class="col-lg-2">' +
+                                    '<button id="daletes' + item.id + '" style="margin-top:19px" class="btn btn-danger btn-circle" type="button"><i class="fa fa-times"></i></button></div>'
+                            else
+                                var line = '<div class="col-lg-10" style="margin-top:10px"><div><span>' + item.name +
+                                    '</span > <small class="pull-right">' + item.note + ' % ' +
+                                    '</small ></div><div class="progress progress-small"><div style="width:' + item.note + '%;" class="progress-bar"></div>' +
+                                    '</div> </div > </div >'
+                            $("#list_skills").append(line);
+                            $("#daletes" + item.id).click(function () {
+                                swal({
+                                    title: "Are you sure?",
+                                    text: "Your will not be able to recover this imaginary file!",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Yes, delete it!",
+                                    cancelButtonText: "No, cancel plx!",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: false
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                            $.ajax({
+                                                url: 'http://192.168.1.18:8888/api/skills/' + item.id,
+                                                method: 'DELETE',
+                                                dataType: "json",
+                                                success: function () {
+                                                    $("#list_skills").empty();
+                                                    myFunction();
+
+                                                },
+                                                error: function (error) {
+                                                    alert(error);
+                                                },
+                                            })
+                                        } else {
+                                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                        }
+                                    });
+
+                            });
+                        });
+                    },
+                    error: function (error) {
+                        alert('error');
+                    },
+                })
+            }
+        });
+
+        //detail profile
+
+        $(document).ready(function () {
+
+            let searchParams = new URLSearchParams(window.location.search);
+
+            if (searchParams.get('id')) {
+                idurl = searchParams.get('id');
+
+            }
+            else
+                idurl = sessionStorage.getItem('email');
+            myFunction();
+            if (sessionStorage.getItem('type') === '1')
+                $("#profile_edit").hide();
+            function myFunction() { // Declare a function
+                $.ajax({
+                    url: 'http://192.168.1.18:8888/api/student/' + idurl,
+                    method: 'GET',
+                    dataType: "json",
+
+                    success: function (data) {
+                        $("#name").append(data.firstname + ' ' + data.lastname);
+                        $("#city_detail").append(data.city);
+                        $("#phonedetail").append(data.phone);
+                        $("#email").append(data.cin);
+                        $("#datebirth_detail").append(data.datebirth);
+                        $("#descripion").append(data.descripion);
+
+                        $("#profile_edit").click(function () {
+                            $("#city").val(data.city);
+                            $("#datebirth").val(data.datebirth);
+                            $("#firstname").val(data.firstname);
+                            $("#lastname").val(data.lastname);
+                            $("#nationality").val(data.nationality);
+                            $("#phone").val(data.phone);
+                            $("#desc").val(data.descripion);
+
+
+                        });
+                        $("#edit_detail").click(function () {
+                            var st = {};
+                            st.city = $('#city').val();
+                            st.datebirth = $('#datebirth').val();
+                            st.firstname = $('#firstname').val();
+                            st.lastname = $('#lastname').val();
+                            st.nationality = $('#nationality').val();
+
+                            st.phone = $('#phone').val();
+                            st.descripion = $('#desc').val();
+                            var compteObj = JSON.stringify(st);
+                            $.ajax({
+
+                                method: 'PUT',
+                                url: "http://192.168.1.18:8888/api/student/" + idurl,
+                                data: compteObj,
+                                contentType: 'application/json; charset=utf-8',
+                                success: function () {
+                                    $("#name").empty();
+
+                                    $("#name").append(st.firstname + ' ' + st.lastname);
+                                    $("#city_detail").empty();
+
+                                    $("#city_detail").append('<i class="fa fa-map-marker"></i>' + st.city);
+                                    $("#phonedetail").empty();
+
+                                    $("#phonedetail").append('<i class="fa fa-phone"></i>' + st.phone);
+
+                                    $("#datebirth_detail").empty();
+
+                                    $("#datebirth_detail").append(st.datebirth);
+                                    $("#descripion").empty();
+
+                                    $("#descripion").append(st.descripion);
+
+
+                                },
+                                error: function (error) {
+                                    alert('error');
+                                },
+                            })
+
+
+                        })
+
+
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                })
+            };
+
+
+        });
+        //image
+        $(document).ready(function () {
+            let searchParams = new URLSearchParams(window.location.search);
+
+            if (searchParams.get('id')) {
+                idurl = searchParams.get('id');
+
+            }
+            else
+                idurl = sessionStorage.getItem('email');
+
+            $.ajax({
+                url: 'http://192.168.1.18:8888/api/photoblob/' + idurl,
+                cache: false,
+                xhrFields: { responseType: 'blob' },
+                type: 'GET',
+                success: function (data) {
+                    var urls = window.URL.createObjectURL(data);
+                    var Image = document.getElementById('photo')
+                    Image.src = urls;
+                },
+                error: function (error) {
+                    alert('nn')
+                },
+            })
+
+            $("span.pie").peity("pie", {
+                fill: ['#1ab394', '#d7d7d7', '#ffffff']
+            })
+
+            $(".line").peity("line", {
+                fill: '#1ab394',
+                stroke: '#169c81',
+            })
+
+            $(".bar").peity("bar", {
+                fill: ["#1ab394", "#d7d7d7"]
+            })
+            if (sessionStorage.getItem('type') === '1') {
+                $('#add_educ').hide();
+
+                $('#add_exp').hide();
+            }
+            if (sessionStorage.getItem('type') === '0') {
+
+                var Image = document.getElementById('file')
+                Image.type = "file";
+            }
+            const imgDiv = document.querySelector('.profile-pic-div');
+            const img = document.querySelector('#photo');
+            const file = document.querySelector('#file');
+            const uploadBtn = document.querySelector('#uploadBtn');
+
+            //if user hover on img div
+
+            imgDiv.addEventListener('mouseenter', function () {
+                uploadBtn.style.display = "block";
+            });
+
+            //if we hover out from img div
+
+            imgDiv.addEventListener('mouseleave', function () {
+                uploadBtn.style.display = "none";
+            });
+
+            //lets work for image showing functionality when we choose an image to upload
+
+            //when we choose a foto to upload
+            file.addEventListener('change', function () {
+                //this refers to file
+                const choosedFile = this.files[0];
+
+                if (choosedFile) {
+
+                    const reader = new FileReader(); //FileReader is a predefined function of JS
+
+                    reader.addEventListener('load', function () {
+                        img.setAttribute('src', reader.result);
+                    });
+                    reader.readAsDataURL(choosedFile);
+                    var fd;
+                    fd = new FormData();
+                    fd.append('photo', $('#file')[0].files[0]);
+
+                    $.ajax({
+
+                        method: 'PUT',
+                        url: "http://192.168.1.18:8888/api/photoblob/" + idurl,
+                        data: fd,
+                        processData: false,
+                        contentType: false,
+                        success: function () {
+
+
+
+                        },
+                        error: function (error) {
+                            alert('error');
+                        },
+                    })
+
+                }
+            });
+
+        });
+    </script>
+}
+

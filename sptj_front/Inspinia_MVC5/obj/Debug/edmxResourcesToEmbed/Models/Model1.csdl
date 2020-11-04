@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="trModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Art_Depot_Rayon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Art_Depot" Type="Int32" />
+    <Property Name="Id_Rayons" Type="Int32" />
+    <Property Name="Stock_Rayon" Type="Decimal" Precision="18" Scale="3" />
+    <NavigationProperty Name="Rayons" Relationship="Self.FK_Art_Depot_Rayon_Rayons" FromRole="Art_Depot_Rayon" ToRole="Rayons" />
+  </EntityType>
+  <EntityType Name="Categorie">
+    <Key>
+      <PropertyRef Name="CentreID" />
+    </Key>
+    <Property Name="CentreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Libelle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Sous_Categorie" Relationship="Self.FK_Categorie_Centres_couts" FromRole="Categorie" ToRole="Sous_Categorie" />
+  </EntityType>
+  <EntityType Name="CLIENTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CODE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NOM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ADRESSE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TELEPHONE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FAX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SITE_WEB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID_FISCAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NIS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RIB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Exttva" Type="Boolean" Nullable="false" />
+    <Property Name="Societe" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Dépot">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dépot1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Lieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Rayons" Relationship="Self.FK_Rayons_Dépot" FromRole="Dépot" ToRole="Rayons" />
+  </EntityType>
+  <EntityType Name="Devise">
+    <Key>
+      <PropertyRef Name="Nom_Devise" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom_Devise" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Exercice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Annee" Type="Int32" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="FACTURES_CLIENTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODE_PAIEMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CLIENT" Type="Int32" Nullable="false" />
+    <Property Name="THT" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="TTVA" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="NHT" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="TTC" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="TNET" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="VALIDER" Type="Boolean" Nullable="false" />
+    <Property Name="COMMANDE_CLIENT" Type="Int32" />
+    <Property Name="DEVIS_CLIENT" Type="Int32" />
+    <Property Name="BON_LIVRAISON_CLIENT" Type="Int32" />
+    <Property Name="PAYEE" Type="Boolean" />
+    <Property Name="REMISE" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="TIMBRE" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Societes" Type="Int32" />
+    <Property Name="Tiers" Type="Int32" />
+    <Property Name="Declaration" Type="Boolean" />
+    <Property Name="Date_Declaration" Type="DateTime" Precision="3" />
+    <Property Name="immobilisation" Type="Boolean" />
+    <Property Name="Bien_service" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="FACTURES_FOURNISSEURS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MODE_PAIEMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FOURNISSEUR" Type="Int32" Nullable="false" />
+    <Property Name="Societes" Type="Int32" />
+    <Property Name="THT" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="TTVA" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="NHT" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="TTC" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="TNET" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="VALIDER" Type="Boolean" Nullable="false" />
+    <Property Name="PAYEE" Type="Boolean" Nullable="false" />
+    <Property Name="COMMANDE_FOURNISSEUR" Type="Int32" />
+    <Property Name="BON_RECEPTION_FOURNISSEUR" Type="Int32" />
+    <Property Name="REMISE" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="TIMBRE" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Tiers" Type="Int32" />
+    <Property Name="FODEC" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Redevance" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Num_Fact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Declaration" Type="Boolean" />
+    <Property Name="Date_Declaration" Type="DateTime" Precision="3" />
+    <Property Name="immobilisation" Type="Boolean" />
+    <Property Name="Bien_service" Type="Boolean" />
+    <Property Name="RAS_Marche" Type="Boolean" />
+    <Property Name="MOIS_RAS_Marche" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ID_RETENUE" Type="Int32" />
+  </EntityType>
+  <EntityType Name="FOURNISSEURS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ADRESSE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TELEPHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FAX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SITE_WEB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_FISCAL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NIS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RIB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CONTACT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Etat" Type="Boolean" />
+    <Property Name="Id_Ste" Type="Int32" />
+    <NavigationProperty Name="Prix_Achat" Relationship="Self.FK_Prix_Achat_Fournisseur" FromRole="FOURNISSEURS" ToRole="Prix_Achat" />
+  </EntityType>
+  <EntityType Name="Marque">
+    <Key>
+      <PropertyRef Name="Nom_marque" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom_marque" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="mouvement">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Départ" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Arrivée" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Quantité_total" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Prix_Achat">
+    <Key>
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Marque" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Categorie" Type="Int32" />
+    <Property Name="Sous_Categorie" Type="Int32" />
+    <Property Name="Unite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PU_HT_Sans_Remise" Type="Double" />
+    <Property Name="Remise" Type="Int32" />
+    <Property Name="PU_HT_Avec_Remise" Type="Double" />
+    <Property Name="Devise" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Valeur_TVA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PU_TTC" Type="Double" />
+    <Property Name="Fournisseur" Type="Int32" />
+    <Property Name="Date_offre_de_prix" Type="DateTime" Precision="0" />
+    <Property Name="Duree_de_validite" Type="Int32" />
+    <Property Name="N_Offre_de_Prix" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QUANTITE" Type="Double" />
+    <Property Name="QUANTITE_REPTURE_STOCK" Type="Int32" />
+    <Property Name="Libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BLfRS" Type="Int32" />
+    <Property Name="Stock" Type="Double" />
+    <Property Name="Stock_Alerte" Type="Double" />
+    <NavigationProperty Name="FOURNISSEURS" Relationship="Self.FK_Prix_Achat_Fournisseur" FromRole="Prix_Achat" ToRole="FOURNISSEURS" />
+  </EntityType>
+  <EntityType Name="Rayons">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rayon" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="depot" Type="Int32" />
+    <NavigationProperty Name="Art_Depot_Rayon" Relationship="Self.FK_Art_Depot_Rayon_Rayons" FromRole="Rayons" ToRole="Art_Depot_Rayon" />
+    <NavigationProperty Name="Dépot" Relationship="Self.FK_Rayons_Dépot" FromRole="Rayons" ToRole="Dépot" />
+  </EntityType>
+  <EntityType Name="Sous_Categorie">
+    <Key>
+      <PropertyRef Name="CatID" />
+    </Key>
+    <Property Name="CatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Libelle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CentreID" Type="Int32" />
+    <NavigationProperty Name="Categorie" Relationship="Self.FK_Categorie_Centres_couts" FromRole="Sous_Categorie" ToRole="Categorie" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TVA">
+    <Key>
+      <PropertyRef Name="Valeur_TVA" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Valeur_TVA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Annee" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Unite">
+    <Key>
+      <PropertyRef Name="Valeur_Unite" />
+    </Key>
+    <Property Name="ID" Type="Int32" />
+    <Property Name="Valeur_Unite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Art_Depot_Rayon_Rayons">
+    <End Role="Rayons" Type="Self.Rayons" Multiplicity="0..1" />
+    <End Role="Art_Depot_Rayon" Type="Self.Art_Depot_Rayon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rayons">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Art_Depot_Rayon">
+        <PropertyRef Name="Id_Rayons" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Categorie_Centres_couts">
+    <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1" />
+    <End Role="Sous_Categorie" Type="Self.Sous_Categorie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorie">
+        <PropertyRef Name="CentreID" />
+      </Principal>
+      <Dependent Role="Sous_Categorie">
+        <PropertyRef Name="CentreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rayons_Dépot">
+    <End Role="Dépot" Type="Self.Dépot" Multiplicity="0..1" />
+    <End Role="Rayons" Type="Self.Rayons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dépot">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rayons">
+        <PropertyRef Name="depot" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prix_Achat_Fournisseur">
+    <End Role="FOURNISSEURS" Type="Self.FOURNISSEURS" Multiplicity="0..1" />
+    <End Role="Prix_Achat" Type="Self.Prix_Achat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FOURNISSEURS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Prix_Achat">
+        <PropertyRef Name="Fournisseur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="trEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Art_Depot_Rayon" EntityType="Self.Art_Depot_Rayon" />
+    <EntitySet Name="Categorie" EntityType="Self.Categorie" />
+    <EntitySet Name="CLIENTS" EntityType="Self.CLIENTS" />
+    <EntitySet Name="Dépot" EntityType="Self.Dépot" />
+    <EntitySet Name="Devise" EntityType="Self.Devise" />
+    <EntitySet Name="Exercice" EntityType="Self.Exercice" />
+    <EntitySet Name="FACTURES_CLIENTS" EntityType="Self.FACTURES_CLIENTS" />
+    <EntitySet Name="FACTURES_FOURNISSEURS" EntityType="Self.FACTURES_FOURNISSEURS" />
+    <EntitySet Name="FOURNISSEURS" EntityType="Self.FOURNISSEURS" />
+    <EntitySet Name="Marque" EntityType="Self.Marque" />
+    <EntitySet Name="mouvement" EntityType="Self.mouvement" />
+    <EntitySet Name="Prix_Achat" EntityType="Self.Prix_Achat" />
+    <EntitySet Name="Rayons" EntityType="Self.Rayons" />
+    <EntitySet Name="Sous_Categorie" EntityType="Self.Sous_Categorie" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TVA" EntityType="Self.TVA" />
+    <EntitySet Name="Unite" EntityType="Self.Unite" />
+    <AssociationSet Name="FK_Art_Depot_Rayon_Rayons" Association="Self.FK_Art_Depot_Rayon_Rayons">
+      <End Role="Rayons" EntitySet="Rayons" />
+      <End Role="Art_Depot_Rayon" EntitySet="Art_Depot_Rayon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Categorie_Centres_couts" Association="Self.FK_Categorie_Centres_couts">
+      <End Role="Categorie" EntitySet="Categorie" />
+      <End Role="Sous_Categorie" EntitySet="Sous_Categorie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rayons_Dépot" Association="Self.FK_Rayons_Dépot">
+      <End Role="Dépot" EntitySet="Dépot" />
+      <End Role="Rayons" EntitySet="Rayons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prix_Achat_Fournisseur" Association="Self.FK_Prix_Achat_Fournisseur">
+      <End Role="FOURNISSEURS" EntitySet="FOURNISSEURS" />
+      <End Role="Prix_Achat" EntitySet="Prix_Achat" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,175 @@
+﻿@{
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Registry</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">SJ</h1>
+
+            </div>
+            <h3>Register to SJ</h3>
+            <p>Create account to see it in action.</p>
+            <form class="m-t" role="form" action="#">
+                <div class="form-group">
+                    <div>
+                        <select type="text" class="form-control" placeholder="Name" id="type" name="type " tabindex="2" required="">
+                            <option value=""></option>
+                            <option value="1" id="1">Company</option>
+                            <option value="0" id="0">Student</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name" id="name" required="">
+                </div>
+                <div class="form-group demo5">
+                    <input type="text" class="form-control" placeholder="Last Name" id="last" required="">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email" id="email" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" id="password" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Confirm Password" id="password1" required="">
+                </div>
+
+
+                <div class="form-group">
+                    <div class="checkbox"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
+                </div>
+                <button type="button" class="btn btn-primary block full-width m-b" id="AddCpt">Register</button>
+
+                <p class="text-muted text-center"><small>Already have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="@Url.Action("Login", "Pages")">Login</a>
+            </form>
+            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+        </div>
+    </div>
+</body>
+
+</html>
+@section Styles {
+    @Styles.Render("~/plugins/slickStyles")
+    @Styles.Render("~/plugins/slickThemeStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/tagInputsStyles")
+    @Styles.Render("~/plugins/duallistStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+
+}
+@section Scripts {
+    @Scripts.Render("~/plugins/slick")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/tagInputs")
+    @Scripts.Render("~/plugins/duallist")
+    @Scripts.Render("~/plugins/sweetAlert")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var aa = $('#email').val();
+
+            var compte = {};
+            $('.demo5').hide();
+
+            $(document).on("change", "#type", function (ef) {
+
+                compte.type = $("#type").val();
+                if (compte.type === '0') {
+                    $('.demo5').show();
+
+                }
+                else
+                    $('.demo5').hide();
+            });
+            $('#AddCpt').click(function () {
+                if (!$('#type').val())
+                    swal({
+                        title: " Alert",
+                        text: "define your type."
+                    });                    
+                else   if (($('#password').val() != $('#password1').val()) == 1)
+                    swal({
+                        title: " Alert",
+                        text: "check your confirm password."
+                    });                else {
+                    sessionStorage.setItem('email', $('#email').val())
+                    sessionStorage.setItem('type', $('#type').val())
+                    compte.email = $('#email').val();
+                    compte.password = $('#password').val();
+                    compte.name = $('#name').val();
+                    compte.lastname = $('#last').val();
+
+                    var compteObj = JSON.stringify(compte);
+                    $.ajax({
+                        url: 'http://192.168.1.18:8888/api/compte',
+                        method: 'POST',
+                        data: compteObj,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function () {
+                            window.location.href = "/Pages/LockScreen";
+                        },
+                        error: function (error) {
+                            swal({
+                                title: " Alert",
+                                text: "check your mail."
+                            });
+                        },
+                    })
+                }
+            })
+        });
+    </script>
+}

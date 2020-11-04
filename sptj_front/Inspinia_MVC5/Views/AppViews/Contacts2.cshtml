@@ -1,0 +1,508 @@
+﻿
+@{ ViewBag.Title = "Contacts2"; }
+ <div class="col-md-12-navbar-wrapper" ">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="col-md-12" style="margin-bottom:15px">
+            <div class="navbar-header page-scroll pull-left">
+                <div class="site-logo col-6 pull-left " style="margin-top:5px">
+
+                    <img id="logo" alt="Qries" src="~/Images/landing/logo.ico"
+                         width="105" height="105">
+
+                </div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="vbar" style="margin-right:50px;">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top:20px">
+                        <li><a class="page-scroll" href="../Landing/index">Home</a></li>
+                        <li><a class="page-scroll" href="../Appviews/contacts">Students</a></li>
+                        <li><a class="page-scroll" href="../AppViews/profile2">Profile</a></li>
+
+
+                        <li style="margin-left:400px"><a href="~/Views/AppViews/Profile.cshtml"></a></li>
+                        <li style="margin-left:15px"><a href="../Pages/login">Logout</a> </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h2>Reacts</h2>
+                    <p>
+                        All students reacted in this post.
+                    </p>
+                    <div class="input-group">
+                        <input id="search" type="text" placeholder="Search Post " class="input form-control">
+                        <span class="input-group-btn">
+
+                            <button type="button" class="btn btn btn-primary"> <i class="fa fa-search"></i> Search</button>
+                        </span>
+                    </div>
+                    <div class="clients-list">
+                        <ul class="nav nav-tabs">
+                            <span class="pull-right small text-muted" id="wiw"></span>
+                            <li class="active"><a data-toggle="tab" href="#tab-1"><i class="fa fa-briefcase"></i>Posts</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="full-height-scroll">
+                                    <div class="table-responsive">
+
+                                        <table id="Tableau" class="table table-striped table-hover">
+
+                                            <tbody id="cc">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="ibox ">
+
+                <div class="ibox-content">
+                    <div class="tab-content" id="stddetail">
+
+
+
+                    </div>
+
+                    </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/plugins/slickStyles")
+    @Styles.Render("~/plugins/slickThemeStyles")
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/tagInputsStyles")
+    @Styles.Render("~/plugins/duallistStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+}
+@section Scripts {
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/flot")
+    @Scripts.Render("~/plugins/vectorMap")
+    <script type="text/javascript">
+
+
+
+
+
+
+        $(document).ready(function () {
+            //get user
+            let searchParams = new URLSearchParams(window.location.search);
+            var idPost = searchParams.get('id');
+            //function search
+            $('#search').keyup(function () {
+                search_table($(this).val());
+            });
+            function search_table(value) {
+                $('#cc tr').each(function () {
+                    var found = 'false';
+                    $(this).each(function () {
+                        if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                            found = 'true';
+
+                    });
+
+                    if (found == 'true')
+                        $(this).show();
+
+
+                    else
+                        $(this).hide();
+
+                });
+            }
+            email = sessionStorage.getItem('email');
+            var j = 0;
+            //get exp
+            //grt all experience
+            function getexp(ch , j) { // Declare a function
+               
+                $.ajax({
+                    method: "GET",
+                    url: "http://192.168.1.18:8888/api/experienceByStudentId/" + ch,
+                    dataType: "json",
+                    success: function (data) {
+                        var line = '<hr /><strong>experience</strong><div id="vertical-timeline" class="vertical-container dark-timeline">'
+                        $.each(data, function (i, item) {
+                             line = line+'<div class="vertical-timeline-block"><div class="vertical-timeline-icon gray-bg">'+
+                                '<i class="fa fa-briefcase"></i></div> <div class="vertical-timeline-content"> <p>' + item.name + ': ' + item.description+
+                                '</p><span class="vertical-date small text-muted">' + item.datestart + ' - ' + item.dateend+' </span></div></div>'
+
+                        });
+                        
+                        $("#client" + j).append(line + '</div>');
+
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                });
+            }
+            //get skills
+            function getskill(ch, j) { // Declare a function
+
+                $.ajax({
+                    method: "GET",
+                    url: "http://192.168.1.18:8888/api/skillsByStudentId/" + ch,
+                    dataType: "json",
+                    success: function (data) {
+                        var line = '<hr /><strong>Skills</strong><div id="vertical-timeline" class="vertical-container dark-timeline">'
+                        $.each(data, function (i, item) {
+                            line = line + '<div class="vertical-timeline-block"><div class="vertical-timeline-icon gray-bg">' +
+                                '<i class="fa fa-briefcase"></i></div> <div class="vertical-timeline-content"> <p>' + item.name +
+                                '</p><span class="vertical-date small text-muted">Note :' + item.note + ' </span></div></div>'
+
+                        });
+
+                        $("#client" + j).append(line + '</div>');
+
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                });
+            }
+            //get reacts
+            function getreact(ch1,ch2, j) { // Declare a function
+
+                $.ajax({
+                    url: "http://192.168.1.18:8888/api/reactByPostIdAndStudentId/" + ch1 + "/" + ch2,
+                    method: 'GET',
+                    dataType: "json",
+
+                    success: function (data) {
+
+
+                        if (data.reactstate === "INTERESTED") {
+                            $("#zebi" + j).html('<span class="label label-warning pull-right">Waiting</span>');
+                        }
+                        else if (data.reactstate === "ACCEPTED") {
+                            $("#accreac" + j).hide();
+                            $("#zebi" + j).html('<span class="label label-primary pull-right">Accepted</span>');
+                        }
+                        else if (data.reactstate === "REFUSED") {
+                            $("#delreac" + j).hide();
+                            $("#zebi" + j).html('<span class="label label-danger pull-right">Refused</span>');
+                            $("#accreac" + j).hide();
+                        }
+
+                      
+                       
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                })
+            }
+            //get image
+            function getimg(ch, j) { // Declare a function
+
+                $.ajax({
+                    url: "http://192.168.1.18:8888/api/photoblob/" + ch,
+                    cache: false,
+                    xhrFields: { responseType: 'blob' },
+                    type: 'GET',
+                    success: function (data) {
+                        var urls = window.URL.createObjectURL(data);
+                        var Image = document.getElementById('img'+j)
+                        Image.src = urls;
+
+
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                })
+            }
+            function getphoto(ch, j) { // Declare a function
+
+                $.ajax({
+                    url: "http://192.168.1.18:8888/api/photoblob/" + ch,
+                    cache: false,
+                    xhrFields: { responseType: 'blob' },
+                    type: 'GET',
+                    success: function (data) {
+                        var urls = window.URL.createObjectURL(data);
+                        var Image = document.getElementById('photo' + j)
+                        Image.src = urls;
+
+
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                })
+            }
+            function accept(ch1, ch2) { // Declare a function
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Your will not be able to recover this imaginary file!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel plx!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                            $.ajax({
+                                url: "http://192.168.1.18:8888/api/react/" + data.id,
+                                method: 'DELETE',
+                                dataType: "json",
+                                success: function () {
+                                    window.location.href = "/AppViews/Clients";
+
+                                },
+                                error: function (error) {
+                                    alert(error);
+                                },
+                            })
+                        } else {
+                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                    });
+            }
+            mybest();
+            function mybest() {
+                $.ajax({
+                    method: "GET",
+                    url: "http://192.168.1.18:8888/api/StudentreactsbyPostId/" + idPost,
+
+                    dataType: "json",
+                    success: function (data) {
+
+                        $.each(data, function (i, item) {
+                            j = j + 1;
+                            var line = '<tr> <td class="client-avatar"><img alt="image" src="~/Images/a2.jpg" id="photo' + j + '"> </td><td><a data-toggle="tab" href="#zabour' + j + '" class="client-link">' + item.firstname + ' ' + item.lastname +
+                                '</a></td><td>' + item.nationality +
+                                '</td><td class="contact-type"></td><td>' + item.datebirth +
+                                '</td ><td  id="zebi' + j + '">  </td> <td class="client-status" id="zebi' + j + '"> <button style="margin-left:10px" class="btn btn-info btn-circle pull-right" type="button" id="accreac' + j + '"><i class="fa fa-check"></i></button>' +
+                                '<button style="margin-left:10px" class="btn btn-danger btn-circle pull-right" style="margin-left:0px" type="button" id="delreac' + j + '"><i class="fa fa-times"></i></button> </td></tr>'
+                            $("#cc").append(line);
+                            var line2 = '<div id="zabour' + j + '" class="tab-pane active"><div class="row m-b-lg"><div class="col-lg-4 text-center">' +
+                                '<div class="m-b-sm"><a href="../AppViews/profile?id=' + item.cin +'"><img id="img' + j + '" alt="image" class="img-circle" style="width: 90px; margin-top: 10px; height:90px;" src="~/Images/a2.jpg"style="width: 62px"></a></div></div><div class="col-lg-8"> <strong>' + item.firstname + ' ' + item.lastname + ' </strong> ' +
+                                '<p>' + item.descripion + '</p><p><i class="fa fa-envelope"> </i> ' + item.cin + '</p><a href="mailto:students.part.time.job0@gmail.com"<button type="button" class="btn btn-primary btn-sm btn-block"> <i class="fa fa-envelope"></i> Send Email' +
+                            ' </button></a></div></div> <div class="client-detail">' +
+                                '<div id="client' + j + '" class="full-height-scroll"> </div></div></div>';
+
+                            $("#stddetail").append(line2);
+                            getskill(item.cin, j);
+                            getexp(item.cin, j);
+
+                            getreact(idPost, item.cin, j)
+                            getimg(item.cin, j)
+                            getphoto(item.cin, j)
+                            $("#accreac" + j).click(function () {
+                                $.ajax({
+                                    url: 'http://192.168.1.18:8888/api/acceptReactOrNot/' + idPost + '/' + item.cin,
+                                    method: 'GET',
+                                    dataType: "json",
+
+                                    success: function (data) {
+                                        if (data == false) {
+                                            swal({
+                                                title: " Alert",
+                                                text: "Student not available in this time."
+                                            });
+                                        }
+                                        else {
+                                            swal({
+                                                title: "Are you sure?",
+                                                text: "You will accept this student for this job!",
+                                                type: "warning",
+                                                showCancelButton: true,
+                                                confirmButtonColor: "#DD6B55",
+                                                confirmButtonText: "Yes, accept it!",
+                                                cancelButtonText: "No, cancel plx!",
+                                                closeOnConfirm: false,
+                                                closeOnCancel: false
+                                            },
+                                                function (isConfirm) {
+                                                    if (isConfirm) {
+                                                        swal("Accepted!", "Your post is occupied now.", "success");
+
+                                                        $.ajax({
+                                                            url: "http://192.168.1.18:8888/api/reactByPostIdAndStudentId/" + idPost + "/" + item.cin,
+                                                            method: 'GET',
+                                                            dataType: "json",
+
+                                                            success: function (data) {
+                                                                if (data.reactstate == 'INTERESTED') {
+                                                                    var obj = {};
+                                                                    obj.reactstate = 'ACCEPTED';
+                                                                    var compteObj = JSON.stringify(obj);
+
+                                                                    $.ajax({
+
+                                                                        method: 'PUT',
+                                                                        url: "http://192.168.1.18:8888/api/react/" + data.id,
+                                                                        data: compteObj,
+                                                                        contentType: 'application/json; charset=utf-8',
+                                                                        success: function () {
+                                                                            $("#cc").empty();
+                                                                            mybest();
+
+
+                                                                        },
+                                                                        error: function (error) {
+                                                                            alert('error');
+                                                                        },
+                                                                    })
+
+                                                                }
+
+                                                            },
+                                                            error: function (error) {
+                                                                alert(error);
+                                                            },
+                                                        })
+                                                    } else {
+                                                        swal("Cancelled", "Your post is still free :)", "error");
+                                                    }
+                                                });
+                                        }
+                                    },
+                                    error: function (error) {
+                                        alert('error');
+                                    },
+                                });
+                             
+
+                            });
+                            $("#delreac" + j).click(function () {
+                                swal({
+                                    title: "Are you sure?",
+                                    text: "Your will not be able to recover this imaginary file!",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Yes, delete it!",
+                                    cancelButtonText: "No, cancel plx!",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: false
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+
+                                            $.ajax({
+                                                url: "http://192.168.1.18:8888/api/reactByPostIdAndStudentId/" + idPost + "/" + item.cin,
+                                                method: 'GET',
+                                                dataType: "json",
+
+                                                success: function (data) {
+                                                    if (data.reactstate == 'INTERESTED') {
+                                                        var obj = {};
+                                                        obj.reactstate = 'REFUSED';
+                                                        var compteObj = JSON.stringify(obj);
+
+                                                        $.ajax({
+
+                                                            method: 'PUT',
+                                                            url: "http://192.168.1.18:8888/api/react/" + data.id,
+                                                            data: compteObj,
+                                                            contentType: 'application/json; charset=utf-8',
+                                                            success: function () {
+
+                                                                $("#cc").empty();
+                                                                mybest();
+
+                                                            },
+                                                            error: function (error) {
+                                                                alert('error');
+                                                            },
+                                                        })
+
+                                                    }
+                                                    if (data.reactstate == 'ACCEPTED') {
+                                                        $.ajax({
+                                                            url: 'http://192.168.1.18:8888/api/react/' + data.id,
+                                                            method: 'DELETE',
+                                                            dataType: "json",
+                                                            success: function () {
+
+                                                                $("#cc").empty();
+                                                                mybest();
+                                                            },
+                                                            error: function (error) {
+                                                                alert(error);
+                                                            },
+                                                        })
+                                                    }
+
+                                                },
+                                                error: function (error) {
+                                                    alert(error);
+                                                },
+                                            })
+                                        } else {
+                                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                        }
+                                    });
+
+                            });
+                        });
+                    },
+                    error: function (error) {
+                        alert("e");
+                    },
+                });
+            }
+         
+
+
+        });
+    </script>
+}
+

@@ -1,0 +1,424 @@
+﻿
+@{ ViewBag.Title = "Cart"; }
+<div class="col-md-12-navbar-wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="col-md-12" style="margin-bottom:15px">
+            <div class="navbar-header page-scroll pull-left">
+                <div class="site-logo col-6 pull-left " style="margin-top:5px">
+
+                    <img id="logo" alt="Qries" src="~/Images/landing/logo.ico"
+                         width="105" height="105">
+
+                </div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="vbar" style="margin-right:50px;">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top:20px">
+                        <li><a class="page-scroll" href="../Landing/index">Home</a></li>
+                        <li><a class="page-scroll" href="../Ecommerce/cart">Find Job</a></li>
+                        <li><a class="page-scroll" href="../AppViews/Clients">My Interessted</a></li>
+
+                        <li><a class="page-scroll" href="../AppViews/profile">Profile</a></li>
+
+
+                        <li style="margin-left:400px"><a href="~/Views/AppViews/Profile.cshtml"> </a></li>
+                        <li style="margin-left:15px"><a href="../pages/login">Logout</a> </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+</div>
+<div class="row wrapper border-bottom white-bg page-heading" style="margin-top: 13px;">
+    <div class="col-lg-12">
+        <h2>Filter</h2>
+        <div class="row">
+            <div class="col-md-4">
+
+
+
+                <select type="text" id="categorie" name="categorie" class="form-control">
+                    <option></option>
+                    <option id="Sports" value="Sports">Sports</option>
+                    <option id="Hotels And Restaurent" value="Hotels And Restaurent">Hotels And Restaurent</option>
+                    <option id="Driving" value="Driving">Driving</option>
+                    <option id="Building And Construction" value="Building And Construction">Building And Construction</option>
+                    <option id="Computer Science" value="Computer Science">Computer Science</option>
+                    <option id="Tatooing" value="Tatooing">Tatooing</option>
+                    <option id="Computer Science" value="Computer Science">Computer Science</option>
+                    <option id="House Service" value="House Service">House Service</option>
+                    <option id="Office Service" value="Office Service">Office Service</option>
+                    <option id="Arts" value="Arts">Arts</option>
+                    <option id="Dark Jobs" value="Dark Jobs">Dark Jobs</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+
+                <select type="text" id="city" name="city" class="form-control">
+                    <option></option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Sfax">Sfax</option>
+                    <option value="Sousse">Sousse</option>
+
+                    <option value="Bizerte">Bizerte</option>
+                    <option value="Kairaouan">Kairouan</option>
+                    <option value="Bizerte">Gafsa</option>
+                    <option value="Bizerte">Gabes</option>
+                    <option value="Bizerte">Ariana</option>
+                    <option value="Bizerte">Jendouba</option>
+                    <option value="Bizerte">Béja</option>
+                    <option value="Bizerte">Kasserine</option>
+                    <option value="Bizerte">Monastir</option>
+                    <option value="Bizerte">Tozeur</option>
+                    <option value="Bizerte">Le Kef</option>
+                    <option value="Bizerte">Zarzis</option>
+                    <option value="Bizerte">El Jem</option>
+                    <option value="Bizerte">Tataouine</option>
+                    <option value="Bizerte">Kebili</option>
+                    <option value="Bizerte">Majaz Al Bab</option>
+                    <option value="Bizerte">Testour</option>
+                    <option value="Bizerte">Siliana</option>
+                    <option value="El Maâgoula">El Maâgoula</option>
+                    <option value="Bizerte">Hammamet</option>
+                    <option value="Bizerte">Ben Arous</option>
+                    <option value="Bizerte">Mahdia</option>
+                    <option value="Bizerte">Houmt Souk</option>
+                    <option value="Bizerte">Nabeul</option>
+                    <option value="Bizerte">Zaghouan</option>
+
+                    <option value="Bizerte">Hammam Sousse</option>
+                    <option value="Bizerte">La Goulette</option>
+                    <option value="Bizerte">Sidi Bou Said</option>
+                    <option value="Bizerte">Sidi Bouzid</option>
+                    <option value="Bizerte">Médenine</option>
+                    <option value="Bizerte">Marsa</option>
+                    <option value="Bizerte">M'saken</option>
+                    <option value="Bizerte">Dehiba</option>
+                    <option value="Bizerte">Douz</option>
+
+                    <option value="Bizerte">Douz</option>
+                    <option value="Bizerte">Ksar Hellal</option>
+                    <option value="Bizerte">Mateur</option>
+                    <option value="Bizerte">Matmata</option>
+                    <option value="Bizerte">Tabarka</option>
+                    <option value="Bizerte">Korba</option>
+                    <option value="Bizerte">La Soukra</option>
+                    <option value="Bizerte">Ghar El Melh</option>
+                    <option value="Bizerte">Lamta</option>
+                    <option value="Bizerte">Jemmel</option>
+                    <option value="Bizerte">Radès</option>
+                    <option value="Bizerte">Le Bardo</option>
+                    <option value="Bizerte">Jemna</option>
+                    <option value="Bizerte">Hammam lif</option>
+
+
+
+
+
+
+
+                </select>
+            </div>
+            <div class="col-md-4">
+
+
+                <select type="text" id="company" name="aa" class="form-control">
+                    <option></option>
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+
+
+    <div class="row">
+        <div class="col-md-15">
+
+            <div class="ibox" id="tb">
+                <div class="ibox-title" id="sum">
+                    <h5>free posts</h5>
+                </div>
+
+        
+
+            </div>
+
+        </div>
+      
+    </div>
+
+
+
+
+</div>
+@section Styles {
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+
+}
+
+@section Scripts {
+
+
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/touchSpin")
+
+
+
+<script type="text/javascript">
+    $("#categorie").select2({
+        placeholder: "Select a type of job",
+        allowClear: true
+    });
+    $("#company").select2({
+        placeholder: "Select a company",
+        allowClear: true
+    });
+    $("#city").select2({
+        placeholder: "Select a city",
+        allowClear: true
+    });
+
+    
+    $(document).ready(function () {
+        //filtrage
+        $(document).on("change", "#company", function (ef) {
+            $("#tb").empty();
+            $("#tb").append('<div class="ibox-title" id="sum"> <h5> free posts </h5> </div>')
+            $.ajax({
+                method: "GET",
+                url: "http://192.168.1.18:8888/api/FreePostsByCompanyId/"+$("#company").val(),
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        i = i + 1;
+                        var line = '<div class="ibox-content"><div class="table-responsive"><table class="table shoping-cart-table"><tbody><tr><td width="90"><div class="cart-product-imitation"><img alt="image" class="img-responsive" src="~/Images/profile_big.jpg" id="photo' + item.id + '">' +
+                            '</div></td><td class="desc"><h3><a href="../AppViews/profile2?id=' + item.companyid + '" class="text-navy">' + item.companyname +
+                            '</a></h3> <p class="small"> type of job : ' + item.type +
+                            '</p><dl class="small m-b-none"><dt>work station</dt><dd>' + item.name + '</dd><dt>Description job</dt><dd>' + item.name +
+                            '</dd> </dl><div class="m-t-sm"><a href="/Ecommerce/ProductDetail?id=' + item.id + '" class="btn btn-xs btn-outline btn-primary" >Info <i class="fa fa-long-arrow-right"></i> </a></div> </td><td>$' + item.salaire +
+                            '</td> </tr></tbody> </table></div></div>'
+
+
+                        $("#tb").append(line);
+                        $.ajax({
+                            url: 'http://192.168.1.18:8888/api/iconblob/' + item.companyid,
+                            cache: false,
+                            xhrFields: { responseType: 'blob' },
+                            type: 'GET',
+                            success: function (data) {
+                                var urls = window.URL.createObjectURL(data);
+                                var Image = document.getElementById('photo' + item.id);
+                                Image.src = urls;
+                            },
+                            error: function (error) {
+                            },
+                        })
+
+
+                        $("#sec" + item.id).click(function () {
+                            alert("wiw");
+
+                        });
+                    });
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            })
+
+        })
+        $(document).on("change", "#city", function (ef) {
+            $("#tb").empty();
+            $("#tb").append('<div class="ibox-title" id="sum"> <h5> free posts </h5> </div>')
+            $.ajax({
+                method: "GET",
+                url: "http://192.168.1.18:8888/api/freepostByCity/" + $("#city").val(),
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        i = i + 1;
+                        var line = '<div class="ibox-content"><div class="table-responsive"><table class="table shoping-cart-table"><tbody><tr><td width="90"><div class="cart-product-imitation"><img alt="image" class="img-responsive" src="~/Images/profile_big.jpg" id="photo' + item.id + '">' +
+                            '</div></td><td class="desc"><h3><a href="../AppViews/profile2?id=' + item.companyid + '" class="text-navy">' + item.companyname +
+                            '</a></h3> <p class="small"> type of job : ' + item.type +
+                            '</p><dl class="small m-b-none"><dt>work station</dt><dd>' + item.name + '</dd><dt>Description job</dt><dd>' + item.name +
+                            '</dd> </dl><div class="m-t-sm"><a href="/Ecommerce/ProductDetail?id=' + item.id + '" class="btn btn-xs btn-outline btn-primary" >Info <i class="fa fa-long-arrow-right"></i> </a></div> </td><td>$' + item.salaire +
+                            '</td> </tr></tbody> </table></div></div>'
+
+
+                        $("#tb").append(line);
+                        $.ajax({
+                            url: 'http://192.168.1.18:8888/api/iconblob/' + item.companyid,
+                            cache: false,
+                            xhrFields: { responseType: 'blob' },
+                            type: 'GET',
+                            success: function (data) {
+                                var urls = window.URL.createObjectURL(data);
+                                var Image = document.getElementById('photo' + item.id);
+                                Image.src = urls;
+                            },
+                            error: function (error) {
+                            },
+                        })
+
+
+                        $("#sec" + item.id).click(function () {
+                            alert("wiw");
+
+                        });
+                    });
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            })
+
+        })
+
+        $(document).on("change", "#categorie", function (ef) {
+            $("#tb").empty();
+            $("#tb").append('<div class="ibox-title" id="sum"> <h5> free posts </h5> </div>')
+            $.ajax({
+                method: "GET",
+                url: "http://192.168.1.18:8888/api/freepostByType/"+$("#categorie").val(),
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        i = i + 1;
+                        var line = '<div class="ibox-content"><div class="table-responsive"><table class="table shoping-cart-table"><tbody><tr><td width="90"><div class="cart-product-imitation"><img alt="image" class="img-responsive" src="~/Images/profile_big.jpg" id="photo' + item.id + '">' +
+                            '</div></td><td class="desc"><h3><a href="../AppViews/profile2?id=' + item.companyid + '" class="text-navy">' + item.companyname +
+                            '</a></h3> <p class="small"> type of job : ' + item.type +
+                            '</p><dl class="small m-b-none"><dt>work station</dt><dd>' + item.name + '</dd><dt>Description job</dt><dd>' + item.name +
+                            '</dd> </dl><div class="m-t-sm"><a href="/Ecommerce/ProductDetail?id=' + item.id + '" class="btn btn-xs btn-outline btn-primary" >Info <i class="fa fa-long-arrow-right"></i> </a></div> </td><td>$' + item.salaire +
+                            '</td> </tr></tbody> </table></div></div>'
+
+
+                        $("#tb").append(line);
+                        $.ajax({
+                            url: 'http://192.168.1.18:8888/api/iconblob/' + item.companyid,
+                            cache: false,
+                            xhrFields: { responseType: 'blob' },
+                            type: 'GET',
+                            success: function (data) {
+                                var urls = window.URL.createObjectURL(data);
+                                var Image = document.getElementById('photo' + item.id);
+                                Image.src = urls;
+                            },
+                            error: function (error) {
+                            },
+                        })
+
+
+                        $("#sec" + item.id).click(function () {
+
+                        });
+                    });
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            })
+           
+        })
+
+            $('.scroll_content').slimscroll({
+                height: '200px'
+            })
+        var email = sessionStorage.getItem('email');
+        //remplir select company
+        var ddlProducts = $("#company");
+
+        $.ajax({
+            method: "GET",
+            url: "http://192.168.1.18:8888/api/Company",
+            dataType: "json",
+            success: function (data) {
+                ddlProducts.html('');
+                ddlProducts.append($('<option style="width:100px; height:50px;"></option>'));
+                $.each(data, function (i, item) {
+                    ddlProducts.append($('<option style="width:100px; height:50px;"></option>').val(item.id).html(item.name));
+                    });
+                
+            },
+            error: function (error) {
+                alert(error);
+            },
+        });
+
+    //remplir interface
+            var i = 0;
+            $.ajax({
+                method:"GET",
+                url: "http://192.168.1.18:8888/api/freepost",
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        i = i +1;
+                        var line = '<div class="ibox-content"><div class="table-responsive"><table class="table shoping-cart-table"><tbody><tr><td width="90"><div class="cart-product-imitation"><img alt="image" class="img-responsive" src="~/Images/profile_big.jpg" id="photo'+item.id+'">'+
+                                    '</div></td><td class="desc"><h3><a href="../AppViews/profile2?id=' + item.companyid +'" class="text-navy">' + item.companyname +
+                            '</a></h3> <p class="small"> type of job : ' + item.type +
+                            '</p><dl class="small m-b-none"><dt>work station</dt><dd>' + item.name + '</dd><dt>Description job</dt><dd>' + item.name +
+                            '</dd> </dl><div class="m-t-sm"><a href="/Ecommerce/ProductDetail?id=' + item.id +'" class="btn btn-xs btn-outline btn-primary" >Info <i class="fa fa-long-arrow-right"></i> </a></div> </td><td>$'+item.salaire+
+                                    '</td> </tr></tbody> </table></div></div>'
+
+
+                        $("#tb").append(line);
+                        $.ajax({
+                            url: 'http://192.168.1.18:8888/api/iconblob/' + item.companyid,
+                            cache: false,
+                            xhrFields: { responseType: 'blob' },
+                            type: 'GET',
+                            success: function (data) {
+                                var urls = window.URL.createObjectURL(data);
+                                var Image = document.getElementById('photo' + item.id);
+                                Image.src = urls;
+                            },
+                            error: function (error) {
+                            },
+                        })
+
+
+                        $("#sec" + item.id).click(function () {
+                            alert("wiw");
+
+                        });
+                    });
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            });
+            var line1 = '<span class="pull-right">(<strong>' + i + '</strong>) items</span>';
+            $("#sum").append(line1);
+
+
+        });
+</script>
+}
