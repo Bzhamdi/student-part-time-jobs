@@ -25,13 +25,18 @@ public class ReactController {
     private static final String ENTITY_NAME = "React";
 
 
+    @GetMapping("/sumallREACT")
+    public Integer findAll() {
+        return reactservice.findAll();
+    }
+
     /*-------------stattest------*/
     @GetMapping("/reactStatCountbyMonth")
     public TreeMap<String, Integer> STAT() throws ParseException {
         return reactservice.stat();
     }
 
-
+// new react
     @PostMapping("/react")
     public React postReact(@RequestBody React react) throws ResourceNotFoundException {
 
@@ -40,7 +45,7 @@ public class ReactController {
 
         return result;
     }
-
+// react by id
     @PutMapping("/react/{id}")
     public ResponseEntity<React> updateReactById(@PathVariable Integer id, @RequestBody React react) throws MethodArgumentNotValidException, ResourceNotFoundException {
 
@@ -48,7 +53,7 @@ public class ReactController {
         React result = reactservice.update(react);
         return ResponseEntity.ok().body(result);
     }
-
+// delete react
     @DeleteMapping("/react/{id}")
     public Map<String, Boolean> deleteReact(@PathVariable(value = "id") Long postId)
             throws ResourceNotFoundException {
@@ -74,6 +79,16 @@ public class ReactController {
 
         return response;
     }
+    /* put react by postid and studentid-----------*/
+    @PutMapping("/reactbyPostIDandStudentid/{postid}/{studentid}")
+    public ResponseEntity<React> updateReactById(@PathVariable(value = "postid") Long postId, @PathVariable(value = "studentid") String studentid,@RequestBody React react) throws ResourceNotFoundException {
+      React newreact = reactservice.GetOneByPostidandStudentid(postId,studentid);
+        newreact.setPostid(postId);
+        newreact.setStudintcin(studentid);
+        react.setId(newreact.getId());
+        React result = reactservice.updatebyPostidandStudentid(react,newreact);
+        return ResponseEntity.ok().body(result);
+    }
 
 
     /*-----------------------GET by postid and sutudintcode----------*/
@@ -85,7 +100,7 @@ public class ReactController {
 
         return ResponseEntity.ok().body(dto);
     }
-
+// get by id
     @GetMapping("/react/{id}")
     public ResponseEntity<React> getReactbyid(@PathVariable Integer id) throws ResourceNotFoundException {
 
@@ -93,16 +108,20 @@ public class ReactController {
 
         return ResponseEntity.ok().body(dto);
     }
+
+    // reactsbyPostId
     @GetMapping("/reactsbyPostId/{postid}")
     public List<React> reactsbyPostId(@PathVariable Integer postid)
     {
         return reactservice.findListReactByPostId(postid);
     }
+    // reactsbyStudentId
     @GetMapping("/reactsbyStudentId/{studentid}")
     public List<React> reactsbyPStudentId(@PathVariable String studentid)
     {
         return reactservice.findListReactByStudentId(studentid);
     }
+    // reactsIntresstedForCompany
     @GetMapping("/reactsIntresstedForCompany/{companyid}")
     public List<React> reactsIntresstedForCompany(@PathVariable String companyid)
     {
@@ -110,9 +129,16 @@ public class ReactController {
     }
 
 
-
+// acceptReactOrNot
     @GetMapping("/acceptReactOrNot/{postid}/{studentid}")
     public boolean reactsIntresstedForCompany(@PathVariable Integer postid, @PathVariable String studentid) throws ResourceNotFoundException {
         return reactservice.acceptReactOrNot(postid,studentid);
+    }
+
+  //  totalreactsbyPostId
+    @GetMapping("/totalreactsbyPostId/{postid}")
+    public Integer totalreactsbyPostId(@PathVariable Integer postid)
+    {
+        return reactservice.totalreactsbyPostId(postid);
     }
 }

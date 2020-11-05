@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.Employee;
+
+
 import com.example.demo.model.skills;
 import com.example.demo.service.skillsservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +23,19 @@ public class skillscontroller {
     private static final String ENTITY_NAME = "skills";
 
 
-
+// get all skills
     @GetMapping("/skills")
     public List<skills> findAll() {
         return skillsservice.findAll();
     }
-
+// create new one
     @PostMapping("/skills")
     public skills postskills(@RequestBody skills skills){
 
         skills result = skillsservice.save(skills);
         return result;
     }
-
+// delete by id
     @DeleteMapping("/skills/{id}")
     public Map<String, Boolean> deleteskills(@PathVariable(value = "id") Long skillId)
             throws ResourceNotFoundException {
@@ -44,7 +45,7 @@ public class skillscontroller {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
-
+// get by id
     @GetMapping("/skills/{id}")
     public ResponseEntity<skills> getskillbyid(@PathVariable Integer id) throws ResourceNotFoundException {
 
@@ -52,12 +53,21 @@ public class skillscontroller {
 
         return ResponseEntity.ok().body(dto);
     }
-
+// put skills
     @PutMapping("/skills/{id}")
     public ResponseEntity<skills> updateSkillById(@PathVariable Integer id,  @RequestBody skills skills) throws MethodArgumentNotValidException, ResourceNotFoundException {
 
         skills.setId(id);
         skills result =skillsservice.update(skills);
         return ResponseEntity.ok().body(result);
+    }
+
+// skillsByStudentId
+    @GetMapping("/skillsByStudentId/{studentid}")
+    public List<skills> skillsByStudentId(@PathVariable String studentid) throws ResourceNotFoundException {
+
+        List<skills> dto = skillsservice.skillsByStudentId(studentid);
+
+        return dto;
     }
 }

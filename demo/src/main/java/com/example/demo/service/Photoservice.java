@@ -2,10 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.exception.FileNotFoundException;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.Company;
-import com.example.demo.model.Photo;
-import com.example.demo.model.Student;
-import com.example.demo.model.icon;
+import com.example.demo.model.*;
 import com.example.demo.repository.iconRepository;
 import com.example.demo.repository.photoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,7 +24,7 @@ public class Photoservice {
     @Autowired
     private studentservice studentservice;
 
-
+    /*-----------save photo------------------------*/
     public Photo getJson(String student_id, MultipartFile ph) throws IOException, ResourceNotFoundException {
 /****new*/
         System.out.println("---------------------------------1111111----------------");
@@ -50,6 +47,7 @@ public class Photoservice {
         return userJson;
 
     }
+    /*-----------update photo ------------------------*/
     public Photo update(long id, MultipartFile ph) throws ResourceNotFoundException, IOException {
         String fileName = StringUtils.cleanPath(ph.getOriginalFilename());
 
@@ -64,15 +62,45 @@ public class Photoservice {
         inBase = photorepository.save(inBase);
         return inBase;
     }
-
+// get one photo by id
     public Photo getFile(String student_id) {
         return  photorepository.findByStudentid(student_id)
                 .orElseThrow(() -> new FileNotFoundException("Photo not found with company id " + student_id));
     }
+
     public List<Photo> findAll() {
         return photorepository.findAll();
 
 
+    }
+    // get blob of photo
+
+    public byte[] blob(String student_id) {
+       Photo a = photorepository.findByStudentid(student_id)
+                .orElseThrow(() -> new FileNotFoundException("Photo not found with student id " + student_id));
+
+       return a.getPhoto();
+    }
+    /*-----------update photo-----------------------*/
+    public Photo updatephoto(String student_id, MultipartFile ph) throws ResourceNotFoundException, IOException {
+        String fileName = StringUtils.cleanPath(ph.getOriginalFilename());
+
+        Photo inBase = photorepository.findByStudentid(student_id)
+                .orElseThrow(() -> new ResourceNotFoundException("PHOTO not found for this student id :: " + student_id));
+
+        inBase.setPhoto(ph.getBytes());
+        /**new**/
+        inBase.setPhotoName(fileName);
+        inBase.setPhotoType(ph.getContentType());
+
+        inBase = photorepository.save(inBase);
+        return inBase;
+    }
+
+
+    /*--------------------------save one ------------------*/
+    public Photo save( Photo sk) {
+        return photorepository.save( sk);
     }
 
 }

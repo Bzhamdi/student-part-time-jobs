@@ -38,15 +38,15 @@ public class photoController {
 
     @PutMapping(value = "/photo/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
     public ResponseEntity<Photo> updateiconById(@PathVariable Integer id, @RequestPart("photo") MultipartFile photo) throws MethodArgumentNotValidException, ResourceNotFoundException, IOException {
-        System.out.println("-----------------------ttttt-----------");
+
         Photo userJson = photoservice.update(id,  photo);
-        System.out.println("-----------------------vvvvvv-----------");
+
         return ResponseEntity.ok().body(userJson);
     }
     /*****************new********/
     @GetMapping("/photo/{student_Id}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String student_Id) {
-        // Load file from database
+
 
         Photo dbFile = photoservice.getFile(student_Id);
 
@@ -58,5 +58,19 @@ public class photoController {
     @GetMapping("/photo")
     public List<Photo> findAll() {
         return photoservice.findAll();
+    }
+
+
+    @GetMapping("/photoblob/{studentid}")
+    public byte[] blob(@PathVariable String studentid) {
+        return photoservice.blob(studentid);
+    }
+
+    @PutMapping(value = "/photoblob/{studentid}", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<Photo> updateiconByIdStudentid(@PathVariable String studentid, @RequestPart("photo") MultipartFile photo) throws MethodArgumentNotValidException, ResourceNotFoundException, IOException {
+
+        Photo userJson = photoservice.updatephoto(studentid,  photo);
+
+        return ResponseEntity.ok().body(userJson);
     }
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*
+
 package com.example.demo.controller;
 
 import com.example.demo.model.DBFile;
@@ -39,7 +39,7 @@ public class FileController {
 
     @Autowired
     private DBFileStorageService dbFileStorageService;
-
+// upload file
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
 
@@ -60,14 +60,7 @@ public class FileController {
 
     }
 
-    @PostMapping("/uploadMultipleFiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-        return Arrays.asList(files)
-                .stream()
-                .map(file -> uploadFile(file))
-                .collect(Collectors.toList());
-    }
-
+    // download file
     @GetMapping("/downloadFile/{fileId}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileId) {
         // Load file from database
@@ -79,7 +72,11 @@ public class FileController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getFileName() + "\"")
                 .body(new ByteArrayResource(dbFile.getData()));
     }
+// get file source by student id
+    @GetMapping("/baseeeblob/{studentid}")
+    public byte[] blob(@PathVariable String studentid) {
+        return dbFileStorageService.getblob(studentid);
+    }
 
 }
 
-*/

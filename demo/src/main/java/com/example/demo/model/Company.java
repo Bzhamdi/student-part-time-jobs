@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -16,7 +18,8 @@ public class Company {
     private String description;
     private String adress;
     private String city;
-
+    private String phone;
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "companyid")
     private List<Post> postes;
 
@@ -126,5 +129,22 @@ public class Company {
     public Company(String id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Company(String id, String name, String description, String adress, String city, String phone) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.adress = adress;
+        this.city = city;
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

@@ -25,19 +25,19 @@ public class commentsController {
     public double StudentNote(@PathVariable String studentid) {
         return commentsservice.StudentNote(studentid);
     }
-
+// get CommentsAndNotes
     @GetMapping("/CommentsAndNotes")
     public List<Comments> findAll() {
         return commentsservice.findAll();
     }
-
+// post CommentsAndNotes
     @PostMapping("/CommentsAndNotes")
-    public Comments postComments(@RequestBody Comments Comments){
+    public Comments postComments(@RequestBody Comments Comments) throws ResourceNotFoundException {
 
         Comments result = commentsservice.save(Comments);
         return result;
     }
-
+// delete CommentsAndNotes
     @DeleteMapping("/CommentsAndNotes/{id}")
     public Map<String, Boolean> deleteComments(@PathVariable(value = "id") Long skillId)
             throws ResourceNotFoundException {
@@ -47,7 +47,7 @@ public class commentsController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
-
+// get CommentsAndNotes by id
     @GetMapping("/CommentsAndNotes/{id}")
     public ResponseEntity<Comments> getskillbyid(@PathVariable Integer id) throws ResourceNotFoundException {
 
@@ -55,7 +55,7 @@ public class commentsController {
 
         return ResponseEntity.ok().body(dto);
     }
-
+// put CommentsAndNotes
     @PutMapping("/CommentsAndNotes/{id}")
     public ResponseEntity<Comments> updateSkillById(@PathVariable Integer id,  @RequestBody Comments Comments) throws MethodArgumentNotValidException, ResourceNotFoundException {
 
@@ -63,6 +63,8 @@ public class commentsController {
         Comments result =commentsservice.update(Comments);
         return ResponseEntity.ok().body(result);
     }
+
+    // listCommentsAndNotesbyStudentId
     @GetMapping("/listCommentsAndNotesbyStudentId/{studentid}")
     public List<Comments> listCommentsbyPStudentId(@PathVariable String studentid)
     {

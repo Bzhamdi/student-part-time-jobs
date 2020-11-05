@@ -4,6 +4,7 @@ import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Formation;
 
 
+import com.example.demo.model.skills;
 import com.example.demo.service.formationservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class formationController {
     formationservice formationservice;
     private static final String ENTITY_NAME = "Formation";
 
-
+// get all
     @GetMapping("/Formation")
     public List<Formation> findAll() {
         return formationservice.findAll();
@@ -43,7 +44,7 @@ public class formationController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
-
+// formation by id
     @GetMapping("/Formation/{id}")
     public ResponseEntity<Formation> getFormationbyid(@PathVariable Integer id) throws ResourceNotFoundException {
 
@@ -51,12 +52,21 @@ public class formationController {
 
         return ResponseEntity.ok().body(dto);
     }
-
+// put formation
     @PutMapping("/Formation/{id}")
     public ResponseEntity<Formation> updateFormationById(@PathVariable Integer id,  @RequestBody Formation formation) throws MethodArgumentNotValidException, ResourceNotFoundException {
 
         formation.setId(id);
         Formation result =formationservice.update(formation);
         return ResponseEntity.ok().body(result);
+    }
+// formationByStudentId
+
+    @GetMapping("/formationByStudentId/{studentid}")
+    public List<Formation> formationByStudentId(@PathVariable String studentid) throws ResourceNotFoundException {
+
+        List<Formation> dto = formationservice.formationsByStudentId(studentid);
+
+        return dto;
     }
 }

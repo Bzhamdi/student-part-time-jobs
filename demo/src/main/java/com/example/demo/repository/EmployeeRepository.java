@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+/*
 package com.example.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,3 +16,5 @@ import com.example.demo.model.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
 }
+
+ */

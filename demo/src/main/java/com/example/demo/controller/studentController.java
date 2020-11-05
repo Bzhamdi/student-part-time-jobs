@@ -1,10 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.Company;
-import com.example.demo.model.Student;
-import com.example.demo.model.User;
-import com.example.demo.model.bahta;
+import com.example.demo.model.*;
 import com.example.demo.service.studentservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -27,47 +24,19 @@ public class studentController {
     @Autowired
     studentservice studentservice;
     private static final String ENTITY_NAME = "Student";
-
-    /*
-    @PostMapping(value = "/student", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
-
-    public Student post(@RequestPart("student") String student,@RequestPart("datebirth") String datebirth,  @RequestPart("photo") MultipartFile photo) throws IOException {
-
-        Student userJson = studentservice.getJson(student, datebirth,  photo);
-
-        return userJson;
-    }
-
-
-    @GetMapping("/studentphoto/{Id}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String Id) {
-        // Load file from database
-
-        Student dbFile = studentservice.getFile(Id);
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(dbFile.getPhotoType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getPhotoName() + "\"")
-                .body(new ByteArrayResource(dbFile.getPhoto()));
-    }
-    @GetMapping("/student")
-    public List<Student> findAll() {
-        return studentservice.findAll();
-    }
-
-     */
+// get all students
     @GetMapping("/student")
     public List<Student> findAll() {
         return  studentservice.findAll();
     }
-
+// create new student
     @PostMapping("/student")
     public Student postStudent(@RequestBody Student Student){
 
         Student result =  studentservice.save(Student);
         return result;
     }
-
+// delete student
     @DeleteMapping("/student/{id}")
     public Map<String, Boolean> deleteStudent(@PathVariable(value = "id") String StudentId)
             throws ResourceNotFoundException {
@@ -77,7 +46,7 @@ public class studentController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
-
+// get one by id
     @GetMapping("/student/{id}")
     public ResponseEntity<Student> getStudentbyid(@PathVariable String id) throws ResourceNotFoundException {
 
@@ -85,13 +54,56 @@ public class studentController {
 
         return ResponseEntity.ok().body(dto);
     }
-
+// put student
     @PutMapping("/student/{id}")
     public ResponseEntity<Student> updateStudentById(@PathVariable String id,  @RequestBody Student Student) throws MethodArgumentNotValidException, ResourceNotFoundException {
 
         Student.setCin(id);
         Student result = studentservice.update(Student);
         return ResponseEntity.ok().body(result);
+    }
+
+    // update Views student
+    @GetMapping("/studentupdateViews/{id}")
+    public boolean studentupdateViews(@PathVariable String id) throws ResourceNotFoundException {
+
+        Student dto =  studentservice.studentupdateViews(id);
+
+
+        return true;
+    }
+
+// studentMonyWithUs
+    @GetMapping("/studentMonyWithUs/{id}")
+    public double studentMonyWithUs(@PathVariable String id) throws ResourceNotFoundException {
+
+        double dto =  studentservice.studentMonyWithUs(id);
+
+        return dto;
+    }
+
+// numberOfReactsBystudent
+    @GetMapping("/numberOfReactsBystudent/{studentid}")
+    public Integer numberOfReactsBystudent(@PathVariable String studentid) throws ResourceNotFoundException {
+
+        Integer dto =  studentservice.numberOfReactsBystudent(studentid);
+
+        return dto;
+    }
+
+// percentageofsuccess
+    @GetMapping("/percentageofsuccess/{studentid}")
+    public Integer percentageofsuccess(@PathVariable String studentid) throws ResourceNotFoundException {
+
+        Integer dto =  studentservice.percentageofsuccess(studentid);
+
+        return dto;
+    }
+// StudentreactsbyPostId
+    @GetMapping("/StudentreactsbyPostId/{postid}")
+    public List<Student> StudentreactsbyPostId(@PathVariable Integer postid)
+    {
+        return studentservice.findListSTUDENTReactByPostId(postid);
     }
 
 }

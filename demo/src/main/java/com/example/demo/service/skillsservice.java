@@ -1,8 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.Employee;
-import com.example.demo.model.User;
+
 import com.example.demo.model.skills;
 import com.example.demo.repository.skillsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class skillsservice {
                 .orElseThrow(() -> new ResourceNotFoundException("skills not found for this id :: " + sk.getId()));
         inBase.setName(sk.getName());
         inBase.setNote(sk.getNote());
-       /* inBase.setStudintcin(sk.getStudintcin());*/
+
         inBase = skillsrepository.save(inBase);
         return inBase;
     }
@@ -53,4 +52,13 @@ public class skillsservice {
 
         skillsrepository.deleteById(id);
     }
+
+    /* ---------------------------------SKILLSByStudentId------------------*/
+    public List<skills> skillsByStudentId(String studentid) {
+        return skillsrepository.findByStudintcin(studentid);
+
+
+    }
+
+
 }

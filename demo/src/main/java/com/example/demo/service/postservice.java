@@ -1,21 +1,18 @@
 package com.example.demo.service;
 
-import com.example.demo.exception.FileNotFoundException;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.*;
-import com.example.demo.repository.experienceRepository;
+import com.example.demo.payload.top3Company;
+import com.example.demo.repository.faza;
 import com.example.demo.repository.postRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.transaction.Transactional;
+import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -37,7 +34,9 @@ public class postservice {
         LocalDate maxDate = LocalDate.now();
         System.out.println("++++++++++++++++++++++++++DATE+++++////////"+maxDate);
         String A = maxDate.toString();
-        System.out.println("++++++++++++++++++++++++++DATE string+++++////////"+A);
+
+
+        System.out.println("++++++++++++++++++++yyyy-MM++++++DATE string+++++////////"+A);
         SimpleDateFormat monthDate = new SimpleDateFormat("yyyy-MM");
         Calendar cal = Calendar.getInstance();
         cal.setTime(monthDate.parse(A));
@@ -47,8 +46,53 @@ public class postservice {
         for (int i = 1; i <= 12; i++) {
            String month_name1 = monthDate.format(cal.getTime());
             List<Post> posts = postRepository.findByMatchMonthAndYear(month_name1);
+            System.out.println("++++++++++++++++++++++++++the month nameeee++////////"+month_name1);
             Integer count = posts.size();
-            my_dict.put(month_name1, count);
+            /* jdiid*/
+            String jareb = month_name1.split("-")[1];
+          Integer  foo = Integer.parseInt(jareb);
+          String name = getMonth(foo);
+            System.out.println("+++++++++++++++++++++++++jarebbb||||"+name);
+
+          //  my_dict.put(month_name1, count);
+            my_dict.put(name, count);
+            allDates.add(month_name1);
+            cal.add(Calendar.MONTH, -1);
+        }
+        System.out.println(allDates);
+        return my_dict;
+    }
+
+
+    /*----------------statistique testfor one company-------------------------------*/
+    public TreeMap<String, Integer> postStatOfOneCompanyCountbyMonth(String companyid) throws ParseException {
+        List<String> allDates = new ArrayList<>();
+
+        LocalDate maxDate = LocalDate.now();
+        System.out.println("++++++++++++++++++++++++++DATE+++++////////"+maxDate);
+        String A = maxDate.toString();
+
+
+        System.out.println("++++++++++++++++++++yyyy-MM++++++DATE string+++++////////"+A);
+        SimpleDateFormat monthDate = new SimpleDateFormat("yyyy-MM");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(monthDate.parse(A));
+        System.out.println("++++++++++++++++++++++++++DATE parseee+++++////////"+monthDate.parse(A));
+
+        TreeMap<String, Integer> my_dict = new TreeMap<String, Integer>(Collections.reverseOrder());
+        for (int i = 1; i <= 12; i++) {
+            String month_name1 = monthDate.format(cal.getTime());
+            List<Post> posts = postRepository.findByMatchMonthAndYearAndCompanyId(month_name1,companyid);
+            System.out.println("++++++++++++++++++++++++++the month nameeee++////////"+month_name1);
+            Integer count = posts.size();
+            /* jdiid*/
+            String jareb = month_name1.split("-")[1];
+            Integer  foo = Integer.parseInt(jareb);
+            String name = getMonth(foo);
+            System.out.println("+++++++++++++++++++++++++jarebbb||||"+name);
+
+            //  my_dict.put(month_name1, count);
+            my_dict.put(name, count);
             allDates.add(month_name1);
             cal.add(Calendar.MONTH, -1);
         }
@@ -58,13 +102,57 @@ public class postservice {
 
 
 
+    /*----------------statistique testfor one company-------------------------------*/
+    public Integer postOfCompanyInYerar(String companyid) throws ParseException {
+
+
+        LocalDate maxDate = LocalDate.now();
+        System.out.println("++++++++++++++++++++++++++DATE+++++////////"+maxDate);
+        String A = maxDate.toString();
+
+
+        System.out.println("++++++++++++++++++++yyyy-MM++++++DATE string+++++////////"+A);
+        SimpleDateFormat monthDate = new SimpleDateFormat("yyyy-MM");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(monthDate.parse(A));
+        System.out.println("++++++++++++++++++++++++++DATE parseee+++++////////"+monthDate.parse(A));
+
+        TreeMap<String, Integer> my_dict = new TreeMap<String, Integer>(Collections.reverseOrder());
+        Integer sum = 0;
+        for (int i = 1; i <= 12; i++) {
+            String month_name1 = monthDate.format(cal.getTime());
+            List<Post> posts = postRepository.findByMatchMonthAndYearAndCompanyId(month_name1,companyid);
+            System.out.println("++++++++++++++++++++++++++the month nameeee++////////"+month_name1);
+            Integer count = posts.size();
+            sum = sum + count;
+
+
+            cal.add(Calendar.MONTH, -1);
+        }
+
+        return sum;
+    }
+
+    public String getMonth(int month) {
+        return new DateFormatSymbols().getMonths()[month-1];
+    }
+
 
     /* ---------------------------------get all------------------*/
     public List<Post> findAll() {
         return postRepository.findAll();
     }
-    
-    
+
+    /* ---------------------------------get top3------------------*/
+    public  List<faza> findto3() {
+
+        List<faza> obj = postRepository.getto3();
+
+        return obj;
+    }
+
+
+
     /* ---------------------------------get all free post------------------*/
     public List<Post> findAllFREEpost() {
       /*  List<Post> ALL = postRepository.findAll();
@@ -74,6 +162,17 @@ public class postservice {
         return result1;*/
         List<Post> all =  postRepository.findByPoststateOrderByPostedateDesc(Poststate.FREE);
         return all;
+    }
+
+
+
+    public TreeMap<String, Integer> FREEandOCCUPED(){
+        TreeMap<String, Integer> my_dict = new TreeMap<String, Integer>(Collections.reverseOrder());
+        List<Post> allfree =  postRepository.findByPoststateOrderByPostedateDesc(Poststate.FREE);
+        List<Post> alloccuped =  postRepository.findByPoststateOrderByPostedateDesc(Poststate.OCCUPIED);
+        my_dict.put("FREE", allfree.size());
+        my_dict.put("OCCUPIED", alloccuped.size());
+        return my_dict;
     }
 
     /* ---------------------------------get all free post by type------------------*/
@@ -190,4 +289,29 @@ public class postservice {
         return  postRepository.findByCompanyid(company_id);
 
     }
+
+    /*------------------FREEPostsByCompanyId----------------------*/
+    public List<Post> FREEPostsByCompanyId(String company_id) {
+        List<Post> allpostes = this.findListPostByCompanyId(company_id);
+
+        List<Post> result = allpostes.stream()
+                .filter(line -> Poststate.FREE.equals(line.getPoststate()))
+                .collect(Collectors.toList());
+        return result;
+
+    }
+
+
+   /*------------------ OCCUPEDPostsByCompanyId-------------*/
+
+    public List<Post> OCCUPEDPostsByCompanyId(String company_id) {
+        List<Post> allpostes = this.findListPostByCompanyId(company_id);
+
+        List<Post> result = allpostes.stream()
+                .filter(line -> Poststate.OCCUPIED.equals(line.getPoststate()))
+                .collect(Collectors.toList());
+        return result;
+
+    }
+
 }

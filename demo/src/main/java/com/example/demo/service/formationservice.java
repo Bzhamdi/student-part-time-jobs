@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.exception.ResourceNotFoundException;
 
 import com.example.demo.model.Formation;
+import com.example.demo.model.skills;
 import com.example.demo.repository.formationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,7 @@ public class formationservice {
         inBase.setDatestart(formation.getDatestart());
         inBase.setStudintcin(formation.getStudintcin());
         inBase.setDescription(formation.getDescription());
+        inBase.setPoste(formation.getPoste());
         inBase = formationRepository.save(inBase);
         return inBase;
     }
@@ -53,5 +55,13 @@ public class formationservice {
     public void delete(long id) {
 
         formationRepository.deleteById(id);
+    }
+
+
+    /* ---------------------------------formationByStudentId------------------*/
+    public List<Formation> formationsByStudentId(String studentid) {
+        return formationRepository.findByStudintcinn(studentid);
+
+
     }
 }

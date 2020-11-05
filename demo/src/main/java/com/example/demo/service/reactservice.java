@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -26,6 +27,13 @@ public class reactservice {
 
 
 
+
+    /* ---------------------------------get all------------------*/
+    public Integer findAll() {
+
+        List<React> r = reactRepository.findAll();
+        return r.size();
+    }
     /*----------------statistique test-------------------------------*/
     public TreeMap<String, Integer> stat() throws ParseException {
         List<String> allDates = new ArrayList<>();
@@ -44,12 +52,19 @@ public class reactservice {
             String month_name1 = monthDate.format(cal.getTime());
             List<React> reacts = reactRepository.findByMatchMonthAndYear(month_name1, Reacttype.ACCEPTED.getState());
             Integer count = reacts.size();
-            my_dict.put(month_name1, count);
+
+            String jareb = month_name1.split("-")[1];
+            Integer  foo = Integer.parseInt(jareb);
+            String name = getMonth(foo);
+            my_dict.put(name, count);
             allDates.add(month_name1);
             cal.add(Calendar.MONTH, -1);
         }
         System.out.println(allDates);
         return my_dict;
+    }
+    public String getMonth(int month) {
+        return new DateFormatSymbols().getMonths()[month-1];
     }
 
     /* -------------------FIND LIST  react BY postID -------------------*/
@@ -57,6 +72,14 @@ public class reactservice {
         return  reactRepository.findByPostid(post_id);
 
     }
+    /* -------------------totalreactsbyPostId -------------------*/
+    public Integer totalreactsbyPostId(long post_id) {
+       List<React> a = this.findListReactByPostId(post_id);
+        return  a.size();
+
+    }
+
+
     /* -------------------FIND LIST  react BY studentID -------------------*/
     public List<React> findListReactByStudentId(String student_id) {
         return  reactRepository.findByStudintcinnnn(student_id);
@@ -83,7 +106,7 @@ public class reactservice {
 
     /* -------------------delete by list Reactids -------------------*/
     public Integer  deleteByListOfReactids(List<Integer> ids) {
-        System.out.println("********************************wseeeel**********");
+
         Integer aa =  reactRepository.deleteByIdIn(ids);
         return aa;
     }
@@ -91,7 +114,7 @@ public class reactservice {
     public Long deleteByPostidandStudentid(long postid, String studentid) {
 
       Long aa = reactRepository.deleteByPostidAndStudintcinnnn(postid,studentid);
-        System.out.println("////////////////traaaah"+aa );
+
         return aa;
     }
     /* -------------------GET by Post id  and student id-------------------*/
@@ -113,6 +136,23 @@ public class reactservice {
              ALLreacts.forEach(item -> item.setReactstate(Reacttype.REFUSED));
              Post thepost = postservice.findOne(inBase.getPostid());
              thepost.setPoststate(Poststate.OCCUPIED);
+
+        }
+        return inBase;
+    }
+
+    /* ------------------------update react state by post id and student id----------------- */
+    public React updatebyPostidandStudentid(React react, React inBase) throws ResourceNotFoundException {
+
+
+
+        inBase.setReactstate(react.getReactstate());
+        if(react.getReactstate()==Reacttype.ACCEPTED) {
+            List<React> ALLreacts = findListReactByPostId(inBase.getPostid());
+            ALLreacts.remove(inBase);
+            ALLreacts.forEach(item -> item.setReactstate(Reacttype.REFUSED));
+            Post thepost = postservice.findOne(inBase.getPostid());
+            thepost.setPoststate(Poststate.OCCUPIED);
 
         }
         return inBase;
@@ -144,7 +184,7 @@ public class reactservice {
 
     }
 
-
+// verif react
     public boolean acceptReactOrNot(Integer postid,String studentid) throws ResourceNotFoundException {
         List<React> allreacts = this.findListReactByStudentId(studentid);
 

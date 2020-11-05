@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Formation;
+import com.example.demo.model.Photo;
 import com.example.demo.model.icon;
 import com.example.demo.service.iconservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +37,15 @@ public class iconController {
 
     @PutMapping(value = "/icon/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
     public ResponseEntity<icon> updateiconById(@PathVariable Integer id, @RequestPart("icon") MultipartFile icon) throws MethodArgumentNotValidException, ResourceNotFoundException, IOException {
-        System.out.println("-----------------------ttttt-----------");
+
         icon userJson = iconservice.update(id,  icon);
-        System.out.println("-----------------------vvvvvv-----------");
+
         return ResponseEntity.ok().body(userJson);
     }
     /*****************new********/
     @GetMapping("/icon/{company_Id}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String company_Id) {
-        // Load file from database
+
 
         icon dbFile = iconservice.getFile(company_Id);
 
@@ -56,5 +57,19 @@ public class iconController {
     @GetMapping("/icon")
     public List<icon> findAll() {
         return iconservice.findAll();
+    }
+
+
+    @GetMapping("/iconblob/{companyid}")
+    public byte[] blob(@PathVariable String companyid) {
+        return iconservice.blob(companyid);
+    }
+
+    @PutMapping(value = "/iconblob/{companyid}", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<icon> updateiconByIdStudentid(@PathVariable String companyid, @RequestPart("icon") MultipartFile icon) throws MethodArgumentNotValidException, ResourceNotFoundException, IOException {
+
+        icon userJson = iconservice.updateicon(companyid,  icon);
+
+        return ResponseEntity.ok().body(userJson);
     }
 }

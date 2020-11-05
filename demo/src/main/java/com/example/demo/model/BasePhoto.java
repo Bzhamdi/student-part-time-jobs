@@ -4,10 +4,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "photo")
-public class Photo implements Serializable {
+@Table(name = "basephoto")
+public class BasePhoto implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private long id;
     @Lob
     private byte[] photo;
@@ -15,7 +15,8 @@ public class Photo implements Serializable {
     private String photoName;
 
     private String photoType;
-    private String studentid;
+
+
 
     public long getId() {
         return id;
@@ -49,38 +50,22 @@ public class Photo implements Serializable {
         this.photoType = photoType;
     }
 
-    public String getStudentid() {
-        return studentid;
+
+
+
+
+    public BasePhoto(long id) {
+        this.id = id;
     }
 
-    public void setStudentid(String studentid) {
-        this.studentid = studentid;
-    }
-
-    public Photo() {
-    }
-
-    public Photo(long id, byte[] photo, String photoName, String photoType, String studentid) {
+    public BasePhoto(long id, byte[] photo, String photoName, String photoType) {
         this.id = id;
         this.photo = photo;
         this.photoName = photoName;
         this.photoType = photoType;
-        this.studentid = studentid;
+
     }
 
-    public Photo(byte[] photo, String studentid) {
-        this.photo = photo;
-        this.studentid = studentid;
-    }
-
-
-    public Photo( byte[] photo, String photoName, String photoType, String studentid) {
-
-        this.photo = photo;
-        this.photoName = photoName;
-        this.photoType = photoType;
-        this.studentid = studentid;
+    public BasePhoto() {
     }
 }
-
-

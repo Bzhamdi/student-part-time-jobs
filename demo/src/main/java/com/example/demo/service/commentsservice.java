@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.exception.ResourceNotFoundException;
 
 import com.example.demo.model.Comments;
+import com.example.demo.model.Company;
 import com.example.demo.model.React;
 import com.example.demo.repository.commentsRepository;
 
@@ -17,6 +18,8 @@ import java.util.List;
 public class commentsservice {
     @Autowired
     private commentsRepository commentsRepository;
+    @Autowired
+    private companyservice companyservice;
 
     /* ---------------------------------get all------------------*/
     public List<Comments> findAll() {
@@ -25,7 +28,10 @@ public class commentsservice {
 
     }
     /*--------------------------save one ------------------*/
-    public Comments save(Comments sk) {
+    public Comments save(Comments sk) throws ResourceNotFoundException {
+
+        Company comp = companyservice.findOne(sk.getCompanyid());
+        sk.setCompanyname(comp.getName());
         return commentsRepository.save(sk);
     }
 

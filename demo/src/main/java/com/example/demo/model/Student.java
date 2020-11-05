@@ -24,7 +24,11 @@ public class Student {
     private LocalDate datebirth;
     private String nationality;
     private String city;
-    private  long tel;
+    private  long tel = 0;
+    private String phone;
+    private long views;
+    private String descripion;
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "studintcin")
     private List<skills> studentskills;
@@ -45,19 +49,15 @@ public class Student {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "stuudentid")
     private List<Comments> commentandnote;
 
+    public String getPhone() {
+        return phone;
+    }
 
-  /*  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "student")
-    private List<experience> studentexperience;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "student")
-    private List<formation> studentformation;
-*/
-   /* @Lob
-    private byte[] photo;
 
-    private String photoName;
-
-    private String photoType; */
 
     public List<Comments> getCommentandnote() {
         return commentandnote;
@@ -91,7 +91,7 @@ public class Student {
         this.lastname = lastname;
     }
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+
     public LocalDate getDatebirth() {
         return datebirth;
     }
@@ -156,6 +156,14 @@ public class Student {
         this.studentreact = studentreact;
     }
 
+    public long getViews() {
+        return views;
+    }
+
+    public void setViews(long views) {
+        this.views = views;
+    }
+
     public Student(String cin, String firstname, String lastname, LocalDate datebirth, String nationality, String city) {
         this.cin = cin;
         this.firstname = firstname;
@@ -193,13 +201,7 @@ public class Student {
         this.studentPhoto = studentPhoto;
     }
 
-    public long getTel() {
-        return tel;
-    }
 
-    public void setTel(long tel) {
-        this.tel = tel;
-    }
 
     public Student(String cin, String firstname, String lastname, LocalDate datebirth, String nationality, String city, long tel) {
         this.cin = cin;
@@ -224,5 +226,25 @@ public class Student {
         this.cin = cin;
         this.firstname = firstname;
         this.lastname = lastname;
+    }
+
+    public String getDescripion() {
+        return descripion;
+    }
+
+    public void setDescripion(String descripion) {
+        this.descripion = descripion;
+    }
+
+    public Student(String cin, String firstname, String lastname, LocalDate datebirth, String nationality, String city, String phone, long views, String descripion) {
+        this.cin = cin;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.datebirth = datebirth;
+        this.nationality = nationality;
+        this.city = city;
+        this.phone = phone;
+        this.views = views;
+        this.descripion = descripion;
     }
 }

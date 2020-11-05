@@ -67,4 +67,9 @@ public class icon implements Serializable {
         this.iconType = iconType;
         this.companyid = companyid;
     }
+
+    public icon(byte[] icon, String companyid) {
+        this.icon = icon;
+        this.companyid = companyid;
+    }
 }

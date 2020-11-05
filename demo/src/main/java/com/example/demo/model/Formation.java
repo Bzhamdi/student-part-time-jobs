@@ -13,9 +13,20 @@ public class Formation {
     private String description;
     private LocalDate datestart;
     private LocalDate dateend;
+    private String poste;
+    private LocalDate commdate;
     @Column(nullable=false)
     private String studintcinn;
 
+    public Formation(long id, String name, String description, LocalDate datestart, LocalDate dateend, String poste, String studintcinn) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.datestart = datestart;
+        this.dateend = dateend;
+        this.poste = poste;
+        this.studintcinn = studintcinn;
+    }
 
     public Formation(long id, String name, String description, LocalDate datestart, LocalDate dateend, String studintcinn) {
         this.id = id;
@@ -27,6 +38,7 @@ public class Formation {
     }
 
     public Formation() {
+        this.commdate = LocalDate.now();
     }
 
     public long getId() {
@@ -75,5 +87,32 @@ public class Formation {
 
     public void setStudintcin(String studintcin) {
         this.studintcinn = studintcin;
+    }
+
+    public String getPoste() {
+        return poste;
+    }
+
+    public void setPoste(String poste) {
+        this.poste = poste;
+    }
+
+    public LocalDate getCommdate() {
+        return commdate;
+    }
+
+    public void setCommdate(LocalDate commdate) {
+        this.commdate = commdate;
+    }
+
+    public Formation(long id, String name, String description, LocalDate datestart, LocalDate dateend, String poste, LocalDate commdate, String studintcinn) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.datestart = datestart;
+        this.dateend = dateend;
+        this.poste = poste;
+        this.commdate = LocalDate.now();
+        this.studintcinn = studintcinn;
     }
 }

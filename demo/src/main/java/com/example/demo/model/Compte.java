@@ -22,6 +22,7 @@ public class Compte {
     private String lastname;
     @JsonIgnoreProperties
     private int type;
+    private Integer verif;
 
     public String getEmail() {
         return email;
@@ -85,5 +86,22 @@ public class Compte {
         this.name = name;
         this.lastname = lastname;
         this.type = type;
+    }
+
+    public Integer getVerif() {
+        return verif;
+    }
+
+    public void setVerif(Integer verif) {
+        this.verif = verif;
+    }
+
+    public Compte(String email, String password, String name, String lastname, int type, Integer verif) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.lastname = lastname;
+        this.type = type;
+        this.verif = verif;
     }
 }

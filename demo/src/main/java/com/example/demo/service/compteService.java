@@ -3,9 +3,7 @@ package com.example.demo.service;
 import com.example.demo.exception.ErrorDetails;
 import com.example.demo.exception.GlobalExceptionHandler;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.model.Company;
-import com.example.demo.model.Compte;
-import com.example.demo.model.Student;
+import com.example.demo.model.*;
 import com.example.demo.repository.compteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,22 +18,35 @@ public class compteService {
     private compteRepository compteRepository;
     @Autowired
     private studentservice studentservice;
-    @Autowired companyservice  companyservice;
-
-
+    @Autowired
+    companyservice  companyservice;
+    @Autowired
+    private DBFileStorageService DBFileStorageService;
+    @Autowired
+    private Photoservice Photoservice ;
+    @Autowired
+    private iconservice iconservice;
     /*--------------------------save one ------------------*/
     public Compte save(Compte exp) {
         boolean a = isValid(exp.getEmail());
                 if (a == false) {exp.setEmail(null);    }
+        byte[] image = DBFileStorageService.getblob("117e7f98-9a40-4b6d-af8e-57b4a5d862c6");
+                DBFile az  =DBFileStorageService.getFile("117e7f98-9a40-4b6d-af8e-57b4a5d862c6");
+
 
                 Compte c =compteRepository.save(exp);
                 if (c.getType()==0) {
                     Student st = new Student(c.getEmail(), c.getName(), c.getLastname());
                     studentservice.save(st);
+                    Photo ph = new Photo(image, az.getFileName(),az.getFileType(),c.getEmail());
+                    Photoservice.save(ph);
+
                 }
                 else {
                     Company com = new Company(c.getEmail(), c.getName());
                     companyservice.save(com);
+                    icon ic = new icon(image,c.getEmail());
+                    iconservice.save(ic);
 
                 }
                 return c;
@@ -58,6 +69,12 @@ public class compteService {
 
         return inBase;
     }
+
+    public void delete(String id) {
+
+        compteRepository.deleteById(id);
+    }
+
     public static boolean isValid(String email)
     {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+

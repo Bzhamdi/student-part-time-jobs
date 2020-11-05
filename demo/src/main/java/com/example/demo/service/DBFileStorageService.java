@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DBFileStorageService {
@@ -48,4 +50,12 @@ public class DBFileStorageService {
         return dbFileRepository.findById(fileId)
                 .orElseThrow(() -> new FileNotFoundException("File not found with id " + fileId));
     }
+
+
+    public byte[]  getblob(String fileId) {
+        DBFile a = dbFileRepository.getOne(fileId);
+
+        return a.getData();
+    }
 }
+

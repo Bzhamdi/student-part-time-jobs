@@ -54,4 +54,13 @@ public class experienceservice {
 
         experienceRepositoryepository.deleteById(id);
     }
+
+
+
+    /* ---------------------------------experienceByStudentId------------------*/
+    public List<Experience> experienceByStudentId(String studentid) {
+        return experienceRepositoryepository.findByStudintcinnn(studentid);
+
+
+    }
 }

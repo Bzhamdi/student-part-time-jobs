@@ -14,9 +14,6 @@ public class skills {
     private int note;
    @Column(nullable=false)
     private String studintcin;
-   /* @JoinColumn(name = "studintcin", referencedColumnName = "cin")
-    @ManyToOne(optional = false)
-    private Student student;*/
 
     public long getId() {
         return id;
@@ -27,7 +24,7 @@ public class skills {
         this.name = name;
         this.note = note;
        this.studintcin = studintcin;
-      /*  this.student = student;*/
+
     }
 
 
@@ -61,15 +58,7 @@ public class skills {
     public void setStudintcin(String studintcin) {
         this.studintcin = studintcin;
     }
-/*
-    public Student getStudent() {
-        return student;
-    }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-*/
     public skills() {
     }
 }

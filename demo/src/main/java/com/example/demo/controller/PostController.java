@@ -5,6 +5,9 @@ import com.example.demo.exception.ResourceNotFoundException;
 
 import com.example.demo.model.Post;
 
+import com.example.demo.model.Poststate;
+import com.example.demo.payload.top3Company;
+import com.example.demo.repository.faza;
 import com.example.demo.service.postservice;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,10 +30,21 @@ public class PostController {
     private static final String ENTITY_NAME = "Post";
 
 
-    /*-------------stattest------*/
+    /*-------------postStatCountbyMonth------*/
     @GetMapping("/postStatCountbyMonth")
     public TreeMap<String, Integer> STAT() throws ParseException {
         return postservice.stat();
+    }
+
+    /*-------------postStatOfOneCompanyCountbyMonth------*/
+    @GetMapping("/postStatOfOneCompanyCountbyMonth/{company_Id}")
+    public TreeMap<String, Integer> postStatOfOneCompanyCountbyMonth(@PathVariable String company_Id) throws ParseException {
+        return postservice.postStatOfOneCompanyCountbyMonth(company_Id);
+    }
+    /*------------postOfCompanyInYerar------*/
+    @GetMapping("/postOfCompanyInYerar/{company_Id}")
+    public Integer postOfCompanyInYerar(@PathVariable String company_Id) throws ParseException {
+        return postservice.postOfCompanyInYerar(company_Id);
     }
 
     @GetMapping("/post")
@@ -38,12 +52,23 @@ public class PostController {
         return postservice.findAll();
     }
 
-
+    @GetMapping("/top3company")
+    public List<faza> top3company() {
+        return postservice.findto3();
+    }
 
     @GetMapping("/freepost")
     public List<Post> findAllFreePosts() {
         return postservice.findAllFREEpost();
     }
+
+
+    /*-------------freeand occuped post------*/
+    @GetMapping("/FREEandOCUUPED")
+    public TreeMap<String, Integer> FREEandOCUUPED() throws ParseException {
+        return postservice.FREEandOCCUPED();
+    }
+
     /*-----------------------------------------find by type------------------*/
 
     @GetMapping("/freepostByType/{type}")
@@ -80,6 +105,7 @@ public class PostController {
         Post result = postservice.save(post);
         return ResponseEntity.ok().body(result);
     }
+    // deletepost
     @DeleteMapping("/deletepost/{id}")
     public Map<String, Boolean> deletePost(@PathVariable(value = "id") Long postId)
             throws ResourceNotFoundException {
@@ -89,7 +115,7 @@ public class PostController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
-
+/*--------------find post by id ----------------------*/
     @GetMapping("/post/{id}")
     public ResponseEntity<Post> getPostbyid(@PathVariable Integer id) throws ResourceNotFoundException {
 
@@ -97,19 +123,41 @@ public class PostController {
 
         return ResponseEntity.ok().body(dto);
     }
-
-    @PutMapping("/post/{id}")
+/*--------------update post ------------------------*/
+    @PutMapping("/poster/{id}")
     public ResponseEntity<Post> updateExperienceById(@PathVariable Integer id,  @RequestBody Post pst) throws MethodArgumentNotValidException, ResourceNotFoundException {
 
         pst.setId(id);
+        Post test = postservice.findOne(id);
+        if( test.getPoststate() == Poststate.OCCUPIED) {
+            Post result = null;
+            return ResponseEntity.ok().body(result);
+        }
         Post result = postservice.update(pst);
         return ResponseEntity.ok().body(result);
     }
-
+/*--------------get post by company id ------------*/
     @GetMapping("/posts/{company_Id}")
     public List<Post> getListOfPostbyCompanyId(@PathVariable String company_Id) throws ResourceNotFoundException {
 
         List<Post> dto = postservice.findListPostByCompanyId( company_Id);
+
+        return dto;
+    }
+
+/*----------------- FreePostsByCompanyId-------------*/
+    @GetMapping("/FreePostsByCompanyId/{company_Id}")
+    public List<Post> FreePostsByCompanyId(@PathVariable String company_Id) throws ResourceNotFoundException {
+
+        List<Post> dto = postservice.FREEPostsByCompanyId( company_Id);
+
+        return dto;
+    }
+// OCCUPEDPostsByCompanyId
+    @GetMapping("/OCCUPEDPostsByCompanyId/{company_Id}")
+    public List<Post> OCCUPEDPostsByCompanyId(@PathVariable String company_Id) throws ResourceNotFoundException {
+
+        List<Post> dto = postservice.OCCUPEDPostsByCompanyId( company_Id);
 
         return dto;
     }
